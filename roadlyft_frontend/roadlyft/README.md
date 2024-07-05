@@ -1,4 +1,4 @@
-# roadlyft_frontend
+# roadlyft
 
 ## Project setup
 ```

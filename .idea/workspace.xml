@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d16c7dda-5cb6-40f4-9525-4d1d4550d097" name="Changes" comment="" />
+    <list default="true" id="d16c7dda-5cb6-40f4-9525-4d1d4550d097" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/src/views/HomeView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/src/views/HomeView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/vue.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
