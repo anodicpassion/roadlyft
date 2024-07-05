@@ -1,0 +1,1163 @@
+<template>
+    <div>
+        <div id="home-content" style="display: none;">
+            <div id="dashb-content">
+                <div style="position: fixed; right: 0; z-index: -2;">
+                    <button id="prev-route-btn" style="background-color: transparent; border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
+                    <img src="../components/icons/more.png" width="30" height="30">
+                    </button>
+                </div>
+                <div id="prev-route" class="c-light" style="display: none; width: 300px; height: 70vh; position:fixed; z-index:-1; background-color: white; top: 0; right: 0px; border-radius: 0px 0px 0px 20px; border: 0px solid rgba(0, 0, 0, 0.4); box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); text-align: center; overflow: scroll; ">
+                    <br>
+                    <p>Your previous routes</p>
+                    <br>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                </div>
+                <div style="width: 100%; z-index: -3;  margin: -8px; margin-top: -10px;  height: 400px; position: fixed; background-image: linear-gradient(225deg, #00c6fb 0%, #005bea 100%);">
+                    <br>
+                    <p class="c-semibold" style=" font-size: 30px; margin-left: 30px;  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); color: white;">Hey,</p>
+                    <p id="usr-name" class="c-bold" style=" font-size: 50px; margin-left: 30px; margin-top: -10px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); color: white;">User</p>
+                    <br>
+                    <br>
+                    <div class="outer-container" style="width: 100%; height: 100px; background-color: rgba(0, 0, 0, 0.0); margin-top: -20px;  align-items: center; padding-left: 20px; overflow-x: auto; white-space: nowrap; -ms-overflow-style: none;">
+                    <div id="date_highlt_0" style="width: 80px; height: 80px; background-color: rgba(255, 255, 255, 0.01); border: 1px solid rgba(225, 225, 225, 0.6); border-radius: 20px; display: inline-block; margin-right: 10px; box-shadow: 0 3px 7px 0 rgba(0, 0, 0, .13), 0 1px 2px 0 rgba(0, 0, 0, .11); justify-content: center; overflow: hidden; text-align: center;" >
+                        <p class="c-bold" id="today_date" style="position: relative; color: white; font-size: 20px; ">-</p>
+                        <p class="c-light" style="position: relative; color: white; margin-top: -10px;">Today</p>
+                    </div>
+                    <div id="date_highlt_1" style="width: 80px; height: 80px; background-color: rgba(255, 255, 255, 0.01); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 20px; display: inline-block; margin-right: 10px; box-shadow: 0 3px 7px 0 rgba(0, 0, 0, .13), 0 1px 2px 0 rgba(0, 0, 0, .11); justify-content: center; overflow: hidden; text-align: center;" >
+                        <p class="c-bold" id="tomorrow_date" style="position: relative; color: white; font-size: 20px; ">-</p>
+                        <p class="c-light" style="position: relative; color: white; margin-top: -10px;">Tommo</p>
+                    </div>
+                    
+                    <div id="date_highlt_2" style="width: 80px; height: 80px; background-color: rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 20px; display: inline-block; margin-right: 10px; overflow: hidden; text-align: center;">
+                        <p class="c-bold" id="day_after_tomorrow_date" style="position: relative; color: white; font-size: 20px; ">-</p>
+                        <p class="c-light" id="day_after_tomorrow_day" style="position: relative; color: white; margin-top: -10px;">day</p>
+                    </div>
+                    <div id="date_highlt_3" style="width: 80px; height: 80px; background-color: rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 20px; display: inline-block; margin-right: 10px; overflow: hidden; text-align: center;">
+                        <p class="c-bold" id="thrid_date" style="position: relative; color: white; font-size: 20px; ">-</p>
+                        <p class="c-light" id="thrid_day" style="position: relative; color: white; margin-top: -10px;">day</p>
+                    </div>
+                    <div id="date_highlt_4" style="width: 80px; height: 80px; background-color: rgba(0, 0, 0, 0.1); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 20px; display: inline-block; margin-right: 30px; overflow: hidden; text-align: center;">
+                        <p class="c-bold" id="forth_date" style="position: relative; color: white; font-size: 20px; ">-</p>
+                        <p class="c-light" id="forth_day" style="position: relative; color: white; margin-top: -10px;">day</p>
+                    </div>
+                    <!-- <div style="width: 80px; height: 80px; background-color: rgba(0, 0, 0, 0.1); border-radius: 20px; display: inline-block; margin-right: 30px; overflow: hidden; text-align: center;">
+                        <input type="date" class="c-bold" style="position: relative; color: white; font-size: 20px; ">
+                        <p class="c-bold" style="position: relative; color: white; font-size: 20px; ">_</p>
+                        <p class="c-light" style="position: relative; color: white; margin-top: -10px;">___</p>
+                    </div> -->
+                    <!-- <div style="width: 10px; height: 80px; background-color: transparent; border-radius: 20px; display: inline-block; margin-right: 20px;"></div> -->
+                    
+                    </div>
+                </div>
+                
+                <div id="div2" class="titlebar" style=" overflow: scroll; ">
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center;">
+                        <div style="width: 15px; height: 15px; border-right: 2px solid rgba(0, 0, 0, 0.2); border-top: 2px solid rgba(0, 0, 0, 0.2); rotate: -45deg;"></div>
+                    </div>
+                    <div style="overflow-x: scroll; position: relative;">
+                
+                        <br>
+                        <div style="display: flex; justify-content: center; width: 100%;">
+                        <div class="round-edge">
+                            <p class="c-light" style=" font-size: 15px; margin-left: 20px; ">where would you like to go...</p>
+                        </div>
+                        </div>
+                
+                        <br>
+                        <br>
+                        <div style="width: 100%; display: flex; justify-content: center;">
+                
+                        <div class="round-edge" style="background-color: transparent; height: 300px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                            <br>
+                            <div style="position: absolute; z-index:  -1; margin-left: 50px;">
+                            <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                            </div>
+                            <br>
+                            <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">From</p>
+                            <br>
+                            <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                            <div class="search pickup_dropdown_p" >
+                                <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
+                                <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
+                                <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
+                                </svg>
+                                <input id="pickup_locationInput_p" class="search-inp c-regular" type="text" placeholder="Pickup point">
+                                <div id="pickup_dropdownContent_p" class="pickup_dropdown-content_p c-light">
+                                    <!-- <div>hello</div> -->
+                                </div>
+                            </div>
+                            </div>
+                            <br>
+                            <br>
+                            <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">To</p>
+                            <br>
+                            <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                            <div class="search dropoff_dropdown_p">
+                                <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
+                                <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
+                                <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
+                                </svg>
+                                <input id="dropoff_locationInput_p" class="search-inp c-regular" type="text" placeholder="Dropoff point">
+                                <div id="dropoff_dropdownContent_p" class="dropoff_dropdown-content_p c-light">
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div style="width: 100%; display: flex; justify-content: center;"> 
+                        <div class="round-edge" style="background-color: transparent; height: 130px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                            <br>
+                            <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Seats</p>
+                            <br>
+                            <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                            <div class="search">
+                                
+                                <input id="n_seats" class="search-inp c-regular" type="number" value="1" min="1" max="4" style="text-align: center; width: 100%;">
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div style="width: 100%; display: flex; justify-content: center;"> 
+                            <div id="p_go" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb;"> 
+                                <p id="para_go_p" class="c-bold" style=" font-size: 20px; margin-top: 15px;">Go..!</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div id="map-content" style="display: none;">
+                <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
+                onclick="document.getElementById('map-content').style.display = 'none'; document.getElementById('dashb-content').style.display = 'block';">
+                    <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
+                </div>
+                <div id="map"></div>
+                <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
+                    <div onclick="document.getElementById('cablist-content').style.display = 'block';document.getElementById('map-content').style.display = 'none';" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb;"> 
+                        <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Confirm</p>
+                    </div>
+                </div>
+            </div>
+            <div id="cablist-content" style="display: none;">
+                <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
+                onclick="document.getElementById('cablist-content').style.display = 'none'; document.getElementById('dashb-content').style.display = 'block';">
+                    <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
+                </div>
+                <br>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" >
+                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">No cabs available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="publish-content" style="display: none;">
+            <div>
+                <br>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" >
+                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Publish your ride...</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div style="width: 100%; display: flex; justify-content: center;">
+                    <div class="round-edge" style="background-color: transparent; height: 300px; ">
+                        <br>
+                        <div style="position: absolute; z-index:  -1; margin-left: 50px;">
+                            <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                            <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                        </div>
+                        <br>
+                        <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">From</p>
+                        <br>
+                        <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                            <div class="search pickup_dropdown_d" >
+                                <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
+                                <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
+                                <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
+                                </svg>
+                                <input id="pickup_locationInput_d" class="search-inp c-regular" type="text" placeholder="Pickup point">
+                                <div id="pickup_dropdownContent_d" class="pickup_dropdown-content_d c-light"></div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">To</p>
+                        <br>
+                        <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                            <div class="search dropoff_dropdown_d">
+                                <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
+                                <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
+                                <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
+                                </svg>
+                                <input id="dropoff_locationInput_d" class="search-inp c-regular" type="text" placeholder="Pickup point">
+                                <div id="dropoff_dropdownContent_d" class="dropoff_dropdown-content_d c-light"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div id="DRIVER_F_0" style="display: none; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="width: 80%; height: 150px; display: flex; justify-content: center; align-items: center; background-color: rgb(255, 232, 232);" >
+                        <div style="width: 100%;">
+                            <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Please complete verification before you can publish your rides.</p>
+                            <p class="c-light" style=" font-size: 15px; margin-left: 20px; color: #00c6fb;" onclick="window.location.href = '/driver-verification'">Verify ↗︎</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="DRIVER_F_1" style="display: none; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="width: 80%; height: 120px; display: flex; justify-content: center; align-items: center; background-color: rgb(255, 232, 232);" >
+                        <div style="width: 100%;">
+                            <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Your subscription is expired. Please renew it.</p>
+                            <p class="c-light" style=" font-size: 15px; margin-left: 20px; color: #00c6fb;" onclick="window.location.href = '/driver-renew'">Renew ↗︎</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div id="DRIVER_F_2" style="width: 100%; display: none; justify-content: center; color: #10517d;"> 
+                    <div id="p_go" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb;"> 
+                        <p id="para_go_p" class="c-bold" style=" font-size: 20px; margin-top: 15px;">Proceed</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div id="profile-content" style="display: none;">
+            <div>
+                <div style="width: 100%; height: 150px; display: flex;">
+                <div class="round-edge" style="width: 100px; height:100px; margin: 30px; display: flex; justify-content: center; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <div class="round-edge" style="width: 50px; height: 50px; background-color: white; margin-top: 10px;"></div>
+                    <div class="round-edge" style="width: 80px; height: 30px; position:absolute; background-color: white;  margin-top: 70px;"></div>
+                </div>
+                <div style="margin-top: 30px; margin-left: -20px; font-size: 50px; align-content: center;">
+                    <p class="c-bold" style="margin-left: 30px;">P. S. P.</p>
+                    
+
+                </div>
+                </div>
+                <br>
+                <br>
+                <div style="width: 100%; height: 30px; display: flex; border-bottom: 1px solid rgba(0, 0, 0, 0.1); font-size: 20px;">
+                <div class="c-bold" id="prof" style="width: 50%; text-align: center; border-bottom: 1px solid black;">Profile</div>
+                <div class="c-bold" id="acc" style="width: 50%; text-align: center;">Account</div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div id="prof-cont" style="text-align: center;  ">
+                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        <p>Personal Information</p>
+                    </div>
+                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        <p>Setting</p> 
+                    </div>
+                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        <p>About</p> 
+                    </div>
+                    <div id="d_renew" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        <p>Subscription</p> 
+                    </div>
+                    <div id="d_verification" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        <p>Verification</p> 
+                    </div>
+                </div>
+                <div id="acc-cont" style="display: none; text-align: center;">
+                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <p>Account Information</p>
+                    </div>
+                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <p>Account Setting</p> 
+                    </div>
+                    <div id="logout_btn" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <p>Logout</p> 
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+        
+        
+        
+        <div style="width: 100%; display: flex; justify-content: center; ">
+        
+            <div class="navbar c-light" style="display: flex; justify-content: center;">
+    
+                <div class="navbar" style="width: 85%; border: none; box-shadow: none; left: auto; background-color: transparent;">
+                    <div style="width: 100%; height: 60px; display: flex; margin-top: 15px;">
+                        <div style="width: 33%; height: 30px; display: flex; justify-content: center; ">
+                            <div id="home-div" style="text-decoration: none; width: 50px; height: 50px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.1); display: flex; justify-content: center; margin-top: -10px; align-items: center;">
+                                <img id="home-ico" src="../components/icons/home_w.png" width="30" height="30" >
+                            </div>
+                        </div>
+                        <div style="width: 33%; height: 30px; display: flex; justify-content: center;">
+                            <div id="publish-div" style="text-decoration: none; width: 50px; height: 50px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.1); display: flex; justify-content: center; margin-top: -10px; align-items: center;">
+                                <img id="publish-ico" src="../components/icons/progress_w.png" width="30" height="30">
+                            </div>
+                        </div>
+                        <div style="width: 33%; height: 30px; display: flex; justify-content: center;">
+                            <div id="profile-div" style="text-decoration: none; width: 50px; height: 50px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.1); display: flex; justify-content: center; margin-top: -10px; align-items: center;">
+                                <img id="profile-ico" src="../components/icons/profile_w.png" width="30" height="30">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+
+
+
+
+
+
+<script>
+
+const auth_toc_usr = getCookie('auth_toc_usr');
+console.log("cookie: ", auth_toc_usr);
+const loyalty = getCookie("lo_@_ty");
+console.log("lo_@_ty:", loyalty);
+const usr_verify = localStorage.getItem("dock-cid");
+console.log("local_storage: ", usr_verify);
+let booking_date_thresh = 0;
+const customMapStyles = [
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            { "color": "#000000" }, { "lightness": 40}
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            { "color": "#000000" }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            { "color": "#d0d0d0" },
+            { "lightness": 14 },
+            { "weight": 1.4 }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            { "color": "#eff3f7" }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            { "color": "#d9e1ea" },
+            { "lightness": 5 }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.fill",
+        "stylers": [
+            { "color": "#abbfd3" }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            { "color": "#abbfd3" },
+            { "lightness": 1 }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            { "color": "#d9e1ea" }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            { "color": "#e1e8ef" },
+            { "lightness": 1 }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "geometry",
+        "stylers": [
+            { "color": "#FFFFFF" }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            { "color": "#d9e1ea" }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            { "color": "#5d6e74" }
+        ]
+    }
+];
+let map, geocoder, directionsService, directionsRenderer;
+
+
+function home_btn_disp (){
+    document.getElementById("home-content").style.display = "block";
+    document.getElementById("publish-content").style.display = "none";
+    document.getElementById("profile-content").style.display = "none";
+    document.getElementById("home-ico").style.opacity = 1;
+    document.getElementById("publish-ico").style.opacity = 0.5;
+    document.getElementById("profile-ico").style.opacity = 0.5;
+    document.getElementById("home-div").style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+    document.getElementById("publish-div").style.backgroundColor = "transparent";
+    document.getElementById("profile-div").style.backgroundColor = "transparent";
+}
+function publish_btn_disp(){
+    document.getElementById("home-content").style.display = "none";
+    document.getElementById("publish-content").style.display = "block";
+    document.getElementById("profile-content").style.display = "none";
+    document.getElementById("home-ico").style.opacity = 0.5;
+    document.getElementById("publish-ico").style.opacity = 1;
+    document.getElementById("profile-ico").style.opacity = 0.5;
+    document.getElementById("publish-div").style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+    document.getElementById("home-div").style.backgroundColor = "transparent";
+    document.getElementById("profile-div").style.backgroundColor = "transparent";
+}
+function profile_btn_disp(){
+    document.getElementById("home-content").style.display = "none";
+    document.getElementById("publish-content").style.display = "none";
+    document.getElementById("profile-content").style.display = "block";
+    document.getElementById("home-ico").style.opacity = 0.5;
+    document.getElementById("publish-ico").style.opacity = 0.5;
+    document.getElementById("profile-ico").style.opacity = 1;
+    document.getElementById("profile-div").style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+    document.getElementById("publish-div").style.backgroundColor = "transparent";
+    document.getElementById("home-div").style.backgroundColor = "transparent";
+}
+function day_select_highlt(thresh_day){
+    if (thresh_day == 0){
+        booking_date_thresh = thresh_day;
+        document.getElementById('date_highlt_0').style.border = "1px solid rgba(225, 225, 225, 0.6)";
+        document.getElementById('date_highlt_1').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_2').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_3').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_4').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+    }
+    else if (thresh_day == 1){
+        booking_date_thresh = thresh_day;
+        document.getElementById('date_highlt_1').style.border = "1px solid rgba(225, 225, 225, 0.6)";
+        document.getElementById('date_highlt_0').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_2').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_3').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_4').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+    }
+    else if (thresh_day == 2){
+        booking_date_thresh = thresh_day;
+        document.getElementById('date_highlt_2').style.border = "1px solid rgba(225, 225, 225, 0.6)";
+        document.getElementById('date_highlt_0').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_1').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_3').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_4').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+    }
+    else if (thresh_day == 3){
+        booking_date_thresh = thresh_day;
+        document.getElementById('date_highlt_3').style.border = "1px solid rgba(225, 225, 225, 0.6)";
+        document.getElementById('date_highlt_0').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_2').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_1').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_4').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+    }
+    else if (thresh_day == 4){
+        booking_date_thresh = thresh_day;
+        document.getElementById('date_highlt_4').style.border = "1px solid rgba(225, 225, 225, 0.6)";
+        document.getElementById('date_highlt_0').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_2').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_3').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+        document.getElementById('date_highlt_1').style.border = "1px solid rgba(0, 0, 0, 0.05)";
+    }
+}
+function getCookie(name) {
+    const cookieString = document.cookie;
+    const cookiesArray = cookieString.split('; ');
+    for (let cookie of cookiesArray) {
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName === name) {
+            return cookieValue;
+        }
+    }
+    return null; 
+}
+function logout(){
+    console.log("Preparing to logout.");
+    localStorage.removeItem("dock-cid");
+    document.cookie = 'auth_toc_usr=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    window.location.reload();
+}
+function profile_section(){
+    document.getElementById("prof").style.borderBottom = "1px solid black";
+    document.getElementById("acc").style.borderBottom = "0px solid black";
+    document.getElementById("acc-cont").style.display = "none";
+    document.getElementById("prof-cont").style.display = "block";
+}
+function account_section(){
+    document.getElementById("acc").style.borderBottom = "1px solid black";
+    document.getElementById("prof").style.borderBottom = "0px solid black";
+    document.getElementById("prof-cont").style.display = "none";
+    document.getElementById("acc-cont").style.display = "block";
+}
+function clck (event) {
+    var myDiv = document.getElementById("prev-route");
+    var myDiv_2 = document.getElementById("prev-route-btn");
+    var isClickInside = myDiv.contains(event.target);
+    var isClickInside_2 = myDiv_2.contains(event.target);
+
+    if (!isClickInside) {
+        if (myDiv.style.display == "block"){
+        myDiv.style.display = "none";
+        }
+        // Your code to handle click outside of the div goes here
+    }
+    if (isClickInside_2){
+    document.getElementById("prev-route").style.display = "block";
+    }
+}
+function fetch_loc(){
+    fetch('http://127.0.0.1:5555/get_loc_da', {
+        method: 'POST',
+        credentials: 'include',
+        
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': 'true',
+        },
+        body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1)})
+        
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response from server:', data);
+        if (data['RESP_STAT'] == "SUCCESS") {
+            for(var i = 0; i < data["LOC"].length; i++){
+                var pickup_div_p = document.createElement("div");
+                var dropoff_div_p = document.createElement("div");
+                pickup_div_p.innerText = data["LOC"][i];
+                dropoff_div_p.innerText = data["LOC"][i];
+                document.getElementById("pickup_dropdownContent_p").appendChild(pickup_div_p);
+                document.getElementById("dropoff_dropdownContent_p").appendChild(dropoff_div_p);
+            }
+        }
+        else {
+            alert("Error with your profile. Please login again.");
+            logout();
+        }
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        alert("Something went wrong. Please try again after some time.")
+    });
+}
+function p_go(){
+    var pickup_point = document.getElementById("pickup_locationInput_p").value;
+    var dropoff_point = document.getElementById("dropoff_locationInput_p").value;
+    var number_seats = document.getElementById("n_seats").value;
+    if (number_seats < 5 && number_seats > 0){
+        
+    }
+    else{
+        alert("We allow maximum 4 seat booking.")
+        return;}
+    if (pickup_point.length > 2 && dropoff_point.length > 2){
+        if (pickup_point != dropoff_point){
+            document.getElementById("para_go_p").innerText = "...";
+            document.getElementById("p_go").removeEventListener("click", p_go);
+            document.getElementById("dashb-content").style.display = "none";
+            document.getElementById("map-content").style.display = "block";
+            showLocations();
+            document.getElementById("para_go_p").innerText = "Go..!";
+            document.getElementById("p_go").addEventListener("click", p_go);
+
+            // fetch('http://127.0.0.1:5555/p_go', {
+            //     method: 'POST',
+            //     credentials: 'include',
+                
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'Access-Control-Allow-Credentials': 'true',
+            //     },
+            //     body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "pickup_point": pickup_point, "dropoff_point": dropoff_point, "booking_date_thresh": booking_date_thresh})
+                
+            // })
+            // .then(response => {
+            //     if (!response.ok) {
+            //         throw new Error('Network response was not ok');
+            //     }
+            //     return response.json();
+            // })
+            // .then(data => {
+            //     console.log('Response from server:', data);
+            //     if (data['RESP_STAT'] == "SUCCESS") {
+            //         console.log("Riding booking: ", data);
+
+
+            //     }
+            //     else {
+            //         alert("Error with your profile. Please login again.");
+            //         logout();
+            //     }
+            // })
+            // .catch(error => {
+            //     console.error('There was a problem with the fetch operation:', error);
+            //     alert("Something went wrong. Please try again after some time.")
+            // });
+        }
+        else{
+            alert("Pickup and Dropoff points cannot be same.");
+        }
+    }
+}
+
+function fetchLocations_1() {
+    var input = document.getElementById('pickup_locationInput_p').value;
+    const dropdown = document.getElementById('pickup_dropdownContent_p');
+    dropdown.style.display = "block";
+
+    const service = new google.maps.places.AutocompleteService();
+    // service.getPlacePredictions({ input: input }, function (predictions, status) {
+    service.getPlacePredictions({ input: input, componentRestrictions: { country: 'in' } }, function (predictions, status) {
+
+        if (status != google.maps.places.PlacesServiceStatus.OK) {
+            console.log(status);
+            return;
+        }
+        dropdown.innerHTML = '';
+        predictions.forEach(function (prediction) {
+            const option = document.createElement('div');
+            option.addEventListener("click", function (){document.getElementById('pickup_locationInput_p').value = prediction.description;document.getElementById("pickup_dropdownContent_p").style.display = "none";document.getElementById('dropoff_locationInput_p').focus();});
+            option.innerText = prediction.description;
+            dropdown.appendChild(option);
+        });
+    });
+}
+
+function fetchLocations_2() {
+    const input = document.getElementById('dropoff_locationInput_p').value;
+    const dropdown = document.getElementById('dropoff_dropdownContent_p');
+    dropdown.style.display = "block";
+
+    const service = new google.maps.places.AutocompleteService();
+    // service.getPlacePredictions({ input: input }, function (predictions, status) {
+    service.getPlacePredictions({ input: input, componentRestrictions: { country: 'in' } }, function (predictions, status) {
+
+        if (status != google.maps.places.PlacesServiceStatus.OK) {
+            console.log(status);
+            return;
+        }
+
+        dropdown.innerHTML = '';
+
+        predictions.forEach(function (prediction) {
+            const option = document.createElement('div');
+            option.addEventListener("click", function (){document.getElementById('dropoff_locationInput_p').value = prediction.description;document.getElementById("dropoff_dropdownContent_p").style.display = "none";});
+            option.innerText = prediction.description;
+            dropdown.appendChild(option);
+        });
+    });
+}
+
+function fetchLocations_3() {
+    var input = document.getElementById('pickup_locationInput_d').value;
+    const dropdown = document.getElementById('pickup_dropdownContent_d');
+    dropdown.style.display = "block";
+
+    const service = new google.maps.places.AutocompleteService();
+    // service.getPlacePredictions({ input: input }, function (predictions, status) {
+    service.getPlacePredictions({ input: input, componentRestrictions: { country: 'in' } }, function (predictions, status) {
+
+        if (status != google.maps.places.PlacesServiceStatus.OK) {
+            console.log(status);
+            return;
+        }
+        dropdown.innerHTML = '';
+        predictions.forEach(function (prediction) {
+            const option = document.createElement('div');
+            option.addEventListener("click", function (){document.getElementById('pickup_locationInput_d').value = prediction.description;document.getElementById("pickup_dropdownContent_d").style.display = "none";document.getElementById('dropoff_locationInput_p').focus();});
+            option.innerText = prediction.description;
+            dropdown.appendChild(option);
+        });
+    });
+}
+
+function fetchLocations_4() {
+    const input = document.getElementById('dropoff_locationInput_d').value;
+    const dropdown = document.getElementById('dropoff_dropdownContent_d');
+    dropdown.style.display = "block";
+
+    const service = new google.maps.places.AutocompleteService();
+    // service.getPlacePredictions({ input: input }, function (predictions, status) {
+    service.getPlacePredictions({ input: input, componentRestrictions: { country: 'in' } }, function (predictions, status) {
+
+        if (status != google.maps.places.PlacesServiceStatus.OK) {
+            console.log(status);
+            return;
+        }
+
+        dropdown.innerHTML = '';
+
+        predictions.forEach(function (prediction) {
+            const option = document.createElement('div');
+            option.addEventListener("click", function (){document.getElementById('dropoff_locationInput_d').value = prediction.description;document.getElementById("dropoff_dropdownContent_d").style.display = "none";});
+            option.innerText = prediction.description;
+            dropdown.appendChild(option);
+        });
+    });
+}
+
+
+function showLocations() {
+    console.log("heloolso");
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 17.27889429107477, lng: 74.1848932778437 },
+        zoom: 15, 
+        styles: customMapStyles, 
+        disableDefaultUI: true,
+        zoomControl: false,
+    });
+    geocoder = new google.maps.Geocoder();
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer({
+        suppressMarkers: true 
+    });
+    directionsRenderer.setMap(map);
+    const location1 = document.getElementById('pickup_locationInput_p').value;
+    const location2 = document.getElementById('dropoff_locationInput_p').value;
+
+    if (!location1 || !location2) {
+        alert("Please enter both locations");
+        return;
+    }
+
+    geocodeLocation(location1, (latLng1) => {
+        if (!latLng1) {
+            alert(`Location 1 not found: ${location1}`);
+            return;
+        }
+
+        geocodeLocation(location2, (latLng2) => {
+            if (!latLng2) {
+                alert(`Location 2 not found: ${location2}`);
+                return;
+            }
+
+            // Clear previous directions
+            directionsRenderer.set('directions', null);
+
+            // Place markers and show route
+            placeMarkersAndShowRoute(latLng1, latLng2);
+        });
+    });
+}
+
+function geocodeLocation(location, callback) {
+    geocoder.geocode({ 'address': location }, function(results, status) {
+        if (status === 'OK') {
+            callback(results[0].geometry.location);
+        } else {
+            callback(null);
+        }
+    });
+}
+
+function placeMarkersAndShowRoute(latLng1, latLng2) {
+    // Create a custom marker using SVG icon
+    const icon1 = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M249.5 428.996C232 428.996 145 251 145 251L354 251C354 251 267 428.996 249.5 428.996Z" fill="#10517D"/><ellipse cx="249.5" cy="192" rx="119.5" ry="121" fill="#10517D"/><circle cx="250" cy="192" r="50" fill="white"/></svg>'),
+        scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(40, 68)
+    };
+
+    const icon2 = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M261.925 389.462C259.009 397.051 248.323 397.189 245.21 389.679L130.858 113.765C127.856 106.521 134.907 99.1702 142.269 101.869L246.444 140.052C248.552 140.825 250.872 140.781 252.95 139.931L358.125 96.8919C365.426 93.9042 372.764 101.087 369.934 108.45L261.925 389.462Z" fill="#7ED956"/></svg>'),
+        scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(41, 63)
+    };
+
+    // Place markers
+    new google.maps.Marker({
+        position: latLng1,
+        map: map,
+        icon: icon1,
+        title: 'Location 1',
+    });
+
+    new google.maps.Marker({
+        position: latLng2,
+        map: map,
+        icon: icon2,
+        title: 'Location 2',
+    });
+
+    // Show route
+    const request = {
+        origin: latLng1,
+        destination: latLng2,
+        travelMode: 'DRIVING'
+    };
+
+    directionsService.route(request, function(result, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(result);
+        } else {
+            alert('Directions request failed due to ' + status);
+        }
+    });
+
+    // Fit the map to the bounds of the markers
+    const bounds = new google.maps.LatLngBounds();
+    bounds.extend(latLng1);
+    bounds.extend(latLng2);
+    map.fitBounds(bounds);
+}
+
+
+function on_load() {
+    document.getElementById("home-div").addEventListener("click", home_btn_disp);
+    document.getElementById("publish-div").addEventListener("click", publish_btn_disp);
+    document.getElementById("profile-div").addEventListener("click", profile_btn_disp);
+    document.getElementById("prof").addEventListener("click", profile_section);
+    document.getElementById("acc").addEventListener("click", account_section);
+    document.getElementById("logout_btn").addEventListener("click", logout);
+    document.getElementById("p_go").addEventListener("click", p_go);
+    // document.getElementById("p_go").addEventListener("click", showLocations);
+    document.addEventListener('click', clck);
+    document.getElementById("date_highlt_0").addEventListener("click", function(){day_select_highlt(0);});
+    document.getElementById("date_highlt_1").addEventListener("click", function(){day_select_highlt(1);});
+    document.getElementById("date_highlt_2").addEventListener("click", function(){day_select_highlt(2);});
+    document.getElementById("date_highlt_3").addEventListener("click", function(){day_select_highlt(3);});
+    document.getElementById("date_highlt_4").addEventListener("click", function(){day_select_highlt(4);});
+    document.getElementById("d_verification").addEventListener("click", function(){window.location.href = "/driver-verification";})
+    document.getElementById("d_renew").addEventListener("click", function(){window.location.href = "/driver-renew";})
+    if (usr_verify == null){
+        window.location.replace("/login");
+    }
+    else if (auth_toc_usr == null){
+        window.location.replace("/login");
+    }
+    else if (auth_toc_usr != usr_verify.slice(1, -1)){
+        console.log("malacious activity detected");
+        window.location.replace("/login");
+    }
+    else{
+        
+        home_btn_disp();
+        // publish_btn_disp();
+        fetch('http://127.0.0.1:5555/get_homepage_da', {
+            method: 'POST',
+            credentials: 'include',
+            
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1)})
+            
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data['RESP_STAT'] == "SUCCESS") {
+                document.getElementById("today_date").innerText = data["TODAY"];
+                document.getElementById("tomorrow_date").innerText = data["TOMORROW"];
+                document.getElementById("day_after_tomorrow_date").innerText = data["DATE_AFTER_TOMORROW"];
+                document.getElementById("thrid_date").innerText = data["THIRD_DATE"];
+                document.getElementById("forth_date").innerText = data["FORTH_DATE"];
+                document.getElementById("day_after_tomorrow_day").innerText = data["DAY_AFTER_TOMORROW"];
+                document.getElementById("thrid_day").innerText = data["THIRD_DAY"];
+                document.getElementById("forth_day").innerText = data['FORTH_DAY'];
+                document.getElementById("usr-name").innerText = data['USR_NAME'].split(" ")[0];
+                if (data["DRIVING_FLAG"] == 0){
+                    document.getElementById("DRIVER_F_0").style.display = "flex";
+                }
+                else if (data["DRIVING_FLAG"] == 1){
+                    document.getElementById("DRIVER_F_1").style.display = "flex";
+
+                }
+                else if (data["DRIVING_FLAG"] == 2){
+                    document.getElementById("DRIVER_F_2").style.display = "flex";
+
+                }
+                // fetch_loc();
+            }
+            else {
+                alert("Error with your profile. Please login again.");
+                logout();
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert("Something went wrong. Please try again after some time.")
+        });           
+    }
+
+    const pickup_inp_p = document.getElementById('pickup_locationInput_p');
+    const dropoff_inp_p = document.getElementById('dropoff_locationInput_p');
+
+    pickup_inp_p.addEventListener("keyup", fetchLocations_1);
+    pickup_inp_p.addEventListener('keydown', function(e) {
+        console.log(e.key);
+        if (e.key === 'Enter' || e.key === 'Tab') {
+            e.preventDefault();
+            if (pickup_inp_p.value.length >= 1){
+                document.getElementById("pickup_dropdownContent_p").style.display = "none";
+                pickup_inp_p.value = document.getElementById("pickup_dropdownContent_p").firstChild.innerText;
+                dropoff_inp_p.focus();
+            }
+            else{
+                document.getElementById("pickup_dropdownContent_p").style.display = "none";
+            }
+        }
+    });
+    // pickup_inp_p.addEventListener("blur", function(){
+    //     if (pickup_inp_p.value.length >= 1){
+    //         document.getElementById("pickup_dropdownContent_p").style.display = "none";
+    //         pickup_inp_p.value = document.getElementById("pickup_dropdownContent_p").firstChild.innerText;
+    //     }
+    //     else{
+    //         document.getElementById("pickup_dropdownContent_p").style.display = "none";
+    //     }
+    // });
+    dropoff_inp_p.addEventListener("keyup", fetchLocations_2);
+    dropoff_inp_p.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === 'Tab') {
+
+            if (dropoff_inp_p.value.length >= 1){
+                document.getElementById("dropoff_dropdownContent_p").style.display = "none";
+                dropoff_inp_p.value = document.getElementById("dropoff_dropdownContent_p").firstChild.innerText;
+                dropoff_inp_p.blur();
+            }
+            else{
+                document.getElementById("dropoff_dropdownContent_p").style.display = "none";
+            }
+        }
+    });
+    // dropoff_inp_p.addEventListener("blur", function(){
+    //     if (dropoff_inp_p.value.length >= 1){
+    //         document.getElementById("dropoff_dropdownContent_p").style.display = "none";
+    //         dropoff_inp_p.value = document.getElementById("dropoff_dropdownContent_p").firstChild.innerText;
+    //     }
+    //     else{
+    //         document.getElementById("dropoff_dropdownContent_p").style.display = "none";
+    //     }
+    // });
+
+
+    const pickup_inp_d = document.getElementById('pickup_locationInput_d');
+    const dropoff_inp_d = document.getElementById('dropoff_locationInput_d');
+
+    pickup_inp_d.addEventListener("keyup", fetchLocations_3);
+    pickup_inp_d.addEventListener('keydown', function(e) {
+        console.log(e.key);
+        if (e.key === 'Enter' || e.key === 'Tab') {
+            e.preventDefault();
+            if (pickup_inp_d.value.length >= 1){
+                document.getElementById("pickup_dropdownContent_d").style.display = "none";
+                pickup_inp_d.value = document.getElementById("pickup_dropdownContent_d").firstChild.innerText;
+                dropoff_inp_d.focus();
+            }
+            else{
+                document.getElementById("pickup_dropdownContent_d").style.display = "none";
+            }
+        }
+    });
+    dropoff_inp_d.addEventListener("keyup", fetchLocations_4);
+    dropoff_inp_d.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === 'Tab') {
+
+            if (dropoff_inp_d.value.length >= 1){
+                document.getElementById("dropoff_dropdownContent_d").style.display = "none";
+                dropoff_inp_d.value = document.getElementById("dropoff_dropdownContent_d").firstChild.innerText;
+                dropoff_inp_d.blur();
+            }
+            else{
+                document.getElementById("dropoff_dropdownContent_d").style.display = "none";
+            }
+        }
+    });
+    
+}
+
+export default {
+  mounted() {
+    on_load();
+  }
+};
+
+</script>
