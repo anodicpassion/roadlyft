@@ -328,6 +328,36 @@
                         </div>
                     </div>
                 </div>
+                <div style="background-color: transparent; height: 130px; justify-content: center; align-items: center;">
+                    <br>
+                    <p class="c-regular" style="position: absolute; margin-left: 10%; margin-top: 8px;">Seats</p>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                    <div class="search" style="width: 80%;">
+                        <input id="d_seats" class="search-inp c-regular" type="number" value="1" min="1" max="4" style="text-align: center; width: 100%;">
+                    </div>
+                    </div>
+                </div>
+                <div style="background-color: transparent; height: 130px; justify-content: center; align-items: center;">
+                    <br>
+                    <p class="c-regular" style="position: absolute; margin-left: 10%; margin-top: 8px;">Date</p>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                    <div class="search" style="width: 80%; ">
+                        <input id="d_date" class="search-inp c-regular" type="date" style="text-align: center; width: 85%; margin-left: 10%;">
+                    </div>
+                    </div>
+                </div>
+                <div style="background-color: transparent; height: 130px; justify-content: center; align-items: center;">
+                    <br>
+                    <p class="c-regular" style="position: absolute; margin-left: 10%; margin-top: 8px;">Time</p>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                    <div class="search" style="width: 80%; ">
+                        <input id="d_time" class="search-inp c-regular" type="time" style="text-align: center; width: 85%; margin-left: 10%;">
+                    </div>
+                    </div>
+                </div>
                 <br>
                 <div id="DRIVER_F_0" style="display: none; justify-content: center; width: 100%;">
                     <div class="round-edge" style="width: 80%; height: 150px; display: flex; justify-content: center; align-items: center; background-color: rgb(255, 232, 232);" >
@@ -345,13 +375,17 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
                 <div id="DRIVER_F_2" style="width: 100%; display: none; justify-content: center; color: #10517d;"> 
-                    <div id="p_go" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb;"> 
-                        <p id="para_go_p" class="c-bold" style=" font-size: 20px; margin-top: 15px;">Proceed</p>
+                    <div id="d_publish" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb;"> 
+                        <p id="para_proceed_d" class="c-bold" style=" font-size: 20px; margin-top: 15px;">Proceed</p>
                     </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
+                <br>
+                <br>
                 <br>
                 <br>
                 <br>
@@ -982,6 +1016,64 @@ function placeMarkersAndShowRoute(latLng1, latLng2) {
     map.fitBounds(bounds);
 }
 
+function driver_post(){
+    var pickup_point_d = document.getElementById("dropoff_locationInput_d").value;
+    var dropoff_point_d = document.getElementById("pickup_locationInput_d").value;
+    var d_seats = document.getElementById("d_seats").value;
+    var d_date = document.getElementById("d_date").value;
+    var d_time = document.getElementById("d_time").value;
+    const selectedDate = new Date(d_date);
+    const today = new Date();
+    
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate >= today) {
+        alert("The selected date is in the future or today.");
+    } else {
+        alert("The selected date is not in the future.");
+    }
+
+    if (pickup_point_d == dropoff_point_d){
+        alert("Pickup and dropoff point are same");
+        return
+    }
+    
+    
+    
+    fetch('http://127.0.0.1:5555/d_post', {
+                method: 'POST',
+                credentials: 'include',
+                
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': 'true',
+                },
+                body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "pickup_point": pickup_point_d, "dropoff_point": dropoff_point_d, "ride_date": ride_date, "ride_time": ride_time, "ride_date": ride_date})
+                
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response from server:', data);
+                if (data['RESP_STAT'] == "SUCCESS") {
+                    console.log("Riding booking: ", data);
+
+
+                }
+                else {
+                    alert("Error with your profile. Please login again.");
+                    logout();
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert("Something went wrong. Please try again after some time.")
+            });
+}
+
 
 function on_load() {
     document.getElementById("home-div").addEventListener("click", home_btn_disp);
@@ -1012,8 +1104,8 @@ function on_load() {
     }
     else{
         
-        home_btn_disp();
-        // publish_btn_disp();
+        // home_btn_disp();
+        publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
@@ -1052,7 +1144,7 @@ function on_load() {
                 }
                 else if (data["DRIVING_FLAG"] == 2){
                     document.getElementById("DRIVER_F_2").style.display = "flex";
-
+                    document.getElementById("d_publish").addEventListener("click", driver_post);
                 }
                 // fetch_loc();
             }
@@ -1072,7 +1164,6 @@ function on_load() {
 
     pickup_inp_p.addEventListener("keyup", fetchLocations_1);
     pickup_inp_p.addEventListener('keydown', function(e) {
-        console.log(e.key);
         if (e.key === 'Enter' || e.key === 'Tab') {
             e.preventDefault();
             if (pickup_inp_p.value.length >= 1){
@@ -1124,7 +1215,6 @@ function on_load() {
 
     pickup_inp_d.addEventListener("keyup", fetchLocations_3);
     pickup_inp_d.addEventListener('keydown', function(e) {
-        console.log(e.key);
         if (e.key === 'Enter' || e.key === 'Tab') {
             e.preventDefault();
             if (pickup_inp_d.value.length >= 1){
