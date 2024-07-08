@@ -235,7 +235,7 @@
                 </div>
             </div>
         </div>
-        <div id="publish-content" style="display: none;">
+        <div id="publish-content" style="display: none; color: #10517d">
             <div>
                 <br>
                 <div style="display: flex; justify-content: center; width: 100%;">
@@ -1022,22 +1022,11 @@ function driver_post(){
     var d_seats = document.getElementById("d_seats").value;
     var d_date = document.getElementById("d_date").value;
     var d_time = document.getElementById("d_time").value;
-    const selectedDate = new Date(d_date);
-    const today = new Date();
     
-    today.setHours(0, 0, 0, 0);
-    if (selectedDate >= today) {
-        alert("The selected date is in the future or today.");
-    } else {
-        alert("The selected date is not in the future.");
-    }
-
     if (pickup_point_d == dropoff_point_d){
-        alert("Pickup and dropoff point are same");
+        alert("Pickup and dropoff point are same.");
         return
     }
-    
-    
     
     fetch('http://127.0.0.1:5555/d_post', {
                 method: 'POST',
@@ -1047,7 +1036,7 @@ function driver_post(){
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Credentials': 'true',
                 },
-                body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "pickup_point": pickup_point_d, "dropoff_point": dropoff_point_d, "ride_date": ride_date, "ride_time": ride_time, "ride_date": ride_date})
+                body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "pickup_point": pickup_point_d, "dropoff_point": dropoff_point_d, "d_date":d_date, "d_time":d_time})
                 
             })
             .then(response => {
@@ -1059,13 +1048,18 @@ function driver_post(){
             .then(data => {
                 console.log('Response from server:', data);
                 if (data['RESP_STAT'] == "SUCCESS") {
-                    console.log("Riding booking: ", data);
+                    console.log("Riding publishing: ", data);
 
+
+                }
+                else if (data['RESP_STAT'] == "FAILURE") {
+                    alert("Error with your profile. Please login again.")
+                    logout();
 
                 }
                 else {
                     alert("Error with your profile. Please login again.");
-                    logout();
+                    logout();                    
                 }
             })
             .catch(error => {

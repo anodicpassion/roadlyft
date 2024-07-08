@@ -3,11 +3,11 @@ from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import time, random
-import datetime
+import datetime, pytz
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-limiter = Limiter(get_remote_address, app=app) 
+limiter = Limiter(get_remote_address, app=app)
 
 usr_d: dict = {}
 oth_usr_data: dict = {}
@@ -24,7 +24,11 @@ with open("enc/locations", "r") as loc:
 def deck_create_instance(usr_mobile):
     """Creates the deck instance for the advanced access to the user. This provides the additional security features."""
     temp_de = ""
-    cur_dat_time = datetime.datetime.now().strftime("%H:%M:%S %D")
+    ist_timezone = pytz.timezone('Asia/Kolkata')
+    current_date_ist = datetime.datetime.now(ist_timezone)
+    cur_dat_time = current_date_ist.strftime("%H:%M:%S %D")
+    # cur_dat_time = datetime.datetime.now().strftime("%H:%M:%S %D")
+
     # if usr_mobile
     # if deck_handler.get(usr_mobile):
 
@@ -132,11 +136,13 @@ def login():
 
 @app.route("/get_homepage_da", methods=["POST"])
 def get_dates():
-    today = datetime.date.today()
+    ist = pytz.timezone('Asia/Kolkata')
+    today = datetime.datetime.now(ist).date().today()
     tomorrow = today + datetime.timedelta(days=1)
     day_after_tomorrow = tomorrow + datetime.timedelta(days=1)
     third_date = day_after_tomorrow + datetime.timedelta(days=1)
     forth_date = third_date + datetime.timedelta(days=1)
+
     request_body = request.json
     print("Requesting the homepage data with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
@@ -175,8 +181,26 @@ def booking_passanger_s1():
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
+    print("Requesting to ride booking with given request body: ", request_body)
     if loyalty != "spawned%20uWSG":
         print()
+
+
+@app.route("/d_post", methods=["POST"])
+def ride_publish():
+    request_body = request.json
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    pickup = request_body["pickup_point"]
+    dropoff = request_body["dropoff_point"]
+    loyalty = request_body["loyalty"]
+    print("Requesting ride publish with given request body: ", request_body)
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+
+        return jsonify({"RESP_STAT": "SUCCESS"})
+    else:
+        return jsonify({"RESP_STAT": "FAILURE"})
 
 
 @app.route("/commit", methods=["POST"])
