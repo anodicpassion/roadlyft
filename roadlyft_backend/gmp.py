@@ -6,19 +6,40 @@ gmaps = googlemaps.Client(key='AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0')
 
 
 # Function to get route points from Google Maps Directions API
+# def get_route_points(origin, destination, route_index=0):
+#     directions_result = gmaps.directions(origin, destination, mode="driving", alternatives=True)
+#     if directions_result and len(directions_result) > route_index:
+#         route = directions_result[route_index]
+#         route_points = []
+#         for leg in route['legs']:
+#             for step in leg['steps']:
+#                 start_location = step['start_location']
+#                 end_location = step['end_location']
+#                 route_points.append((start_location['lat'], start_location['lng']))
+#                 route_points.append((end_location['lat'], end_location['lng']))
+#         return route_points, route['legs'][0]['duration']['text'], route['legs'][0]['distance']['text']
+#     return []
+
+
 def get_route_points(origin, destination, route_index=0):
     directions_result = gmaps.directions(origin, destination, mode="driving", alternatives=True)
     if directions_result and len(directions_result) > route_index:
         route = directions_result[route_index]
         route_points = []
+        has_tolls = False
+
         for leg in route['legs']:
             for step in leg['steps']:
                 start_location = step['start_location']
                 end_location = step['end_location']
                 route_points.append((start_location['lat'], start_location['lng']))
                 route_points.append((end_location['lat'], end_location['lng']))
-        return route_points, route['legs'][0]['duration']['text'], route['legs'][0]['distance']['text']
-    return []
+
+                if 'toll' in step.get('html_instructions', '').lower():
+                    has_tolls = True
+
+        return route_points, route['legs'][0]['duration']['text'], route['legs'][0]['distance']['text'], has_tolls
+    return [], None, None, False
 
 
 # Function to check if a point lies near the route
@@ -47,15 +68,15 @@ route_index = 1
 
 # Example usage
 driver_origin = karad
-driver_destination = delhi
+driver_destination = satara
 
 passenger_start = ujjain
 passenger_end = delhi
 
 # Get driver route points
 r_t = get_route_points(driver_origin, driver_destination, route_index)
-route_points, time, distance = r_t[:]
-print(time, distance)
+route_points, time, distance, tolls = r_t[:]
+print(time, distance, tolls)
 # Check if passenger start and end points are near the route
 is_start_near_route = is_point_near_route(passenger_start, route_points)
 is_end_near_route = is_point_near_route(passenger_end, route_points)

@@ -240,7 +240,7 @@
             </div>
         </div>
         <div id="publish-content" style="display: none; color: #10517d">
-            <div id="publish-dash">
+            <div id="publish-dash" style="display: none;">
                 <br>
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" >
@@ -394,7 +394,8 @@
                 <br>
                 <br>
             </div>
-            <div id="map-content-publish" style="display: none;">
+
+            <div id="map-content-publish" style="display: block;">
                 <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
                 onclick="document.getElementById('map-content-publish').style.display = 'none'; document.getElementById('publish-dash').style.display = 'block';">
                     <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
@@ -403,11 +404,21 @@
                 <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
                     <div style="width: 100%; margin-left: -15px">
                         
-                        <div class="round-edge" style="background-color: rgba(255, 255, 255, .9); height: 130px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-left: 10%; margin-bottom: -25px;">
+                        <div class="round-edge" style="background-color: rgba(255, 255, 255, .9); height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-left: 10%; margin-bottom: -25px;">
+                            <p id="route_summary" class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 15px;">Route</p>
                             <br>
-                            <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Route</p>
-                            <!-- <br> -->
-                            <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px; ">
+                            <div id="route_info" style="width: 100%; display: flex; margin-top: 10px; ">
+                                <div style="width: 50%; align-items: center; text-align: center; justify-content: center;">
+                                    <p id="route_len" class="c-bold" style="margin-top: 15px;">Distance</p>
+
+                                </div>
+                                <div style="width: 50%; align-items: center; text-align: center;">
+                                    <p id="route_toll" class="c-bold" style="margin-top: 15px;">Tolls</p>
+
+                                </div>
+                            </div>
+
+                            <div style="width: 100%; display: flex; justify-content: center; margin-top: -28px; ">
                                 <div class="search" style="display: flex; justify-content: center; align-items: center;">  
                                     <form class="c-light" style="display: flex;">
                                         <label id="lbl_1" style="display: none;">
@@ -426,13 +437,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
+                        <div id="d_route_confirm" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
                             <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Confirm</p>
                         </div>
                         
                     </div>
                     
                 </div>
+            </div>
+            <div id="cost-confirm-publish" style="display: none;">
+                <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
+                onclick="document.getElementById('map-content-publish').style.display = 'none'; document.getElementById('publish-dash').style.display = 'block';">
+                    <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
+                </div>
+                <br>
+                <br>
+                <div class="round-edge" style="background-color: transparent; height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                    <br>
+                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Cost</p>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                    <div class="search">
+                        <input id="d_cost" class="search-inp c-regular" type="number" value="1" min="1" max="4" style="text-align: center; width: 100%;">
+                    </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div id="profile-content" style="display: none;">
@@ -775,7 +805,6 @@ function fetchLocations_1() {
         });
     });
 }
-
 function fetchLocations_2() {
     const input = document.getElementById('dropoff_locationInput_p').value;
     const dropdown = document.getElementById('dropoff_dropdownContent_p');
@@ -800,7 +829,6 @@ function fetchLocations_2() {
         });
     });
 }
-
 function fetchLocations_3() {
     var input = document.getElementById('pickup_locationInput_d').value;
     const dropdown = document.getElementById('pickup_dropdownContent_d');
@@ -980,18 +1008,24 @@ function showLocations_d() {
 
     if (!location1 || !location2) {
         alert("Please enter both locations");
+        document.getElementById("map-content-publish").style.display = "none";
+        document.getElementById("publish-dash").style.display = "block";
         return;
     }
 
     geocodeLocation(location1, (latLng1) => {
         if (!latLng1) {
             alert(`Pickup not found: ${location1}`);
+            document.getElementById("map-content-publish").style.display = "none";
+            document.getElementById("publish-dash").style.display = "block";
             return;
         }
 
         geocodeLocation(location2, (latLng2) => {
             if (!latLng2) {
                 alert(`Dropoff not found: ${location2}`);
+                document.getElementById("map-content-publish").style.display = "none";
+                document.getElementById("publish-dash").style.display = "block";
                 return;
             }
 
@@ -1070,7 +1104,6 @@ function only_markers(latLng1, latLng2) {
 }
 
 function show_route_select_opt(len){
-    console.log(len);
     var lbl_1 = document.getElementById("lbl_1")
     var lbl_2 = document.getElementById("lbl_2")
     var lbl_3 = document.getElementById("lbl_3")
@@ -1092,6 +1125,11 @@ function show_route_select_opt(len){
     document.querySelector('#lbl_1 input').checked = false;
     document.querySelector('#lbl_2 input').checked = false;
     document.querySelector('#lbl_3 input').checked = false;
+    document.getElementById("route_toll").innerText = "Tolls"
+    document.getElementById("route_toll").style.color = "#10517d"
+    document.getElementById("route_len").innerText = `Distance`
+    document.getElementById("route_summary").innerText = "Route";
+
 }
 
 function placeMarkersAndShowRoute(latLng1, latLng2){
@@ -1165,80 +1203,103 @@ function placeMarkersAndShowRoute(latLng1, latLng2){
 
 function placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx){
     // Define icons
-const icon1 = {
-    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M249.5 428.996C232 428.996 145 251 145 251L354 251C354 251 267 428.996 249.5 428.996Z" fill="#10517D"/><ellipse cx="249.5" cy="192" rx="119.5" ry="121" fill="#10517D"/><circle cx="250" cy="192" r="50" fill="white"/></svg>'),
-    scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(40, 68)
-};
+    const icon1 = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M249.5 428.996C232 428.996 145 251 145 251L354 251C354 251 267 428.996 249.5 428.996Z" fill="#10517D"/><ellipse cx="249.5" cy="192" rx="119.5" ry="121" fill="#10517D"/><circle cx="250" cy="192" r="50" fill="white"/></svg>'),
+        scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(40, 68)
+    };
 
-const icon2 = {
-    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M261.925 389.462C259.009 397.051 248.323 397.189 245.21 389.679L130.858 113.765C127.856 106.521 134.907 99.1702 142.269 101.869L246.444 140.052C248.552 140.825 250.872 140.781 252.95 139.931L358.125 96.8919C365.426 93.9042 372.764 101.087 369.934 108.45L261.925 389.462Z" fill="#7ED956"/></svg>'),
-    scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(41, 63)
-};
+    const icon2 = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M261.925 389.462C259.009 397.051 248.323 397.189 245.21 389.679L130.858 113.765C127.856 106.521 134.907 99.1702 142.269 101.869L246.444 140.052C248.552 140.825 250.872 140.781 252.95 139.931L358.125 96.8919C365.426 93.9042 372.764 101.087 369.934 108.45L261.925 389.462Z" fill="#7ED956"/></svg>'),
+        scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(41, 63)
+    };
 
-// Place markers
-new google.maps.Marker({
-    position: latLng1,
-    map: map,
-    icon: icon1,
-    title: 'Location 1',
-});
+    // Place markers
+    new google.maps.Marker({
+        position: latLng1,
+        map: map,
+        icon: icon1,
+        title: 'Location 1',
+    });
 
-new google.maps.Marker({
-    position: latLng2,
-    map: map,
-    icon: icon2,
-    title: 'Location 2',
-});
+    new google.maps.Marker({
+        position: latLng2,
+        map: map,
+        icon: icon2,
+        title: 'Location 2',
+    });
 
-// Show routes
-const request = {
-    origin: latLng1,
-    destination: latLng2,
-    travelMode: 'DRIVING',
-    provideRouteAlternatives: true // Request alternative routes
-};
+    // Show routes
+    const request = {
+        origin: latLng1,
+        destination: latLng2,
+        travelMode: 'DRIVING',
+        provideRouteAlternatives: true // Request alternative routes
+    };
+    directionsService.route(request, function(result, status) {
+        if (status === 'OK') {
+            const routes = result.routes.slice(0, 3); // Take up to 3 routes
+            routes.forEach((route, index) => {
+                if (index === route_indx) {
+                    console.log("route: ", route);
+                    console.log("route.fare: ", route.fare);
+                    new google.maps.DirectionsRenderer({
+                        map: map,
+                        directions: result,
+                        routeIndex: index, // Specify which route to display
+                        polylineOptions: {
+                            strokeColor: "#4f97c7", // Different colors for each route
+                            strokeWeight: 3
+                        },
+                        suppressMarkers: true // Suppress default markers
+                    });
 
-directionsService.route(request, function(result, status) {
-    if (status === 'OK') {
-        const routes = result.routes.slice(0, 3); // Take up to 3 routes
-        routes.forEach((route, index) => {
-            
-            if (index == route_indx){
-                console.log("route: ", route);
-                new google.maps.DirectionsRenderer({
-                    map: map,
-                    directions: result,
-                    routeIndex: index, // Specify which route to display
-                    polylineOptions: {
-                        strokeColor: "#4f97c7", // Different colors for each route
-                        // strokeOpacity: 0.3,
-                        strokeWeight: 3
-                    },
-                    suppressMarkers: true // Suppress default markers
+                    // Calculate the distance for the route
+
+                    let totalDistance = 0;
+                    route.legs.forEach(leg => {
+                        totalDistance += leg.distance.value; // Distance in meters
+                    });
+                    document.getElementById("route_len").innerText = `${(totalDistance / 1000).toFixed(2)} km`;
+
+                    // Check for toll roads
+                    
+
+                    document.getElementById("route_summary").innerText = route.summary;
+                }
+                let hasTolls = false;
+                route.legs.forEach(leg => {
+                    leg.steps.forEach(step => {
+                        if (step.tollRoad) {
+                            hasTolls = true;
+                        }
+                    });
                 });
-            }
 
-            // Calculate the distance for the route
-            let totalDistance = 0;
-            route.legs.forEach(leg => {
-                totalDistance += leg.distance.value; // Distance in meters
+                const tollElement = document.getElementById("route_toll");
+                if (hasTolls) {
+                    tollElement.innerText = "Tolls applicable";
+                    tollElement.style.color = "red";
+                } else {
+                    tollElement.innerText = "No tolls";
+                    tollElement.style.color = "green";
+                }
             });
-            console.log(`Route ${index + 1} distance: ${totalDistance / 1000} km`); // Convert to kilometers
-        });
-    } else {
-        alert('Directions request failed due to ' + status);
-    }
-});
+        } else {
+            alert('Directions request failed due to ' + status);
+        }
+    });
 
-// Fit the map to the bounds of the markers
-const bounds = new google.maps.LatLngBounds();
-bounds.extend(latLng1);
-bounds.extend(latLng2);
-map.fitBounds(bounds);
+
+
+    // Fit the map to the bounds of the markers
+    const bounds = new google.maps.LatLngBounds();
+    bounds.extend(latLng1);
+    bounds.extend(latLng2);
+    map.fitBounds(bounds);
 
 }
 
@@ -1285,7 +1346,7 @@ function selected_route_highlight(route_indx){
     });
 }
 
-function driver_post(){
+function d_proceed(){
     var pickup_point_d = document.getElementById("dropoff_locationInput_d").value;
     var dropoff_point_d = document.getElementById("pickup_locationInput_d").value;
     var d_seats = document.getElementById("d_seats").value;
@@ -1317,6 +1378,26 @@ function driver_post(){
     showLocations_d();
 }
 
+function d_route_confirm(){
+    var lbl_1 = document.getElementById("lbl_1");
+    var lbl_2 = document.getElementById("lbl_2");
+    var lbl_3 = document.getElementById("lbl_3");
+    if (lbl_1.checked){
+        document.getElementById("")
+
+    }
+    else if (lbl_2.checked){
+
+    }
+    else if (lbl_3.checked){
+
+    }
+    else{
+        alert("Select one route.");
+        return;
+    }
+}
+
 
 function on_load() {
     document.getElementById("home-div").addEventListener("click", home_btn_disp);
@@ -1336,8 +1417,9 @@ function on_load() {
     document.getElementById("lbl_1").addEventListener("click", function(){selected_route_highlight(0);});
     document.getElementById("lbl_2").addEventListener("click", function(){selected_route_highlight(1);});
     document.getElementById("lbl_3").addEventListener("click", function(){selected_route_highlight(2);});
-    document.getElementById("d_verification").addEventListener("click", function(){window.location.href = "/driver-verification";})
-    document.getElementById("d_renew").addEventListener("click", function(){window.location.href = "/driver-renew";})
+    document.getElementById("d_route_confirm").addEventListener("click", d_route_confirm);
+    document.getElementById("d_verification").addEventListener("click", function(){window.location.href = "/driver-verification";});
+    document.getElementById("d_renew").addEventListener("click", function(){window.location.href = "/driver-renew";});
     if (usr_verify == null){
         window.location.replace("/login");
     }
@@ -1350,8 +1432,8 @@ function on_load() {
     }
     else{
         
-        home_btn_disp();
-        // publish_btn_disp();
+        // home_btn_disp();
+        publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
@@ -1390,7 +1472,7 @@ function on_load() {
                 }
                 else if (data["DRIVING_FLAG"] == 2){
                     document.getElementById("DRIVER_F_2").style.display = "flex";
-                    document.getElementById("d_publish").addEventListener("click", driver_post);
+                    document.getElementById("d_publish").addEventListener("click", d_proceed);
                 }
                 // fetch_loc();
             }
