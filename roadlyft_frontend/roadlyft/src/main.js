@@ -42,7 +42,6 @@ function setCookie(name, value, days) {
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
-    console.log(`Cookie "${name}" set successfully.`);
 }
 
 // To get all cookies
