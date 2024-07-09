@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="home-content" style="display: none;">
-            <div id="dashb-content">
+            <div id="dashb-content" style="display: block;">
                 <div style="position: fixed; right: 0; z-index: -2;">
                     <button id="prev-route-btn" style="background-color: transparent; border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
                     <img src="../components/icons/more.png" width="30" height="30">
@@ -215,11 +215,15 @@
                 onclick="document.getElementById('map-content').style.display = 'none'; document.getElementById('dashb-content').style.display = 'block';">
                     <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
                 </div>
-                <div id="map"></div>
+                <div id="map_p"></div>
                 <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
-                    <div onclick="document.getElementById('cablist-content').style.display = 'block';document.getElementById('map-content').style.display = 'none';" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb;"> 
-                        <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Confirm</p>
+                    <div style="width: 100%; margin-left: -15px">
+                        <div onclick="document.getElementById('cablist-content').style.display = 'block';document.getElementById('map-content').style.display = 'none';" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
+                            <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Confirm</p>
+                        </div>
+                        
                     </div>
+                    
                 </div>
             </div>
             <div id="cablist-content" style="display: none;">
@@ -236,7 +240,7 @@
             </div>
         </div>
         <div id="publish-content" style="display: none; color: #10517d">
-            <div>
+            <div id="publish-dash">
                 <br>
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" >
@@ -334,7 +338,7 @@
                     <br>
                     <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
                     <div class="search" style="width: 80%;">
-                        <input id="d_seats" class="search-inp c-regular" type="number" value="1" min="1" max="4" style="text-align: center; width: 100%;">
+                        <input id="d_seats" class="search-inp c-regular" type="number" value="1" min="1" max="30" style="text-align: center; width: 100%;">
                     </div>
                     </div>
                 </div>
@@ -389,6 +393,46 @@
                 <br>
                 <br>
                 <br>
+            </div>
+            <div id="map-content-publish" style="display: none;">
+                <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
+                onclick="document.getElementById('map-content-publish').style.display = 'none'; document.getElementById('publish-dash').style.display = 'block';">
+                    <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
+                </div>
+                <div id="map_d"></div>
+                <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
+                    <div style="width: 100%; margin-left: -15px">
+                        
+                        <div class="round-edge" style="background-color: rgba(255, 255, 255, .9); height: 130px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-left: 10%; margin-bottom: -25px;">
+                            <br>
+                            <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Route</p>
+                            <!-- <br> -->
+                            <div style="width: 100%; display: flex; justify-content: center; margin-top: 10px; ">
+                                <div class="search" style="display: flex; justify-content: center; align-items: center;">  
+                                    <form class="c-light" style="display: flex;">
+                                        <label id="lbl_1" style="display: none;">
+                                            <input type="radio" name="color" value="Blue">
+                                            Blue
+                                        </label>
+                                        <label id="lbl_2" style="display: none;">
+                                            <input type="radio" name="color" value="Green" style="margin-left: 20px;">
+                                            Green
+                                        </label>
+                                        <label id="lbl_3" style="display: none;">
+                                            <input type="radio" name="color" value="Red" style="margin-left: 20px;">
+                                            Red
+                                        </label>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
+                            <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Confirm</p>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
             </div>
         </div>
         <div id="profile-content" style="display: none;">
@@ -492,11 +536,8 @@
 <script>
 
 const auth_toc_usr = getCookie('auth_toc_usr');
-console.log("cookie: ", auth_toc_usr);
 const loyalty = getCookie("lo_@_ty");
-console.log("lo_@_ty:", loyalty);
 const usr_verify = localStorage.getItem("dock-cid");
-console.log("local_storage: ", usr_verify);
 let booking_date_thresh = 0;
 const customMapStyles = [
     {
@@ -712,106 +753,6 @@ function clck (event) {
     document.getElementById("prev-route").style.display = "block";
     }
 }
-function fetch_loc(){
-    fetch('http://127.0.0.1:5555/get_loc_da', {
-        method: 'POST',
-        credentials: 'include',
-        
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Credentials': 'true',
-        },
-        body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1)})
-        
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Response from server:', data);
-        if (data['RESP_STAT'] == "SUCCESS") {
-            for(var i = 0; i < data["LOC"].length; i++){
-                var pickup_div_p = document.createElement("div");
-                var dropoff_div_p = document.createElement("div");
-                pickup_div_p.innerText = data["LOC"][i];
-                dropoff_div_p.innerText = data["LOC"][i];
-                document.getElementById("pickup_dropdownContent_p").appendChild(pickup_div_p);
-                document.getElementById("dropoff_dropdownContent_p").appendChild(dropoff_div_p);
-            }
-        }
-        else {
-            alert("Error with your profile. Please login again.");
-            logout();
-        }
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-        alert("Something went wrong. Please try again after some time.")
-    });
-}
-function p_go(){
-    var pickup_point = document.getElementById("pickup_locationInput_p").value;
-    var dropoff_point = document.getElementById("dropoff_locationInput_p").value;
-    var number_seats = document.getElementById("n_seats").value;
-    if (number_seats < 5 && number_seats > 0){
-        
-    }
-    else{
-        alert("We allow maximum 4 seat booking.")
-        return;}
-    if (pickup_point.length > 2 && dropoff_point.length > 2){
-        if (pickup_point != dropoff_point){
-            document.getElementById("para_go_p").innerText = "...";
-            document.getElementById("p_go").removeEventListener("click", p_go);
-            document.getElementById("dashb-content").style.display = "none";
-            document.getElementById("map-content").style.display = "block";
-            showLocations();
-            document.getElementById("para_go_p").innerText = "Go..!";
-            document.getElementById("p_go").addEventListener("click", p_go);
-
-            // fetch('http://127.0.0.1:5555/p_go', {
-            //     method: 'POST',
-            //     credentials: 'include',
-                
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Access-Control-Allow-Credentials': 'true',
-            //     },
-            //     body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "pickup_point": pickup_point, "dropoff_point": dropoff_point, "booking_date_thresh": booking_date_thresh})
-                
-            // })
-            // .then(response => {
-            //     if (!response.ok) {
-            //         throw new Error('Network response was not ok');
-            //     }
-            //     return response.json();
-            // })
-            // .then(data => {
-            //     console.log('Response from server:', data);
-            //     if (data['RESP_STAT'] == "SUCCESS") {
-            //         console.log("Riding booking: ", data);
-
-
-            //     }
-            //     else {
-            //         alert("Error with your profile. Please login again.");
-            //         logout();
-            //     }
-            // })
-            // .catch(error => {
-            //     console.error('There was a problem with the fetch operation:', error);
-            //     alert("Something went wrong. Please try again after some time.")
-            // });
-        }
-        else{
-            alert("Pickup and Dropoff points cannot be same.");
-        }
-    }
-}
-
 function fetchLocations_1() {
     var input = document.getElementById('pickup_locationInput_p').value;
     const dropdown = document.getElementById('pickup_dropdownContent_p');
@@ -882,7 +823,6 @@ function fetchLocations_3() {
         });
     });
 }
-
 function fetchLocations_4() {
     const input = document.getElementById('dropoff_locationInput_d').value;
     const dropdown = document.getElementById('dropoff_dropdownContent_d');
@@ -907,11 +847,75 @@ function fetchLocations_4() {
         });
     });
 }
+function fetch_loc(){
+    fetch('http://127.0.0.1:5555/get_loc_da', {
+        method: 'POST',
+        credentials: 'include',
+        
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': 'true',
+        },
+        body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1)})
+        
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response from server:', data);
+        if (data['RESP_STAT'] == "SUCCESS") {
+            for(var i = 0; i < data["LOC"].length; i++){
+                var pickup_div_p = document.createElement("div");
+                var dropoff_div_p = document.createElement("div");
+                pickup_div_p.innerText = data["LOC"][i];
+                dropoff_div_p.innerText = data["LOC"][i];
+                document.getElementById("pickup_dropdownContent_p").appendChild(pickup_div_p);
+                document.getElementById("dropoff_dropdownContent_p").appendChild(dropoff_div_p);
+            }
+        }
+        else {
+            alert("Error with your profile. Please login again.");
+            logout();
+        }
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        alert("Something went wrong. Please try again after some time.")
+    });
+}
 
+function p_go(){
+    var pickup_point = document.getElementById("pickup_locationInput_p").value;
+    var dropoff_point = document.getElementById("dropoff_locationInput_p").value;
+    var number_seats = document.getElementById("n_seats").value;
+    if (number_seats < 5 && number_seats > 0){
+        
+    }
+    else{
+        alert("We allow maximum 4 seat booking.")
+        return;}
+    if (pickup_point.length > 2 && dropoff_point.length > 2){
+        if (pickup_point != dropoff_point){
+            document.getElementById("para_go_p").innerText = "...";
+            document.getElementById("p_go").removeEventListener("click", p_go);
+            document.getElementById("dashb-content").style.display = "none";
+            document.getElementById("map-content").style.display = "block";
+            showLocations_p();
+            document.getElementById("para_go_p").innerText = "Go..!";
+            document.getElementById("p_go").addEventListener("click", p_go);
+        }
+        else{
+            alert("Pickup and Dropoff points cannot be same.");
+        }
+    }
+}
 
-function showLocations() {
-    console.log("heloolso");
-    map = new google.maps.Map(document.getElementById('map'), {
+function showLocations_p() {
+    map = new google.maps.Map(document.getElementById('map_p'), {
         center: { lat: 17.27889429107477, lng: 74.1848932778437 },
         zoom: 15, 
         styles: customMapStyles, 
@@ -929,18 +933,65 @@ function showLocations() {
 
     if (!location1 || !location2) {
         alert("Please enter both locations");
+        document.getElementById('map-content').style.display = 'none'; 
+        document.getElementById('dashb-content').style.display = 'block';
         return;
     }
 
     geocodeLocation(location1, (latLng1) => {
         if (!latLng1) {
-            alert(`Location 1 not found: ${location1}`);
+            alert(`Pickup not found: ${location1}`);
+            document.getElementById('map-content').style.display = 'none'; 
+            document.getElementById('dashb-content').style.display = 'block';
             return;
         }
 
         geocodeLocation(location2, (latLng2) => {
             if (!latLng2) {
-                alert(`Location 2 not found: ${location2}`);
+                alert(`Dropoff not found: ${location2}`);
+                document.getElementById('map-content').style.display = 'none'; 
+                document.getElementById('dashb-content').style.display = 'block';
+                return;
+            }
+
+            directionsRenderer.set('directions', null);
+
+            only_markers(latLng1, latLng2);
+        });
+    });
+}
+
+function showLocations_d() {
+    map = new google.maps.Map(document.getElementById('map_d'), {
+        center: { lat: 17.27889429107477, lng: 74.1848932778437 },
+        zoom: 15, 
+        styles: customMapStyles, 
+        disableDefaultUI: true,
+        zoomControl: false,
+    });
+    geocoder = new google.maps.Geocoder();
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer({
+        suppressMarkers: true 
+    });
+    directionsRenderer.setMap(map);
+    const location1 = document.getElementById('pickup_locationInput_d').value;
+    const location2 = document.getElementById('dropoff_locationInput_d').value;
+
+    if (!location1 || !location2) {
+        alert("Please enter both locations");
+        return;
+    }
+
+    geocodeLocation(location1, (latLng1) => {
+        if (!latLng1) {
+            alert(`Pickup not found: ${location1}`);
+            return;
+        }
+
+        geocodeLocation(location2, (latLng2) => {
+            if (!latLng2) {
+                alert(`Dropoff not found: ${location2}`);
                 return;
             }
 
@@ -949,6 +1000,7 @@ function showLocations() {
 
             // Place markers and show route
             placeMarkersAndShowRoute(latLng1, latLng2);
+            // only_markers(latLng1, latLng2);
         });
     });
 }
@@ -956,6 +1008,7 @@ function showLocations() {
 function geocodeLocation(location, callback) {
     geocoder.geocode({ 'address': location }, function(results, status) {
         if (status === 'OK') {
+            console.log(location, " : ", results[0].geometry.location.lat(), results[0].geometry.location.lng());
             callback(results[0].geometry.location);
         } else {
             callback(null);
@@ -963,7 +1016,7 @@ function geocodeLocation(location, callback) {
     });
 }
 
-function placeMarkersAndShowRoute(latLng1, latLng2) {
+function only_markers(latLng1, latLng2) {
     // Create a custom marker using SVG icon
     const icon1 = {
         url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M249.5 428.996C232 428.996 145 251 145 251L354 251C354 251 267 428.996 249.5 428.996Z" fill="#10517D"/><ellipse cx="249.5" cy="192" rx="119.5" ry="121" fill="#10517D"/><circle cx="250" cy="192" r="50" fill="white"/></svg>'),
@@ -994,16 +1047,109 @@ function placeMarkersAndShowRoute(latLng1, latLng2) {
         title: 'Location 2',
     });
 
-    // Show route
+    // // Show route
+    // const request = {
+    //     origin: latLng1,
+    //     destination: latLng2,
+    //     travelMode: 'DRIVING'
+    // };
+
+    // directionsService.route(request, function(result, status) {
+    //     if (status === 'OK') {
+    //         directionsRenderer.setDirections(result);
+    //     } else {
+    //         alert('Directions request failed due to ' + status);
+    //     }
+    // });
+
+    // Fit the map to the bounds of the markers
+    const bounds = new google.maps.LatLngBounds();
+    bounds.extend(latLng1);
+    bounds.extend(latLng2);
+    map.fitBounds(bounds);
+}
+
+function show_route_select_opt(len){
+    console.log(len);
+    var lbl_1 = document.getElementById("lbl_1")
+    var lbl_2 = document.getElementById("lbl_2")
+    var lbl_3 = document.getElementById("lbl_3")
+    if (len == 1){
+        lbl_1.style.display = "block";
+        lbl_2.style.display = "none";
+        lbl_3.style.display = "none";
+    }
+    else if (len == 2){
+        lbl_1.style.display = "block";
+        lbl_2.style.display = "block";
+        lbl_3.style.display = "none";
+    }
+    else if (len == 3){
+        lbl_1.style.display = "block";
+        lbl_2.style.display = "block";
+        lbl_3.style.display = "block";
+    }
+    document.querySelector('#lbl_1 input').checked = false;
+    document.querySelector('#lbl_2 input').checked = false;
+    document.querySelector('#lbl_3 input').checked = false;
+}
+
+function placeMarkersAndShowRoute(latLng1, latLng2){
+    // Define icons
+    const icon1 = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M249.5 428.996C232 428.996 145 251 145 251L354 251C354 251 267 428.996 249.5 428.996Z" fill="#10517D"/><ellipse cx="249.5" cy="192" rx="119.5" ry="121" fill="#10517D"/><circle cx="250" cy="192" r="50" fill="white"/></svg>'),
+        scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(40, 68)
+    };
+
+    const icon2 = {
+        url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M261.925 389.462C259.009 397.051 248.323 397.189 245.21 389.679L130.858 113.765C127.856 106.521 134.907 99.1702 142.269 101.869L246.444 140.052C248.552 140.825 250.872 140.781 252.95 139.931L358.125 96.8919C365.426 93.9042 372.764 101.087 369.934 108.45L261.925 389.462Z" fill="#7ED956"/></svg>'),
+        scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(41, 63)
+    };
+
+    // Place markers
+    new google.maps.Marker({
+        position: latLng1,
+        map: map,
+        icon: icon1,
+        title: 'Location 1',
+    });
+
+    new google.maps.Marker({
+        position: latLng2,
+        map: map,
+        icon: icon2,
+        title: 'Location 2',
+    });
+
+    // Show routes
     const request = {
         origin: latLng1,
         destination: latLng2,
-        travelMode: 'DRIVING'
+        travelMode: 'DRIVING',
+        provideRouteAlternatives: true // Request alternative routes
     };
 
     directionsService.route(request, function(result, status) {
         if (status === 'OK') {
-            directionsRenderer.setDirections(result);
+            const routes = result.routes.slice(0, 3); // Take up to 3 routes
+            show_route_select_opt(routes.length);
+            routes.forEach((route, index) => {
+                new google.maps.DirectionsRenderer({
+                    map: map,
+                    directions: result,
+                    routeIndex: index, // Specify which route to display
+                    polylineOptions: {
+                        strokeColor: index === 0 ? 'blue' : index === 1 ? 'green' : 'red', // Different colors for each route
+                        strokeOpacity: 0.6,
+                        strokeWeight: 3
+                    },
+                    suppressMarkers: true // Suppress default markers
+                });
+            });
         } else {
             alert('Directions request failed due to ' + status);
         }
@@ -1014,6 +1160,129 @@ function placeMarkersAndShowRoute(latLng1, latLng2) {
     bounds.extend(latLng1);
     bounds.extend(latLng2);
     map.fitBounds(bounds);
+
+}
+
+function placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx){
+    // Define icons
+const icon1 = {
+    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M249.5 428.996C232 428.996 145 251 145 251L354 251C354 251 267 428.996 249.5 428.996Z" fill="#10517D"/><ellipse cx="249.5" cy="192" rx="119.5" ry="121" fill="#10517D"/><circle cx="250" cy="192" r="50" fill="white"/></svg>'),
+    scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(40, 68)
+};
+
+const icon2 = {
+    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent('<svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M261.925 389.462C259.009 397.051 248.323 397.189 245.21 389.679L130.858 113.765C127.856 106.521 134.907 99.1702 142.269 101.869L246.444 140.052C248.552 140.825 250.872 140.781 252.95 139.931L358.125 96.8919C365.426 93.9042 372.764 101.087 369.934 108.45L261.925 389.462Z" fill="#7ED956"/></svg>'),
+    scaledSize: new google.maps.Size(80, 80), // Adjust size if needed
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(41, 63)
+};
+
+// Place markers
+new google.maps.Marker({
+    position: latLng1,
+    map: map,
+    icon: icon1,
+    title: 'Location 1',
+});
+
+new google.maps.Marker({
+    position: latLng2,
+    map: map,
+    icon: icon2,
+    title: 'Location 2',
+});
+
+// Show routes
+const request = {
+    origin: latLng1,
+    destination: latLng2,
+    travelMode: 'DRIVING',
+    provideRouteAlternatives: true // Request alternative routes
+};
+
+directionsService.route(request, function(result, status) {
+    if (status === 'OK') {
+        const routes = result.routes.slice(0, 3); // Take up to 3 routes
+        routes.forEach((route, index) => {
+            
+            if (index == route_indx){
+                console.log("route: ", route);
+                new google.maps.DirectionsRenderer({
+                    map: map,
+                    directions: result,
+                    routeIndex: index, // Specify which route to display
+                    polylineOptions: {
+                        strokeColor: "#4f97c7", // Different colors for each route
+                        // strokeOpacity: 0.3,
+                        strokeWeight: 3
+                    },
+                    suppressMarkers: true // Suppress default markers
+                });
+            }
+
+            // Calculate the distance for the route
+            let totalDistance = 0;
+            route.legs.forEach(leg => {
+                totalDistance += leg.distance.value; // Distance in meters
+            });
+            console.log(`Route ${index + 1} distance: ${totalDistance / 1000} km`); // Convert to kilometers
+        });
+    } else {
+        alert('Directions request failed due to ' + status);
+    }
+});
+
+// Fit the map to the bounds of the markers
+const bounds = new google.maps.LatLngBounds();
+bounds.extend(latLng1);
+bounds.extend(latLng2);
+map.fitBounds(bounds);
+
+}
+
+function selected_route_highlight(route_indx){
+    map = new google.maps.Map(document.getElementById('map_d'), {
+        center: { lat: 17.27889429107477, lng: 74.1848932778437 },
+        zoom: 15, 
+        styles: customMapStyles, 
+        disableDefaultUI: true,
+        zoomControl: false,
+    });
+    geocoder = new google.maps.Geocoder();
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer({
+        suppressMarkers: true 
+    });
+    directionsRenderer.setMap(map);
+    const location1 = document.getElementById('pickup_locationInput_d').value;
+    const location2 = document.getElementById('dropoff_locationInput_d').value;
+
+    if (!location1 || !location2) {
+        alert("Please enter both locations");
+        return;
+    }
+
+    geocodeLocation(location1, (latLng1) => {
+        if (!latLng1) {
+            alert(`Pickup not found: ${location1}`);
+            return;
+        }
+
+        geocodeLocation(location2, (latLng2) => {
+            if (!latLng2) {
+                alert(`Dropoff not found: ${location2}`);
+                return;
+            }
+
+            // Clear previous directions
+            directionsRenderer.set('directions', null);
+
+            // Place markers and show route
+            placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx);
+        });
+    });
 }
 
 function driver_post(){
@@ -1025,47 +1294,27 @@ function driver_post(){
     
     if (pickup_point_d == dropoff_point_d){
         alert("Pickup and dropoff point are same.");
-        return
+        return;
     }
-    
-    fetch('http://127.0.0.1:5555/d_post', {
-                method: 'POST',
-                credentials: 'include',
-                
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': 'true',
-                },
-                body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "pickup_point": pickup_point_d, "dropoff_point": dropoff_point_d, "d_date":d_date, "d_time":d_time})
-                
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Response from server:', data);
-                if (data['RESP_STAT'] == "SUCCESS") {
-                    console.log("Riding publishing: ", data);
-
-
-                }
-                else if (data['RESP_STAT'] == "FAILURE") {
-                    alert("Error with your profile. Please login again.")
-                    logout();
-
-                }
-                else {
-                    alert("Error with your profile. Please login again.");
-                    logout();                    
-                }
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-                alert("Something went wrong. Please try again after some time.")
-            });
+    if (d_seats < 1){
+        alert("Number of seats should be 1 or more than 1.");
+        return;
+    }
+    if (d_seats > 30){
+        alert("Maximum seats allowed is 30.");
+        return;
+    }
+    if (d_date.length < 2){
+        alert("Please select date.");
+        return;
+    }
+    if (d_time.length < 2){
+        alert("Please select time.");
+        return;
+    }
+    document.getElementById("publish-dash").style.display = "none";
+    document.getElementById("map-content-publish").style.display = "block";
+    showLocations_d();
 }
 
 
@@ -1077,13 +1326,16 @@ function on_load() {
     document.getElementById("acc").addEventListener("click", account_section);
     document.getElementById("logout_btn").addEventListener("click", logout);
     document.getElementById("p_go").addEventListener("click", p_go);
-    // document.getElementById("p_go").addEventListener("click", showLocations);
+    // document.getElementById("p_go").addEventListener("click", showLocations_p);
     document.addEventListener('click', clck);
     document.getElementById("date_highlt_0").addEventListener("click", function(){day_select_highlt(0);});
     document.getElementById("date_highlt_1").addEventListener("click", function(){day_select_highlt(1);});
     document.getElementById("date_highlt_2").addEventListener("click", function(){day_select_highlt(2);});
     document.getElementById("date_highlt_3").addEventListener("click", function(){day_select_highlt(3);});
     document.getElementById("date_highlt_4").addEventListener("click", function(){day_select_highlt(4);});
+    document.getElementById("lbl_1").addEventListener("click", function(){selected_route_highlight(0);});
+    document.getElementById("lbl_2").addEventListener("click", function(){selected_route_highlight(1);});
+    document.getElementById("lbl_3").addEventListener("click", function(){selected_route_highlight(2);});
     document.getElementById("d_verification").addEventListener("click", function(){window.location.href = "/driver-verification";})
     document.getElementById("d_renew").addEventListener("click", function(){window.location.href = "/driver-renew";})
     if (usr_verify == null){
@@ -1098,8 +1350,8 @@ function on_load() {
     }
     else{
         
-        // home_btn_disp();
-        publish_btn_disp();
+        home_btn_disp();
+        // publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',

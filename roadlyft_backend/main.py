@@ -13,6 +13,7 @@ usr_d: dict = {}
 oth_usr_data: dict = {}
 deck_handler: dict = {}
 char_a_z = "abcdefghijklmnopqrstuvwxyz"
+route = []
 
 with open("enc/pyc_cache", "r") as pycache:
     exec(pycache.read())
@@ -51,7 +52,7 @@ def create_user_space(usr_name, usr_mobile, usr_password) -> bool or str:
     """:returns str: when user already exist
     :returns bool True: when account is created
     :returns bool False: invalid former parameters"""
-    if len(usr_name) > 1 and len(usr_mobile) == 10 and len(usr_password) > 8:
+    if len(usr_name) > 1 and len(usr_mobile) == 10 and len(usr_password) >= 4:
         if usr_d.get(usr_mobile):
             return "USR_EST"
         else:
@@ -90,6 +91,7 @@ def create_account():
     usr_mobile = request_data['mobile'].strip()
     usr_password = request_data['password']
     print(usr_name, usr_mobile, usr_password)
+    print
     if isinstance(usr_name, str) and isinstance(usr_mobile, str) and isinstance(usr_password, str) and len(
             usr_name) > 1 and len(usr_mobile) == 10 and len(usr_password) >= 4:
         acc_cre_res = create_user_space(usr_name, usr_mobile, usr_password)
@@ -191,9 +193,12 @@ def ride_publish():
     request_body = request.json
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
     pickup = request_body["pickup_point"]
     dropoff = request_body["dropoff_point"]
-    loyalty = request_body["loyalty"]
+    s_time = request_body["start_time"]
+    s_date = request_body["start_date"]
+    
     print("Requesting ride publish with given request body: ", request_body)
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
