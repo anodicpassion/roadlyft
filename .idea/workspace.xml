@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d16c7dda-5cb6-40f4-9525-4d1d4550d097" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_backend/enc/pyc_cache" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_backend/enc/pyc_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_backend/enc/pyc_cache_defi" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_backend/enc/pyc_cache_defi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roadlyft_backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_backend/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,5 +53,28 @@
       <updated>1720080420929</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

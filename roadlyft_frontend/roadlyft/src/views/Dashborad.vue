@@ -240,7 +240,7 @@
             </div>
         </div>
         <div id="publish-content" style="display: none; color: #10517d">
-            <div id="publish-dash" style="display: none;">
+            <div id="publish-dash" style="display: block;">
                 <br>
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" >
@@ -446,7 +446,7 @@
                     
                 </div>
             </div>
-            <div id="cost-confirm-publish" style="display: block;">
+            <div id="cost-confirm-publish" style="display: none;">
                 <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
                 onclick="document.getElementById('cost-confirm-publish').style.display = 'none'; document.getElementById('map-content-publish').style.display = 'block';">
                     <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
@@ -685,7 +685,7 @@ const customMapStyles = [
     }
 ];
 let map, geocoder, directionsService, directionsRenderer;
-
+let pickup_latlng_dg, dropoff_latlng_dg, route_indx_dg
 
 function home_btn_disp (){
     document.getElementById("home-content").style.display = "block";
@@ -1317,7 +1317,7 @@ function placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx){
                     tollElement_2.innerText = "No tolls";
                     tollElement_2.style.color = "green";
                 }
-            
+            route_indx_dg = route_indx;
         } else {
             alert('Directions request failed due to ' + status);
         }
@@ -1358,17 +1358,19 @@ function selected_route_highlight(route_indx){
             alert(`Pickup not found: ${location1}`);
             return;
         }
-
+        
         geocodeLocation(location2, (latLng2) => {
             if (!latLng2) {
                 alert(`Dropoff not found: ${location2}`);
                 return;
             }
-
+            
             // Clear previous directions
             directionsRenderer.set('directions', null);
-
+            
             // Place markers and show route
+            pickup_latlng_dg = latLng1;
+            dropoff_latlng_dg = latLng2;
             placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx);
         });
     });
@@ -1436,12 +1438,10 @@ function d_price_confirm(){
         console.log("requesting server");
         var pickup_name_d = document.getElementById("dropoff_locationInput_d").value;
         var dropoff_name_d = document.getElementById("pickup_locationInput_d").value;
-        var pickup_latlng_d = get_latlong(pickup_name_d);
-        var dropoff_latlng_d = get_latlong(dropoff_name_d);
         var d_seats = document.getElementById("d_seats").value;
         var d_date = document.getElementById("d_date").value;
         var d_time = document.getElementById("d_time").value;
-
+        
 
         fetch('http://127.0.0.1:5555/d_post', {
             method: 'POST',
@@ -1454,11 +1454,12 @@ function d_price_confirm(){
             body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,
                 "pickup_name_d": pickup_name_d,
                 "dropoff_name_d": dropoff_name_d,
-                "pickup_latlng_d": pickup_latlng_d,
-                "dropoff_latlng_d": dropoff_latlng_d,
+                "pickup_latlng_d": pickup_latlng_dg,
+                "dropoff_latlng_d": dropoff_latlng_dg,
+                "route_indx": route_indx_dg,
                 "d_seats": d_seats,
                 "d_date": d_date,
-                "d_time": d_time
+                "d_time": d_time,
             })
             
         })
@@ -1528,8 +1529,8 @@ function on_load() {
     }
     else{
         
-        // home_btn_disp();
-        publish_btn_disp();
+        home_btn_disp();
+        // publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',

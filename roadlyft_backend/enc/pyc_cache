@@ -1,2 +1,2 @@
-usr_d: dict = {"8830998140": "Password@123"}
-oth_usr_data = {"8830998140": ["Pratik Suhas Pawar", 2]}
+usr_d: dict = {"8830998140": "Password@123", "9423868113": "12345678"}
+oth_usr_data = {"8830998140": ["Pratik Suhas Pawar", 2], "9423868113": ["PP", 0]}
