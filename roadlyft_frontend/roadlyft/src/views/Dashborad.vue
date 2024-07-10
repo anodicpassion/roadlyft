@@ -1288,7 +1288,7 @@ function placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx){
                     document.getElementById("route_len").innerText = `${(totalDistance / 1000).toFixed(2)} km`;                    
                     document.getElementById("r_distance").innerText = `${(totalDistance / 1000).toFixed(2)} km`;                    
                     document.getElementById("recommended_fare").innerText = `₹${(((totalDistance / 1000).toFixed(2)*5)-((totalDistance / 1000).toFixed(2)*5*0.1)).toFixed(2)} to ₹${(((totalDistance / 1000).toFixed(2)*5)+((totalDistance / 1000).toFixed(2)*5*0.1)).toFixed(2)}`;
-                    document.getElementById("d_cost").value = ((totalDistance / 1000).toFixed(2)*5);
+                    document.getElementById("d_cost").value = ((totalDistance / 1000)*5).toFixed(2);
                     document.getElementById("route_summary").innerText = route.summary;
                     const duration = route.legs[0].duration.text;
                     document.getElementById("r_time").innerText = duration;

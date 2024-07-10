@@ -112,31 +112,44 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
                     d_date, d_time) -> (bool, str):
     global route
 
-    datetime_obj = datetime.datetime.strptime(d_date + " " + d_time, "%Y-%m-%d %H:%M")
-
-    curr_time = datetime.datetime.now()
-    if datetime_obj < curr_time:
+    ist = pytz.timezone('Asia/Kolkata')
+    start_time = datetime.datetime.strptime(d_date + " " + d_time, "%Y-%m-%d %H:%M")
+    start_time = pytz.utc.localize(start_time)
+    start_time = start_time.astimezone(ist)
+    curr_time = datetime.datetime.now(ist)
+    if start_time < curr_time:
         return False, "Date or time selected is invalid."
 
     _, mins, l, toll = get_route_points(pickup_latlng_d, dropoff_latlng_d, route_indx)
     hours = mins // 3600
     mins = (mins % 3600) // 60
     time_to_add = datetime.timedelta(hours=hours, minutes=mins)
-    new_datetime_obj = datetime_obj + time_to_add
-    end_time = new_datetime_obj.strftime("%Y-%m-%d %H:%M")
+    end_time_obj = start_time + time_to_add
+    end_time = end_time_obj.strftime("%Y-%m-%d %H:%M")
 
     val = valid_usr_req(usr_id)
     if val[0]:
+        if route.get(val[1]):
+            "The following 8 line of if if else statement are the limiter of ride."
+            if len(route[val[1]]) > 0:
+                temp_end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
+                temp_end_time = pytz.utc.localize(temp_end_time)
+                temp_end_time = temp_end_time.astimezone(ist)
+                if curr_time > temp_end_time:
+                    route[val[1]][0][8] = []
+                else:
+                    return False, "One ride is already published."
         mobile_number = val[1]
         if oth_usr_data[val[1]][1] == 2:
             if route.get(mobile_number) and len(route[mobile_number]) > 0:
 
                 for r in route[mobile_number]:
                     print("r: ", r)
-                    previous_time = datetime.datetime.strptime(r[8], "%Y-%m-%d %H:%M")
-                    if previous_time > datetime_obj:
+                    previous_start_time = datetime.datetime.strptime(str(r[6]) + " " + str(r[7]), "%Y-%m-%d %H:%M")
+                    previous_end_time = datetime.datetime.strptime(r[8], "%Y-%m-%d %H:%M")
+                    if (start_time < previous_start_time < end_time_obj
+                            or previous_start_time < start_time < previous_end_time):
                         return False, f"Time overlapping with ride scheduled from {r[0]} to {r[1]}."
-
 
                 new_route = \
                     [pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
@@ -149,7 +162,7 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
                 hours = mins // 3600
                 mins = (mins % 3600) // 60
                 time_to_add = datetime.timedelta(hours=hours, minutes=mins)
-                new_datetime_obj = datetime_obj + time_to_add
+                new_datetime_obj = start_time + time_to_add
                 end_time = new_datetime_obj.strftime("%Y-%m-%d %H:%M")
                 route[mobile_number] = \
                     [
@@ -160,7 +173,7 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
         else:
             return False, "Ride publishing not enabled. Please verify first."
     else:
-        return False, "User invalid request"
+        return False, "User invalid request."
 
 
 @app.route("/")
@@ -239,12 +252,23 @@ def get_dates():
     val = valid_usr_req(usr_id)
     if usr_id == local_str and val[0] and loyalty == "spawned%20uWSGI":
         usr_name_d, driving_flag = oth_usr_data[val[1]][0: 2]
+        if route.get(val[1]):
+            if len(route[val[1]]) > 0:
+                cur_time = datetime.datetime.now(ist)
+                end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
+                if cur_time > end_time:
+                    route[val[1]][0][8] = []
+                ride_stat = 1
+            else:
+                ride_stat = 0
+        else:
+            ride_stat = 0
         return jsonify({"RESP_STAT": "SUCCESS", "TODAY": today.strftime("%d"), "TOMORROW": tomorrow.strftime("%d"),
                         "DATE_AFTER_TOMORROW": day_after_tomorrow.strftime("%d"),
                         "DAY_AFTER_TOMORROW": day_after_tomorrow.strftime("%A")[:3],
                         "THIRD_DATE": third_date.strftime("%d"), "THIRD_DAY": third_date.strftime("%A")[:3],
                         "FORTH_DATE": forth_date.strftime("%d"), "FORTH_DAY": forth_date.strftime("%A")[:3],
-                        "USR_NAME": usr_name_d, "DRIVING_FLAG": driving_flag})
+                        "USR_NAME": usr_name_d, "DRIVING_FLAG": driving_flag, "RIDE_STAT": ride_stat})
 
     else:
         print("Failed to respond with homepage data with given request body: ", request_body)
