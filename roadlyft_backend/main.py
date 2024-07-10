@@ -111,10 +111,20 @@ def get_route_points(origin, destination, route_index=0):
 def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
                     d_date, d_time) -> (bool, str):
     global route
+
     datetime_obj = datetime.datetime.strptime(d_date + " " + d_time, "%Y-%m-%d %H:%M")
+
     curr_time = datetime.datetime.now()
     if datetime_obj < curr_time:
         return False, "Date or time selected is invalid."
+
+    _, mins, l, toll = get_route_points(pickup_latlng_d, dropoff_latlng_d, route_indx)
+    hours = mins // 3600
+    mins = (mins % 3600) // 60
+    time_to_add = datetime.timedelta(hours=hours, minutes=mins)
+    new_datetime_obj = datetime_obj + time_to_add
+    end_time = new_datetime_obj.strftime("%Y-%m-%d %H:%M")
+
     val = valid_usr_req(usr_id)
     if val[0]:
         mobile_number = val[1]
@@ -127,12 +137,7 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
                     if previous_time > datetime_obj:
                         return False, f"Time overlapping with ride scheduled from {r[0]} to {r[1]}."
 
-                _, mins, l, toll = get_route_points(pickup_latlng_d, dropoff_latlng_d, route_indx)
-                hours = mins // 3600
-                mins = (mins % 3600) // 60
-                time_to_add = datetime.timedelta(hours=hours, minutes=mins)
-                new_datetime_obj = datetime_obj + time_to_add
-                end_time = new_datetime_obj.strftime("%Y-%m-%d %H:%M")
+
                 new_route = \
                     [pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
                      d_date, d_time, end_time, [], []

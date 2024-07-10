@@ -484,7 +484,7 @@
                 <br>
                 <br>
                 <div id="d_price_confirm" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
-                    <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Publish</p>
+                    <p id="d_price_confirm_p" class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Publish</p>
                 </div>
 
             </div>
@@ -1435,7 +1435,8 @@ function d_price_confirm(){
     const distance = parseInt(document.getElementById("r_distance").innerText, 10);
     const usr_price = document.getElementById("d_cost").value;
     if (usr_price <= ((distance*5)+(distance*5*0.1)) && usr_price >= ((distance*5)-(distance*5*0.1))){
-        document.querySelector("d_price_confirm p").innerText = "..."
+        document.getElementById("d_price_confirm_p").innerText = "..."
+        document.getElementById("d_price_confirm").removeEventListener("click", d_price_confirm);
         console.log("requesting server");
         var pickup_name_d = document.getElementById("pickup_locationInput_d").value;
         var dropoff_name_d = document.getElementById("dropoff_locationInput_d").value;
@@ -1473,11 +1474,16 @@ function d_price_confirm(){
         .then(data => {
             console.log('Response from server:', data);
             if (data['RESP_STAT'] == "SUCCESS") {
-                alert("Your ride is published successfully.")
-                
+                alert("Your ride published successfully.")
+                document.getElementById("publish-dash").style.display = "block";
+                document.getElementById("cost-confirm-publish").style.display = "none";
+                document.getElementById("d_price_confirm_p").innerText = "Publish"
+                document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);  
             }
             else if (data['RESP_STAT'] == "ABORTED"){
                 alert(data["MSG"]);
+                document.getElementById("d_price_confirm_p").innerText = "Publish"
+                document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);
             }
 
             else {
