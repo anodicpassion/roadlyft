@@ -240,7 +240,7 @@
             </div>
         </div>
         <div id="publish-content" style="display: none; color: #10517d">
-            <div id="publish-dash" style="display: none;">
+            <div id="publish-dash" style="display: block;">
                 <br>
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" >
@@ -395,7 +395,7 @@
                 <br>
             </div>
 
-            <div id="map-content-publish" style="display: block;">
+            <div id="map-content-publish" style="display: none;">
                 <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
                 onclick="document.getElementById('map-content-publish').style.display = 'none'; document.getElementById('publish-dash').style.display = 'block';">
                     <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
@@ -404,16 +404,17 @@
                 <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
                     <div style="width: 100%; margin-left: -15px">
                         
-                        <div class="round-edge" style="background-color: rgba(255, 255, 255, .9); height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-left: 10%; margin-bottom: -25px;">
-                            <p id="route_summary" class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 15px;">Route</p>
+                        <div class="round-edge" style="background-color: rgba(255, 255, 255, .9); height: 160px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-left: 10%; margin-bottom: -25px;">
+                            <div style="position:absolute; width: 70%; height: 30px; margin-top: 15px; margin-left: 20px; overflow: scroll; align-items: center;">
+                                <p id="route_summary" class="c-regular" style="margin: 0px; padding-top: 1px;">Route</p>
+                            </div>
                             <br>
-                            <div id="route_info" style="width: 100%; display: flex; margin-top: 10px; ">
+                            <div id="route_info" style="width: 100%; display: flex; margin-top: 20px; ">
                                 <div style="width: 50%; align-items: center; text-align: center; justify-content: center;">
-                                    <p id="route_len" class="c-bold" style="margin-top: 15px;">Distance</p>
-
+                                    <p id="route_len" class="c-bold" style="margin-top: 15px;">Select route:</p>
                                 </div>
                                 <div style="width: 50%; align-items: center; text-align: center;">
-                                    <p id="route_toll" class="c-bold" style="margin-top: 15px;">Tolls</p>
+                                    <p id="route_toll" class="c-bold" style="margin-top: 15px;"></p>
 
                                 </div>
                             </div>
@@ -447,20 +448,43 @@
             </div>
             <div id="cost-confirm-publish" style="display: none;">
                 <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
-                onclick="document.getElementById('map-content-publish').style.display = 'none'; document.getElementById('publish-dash').style.display = 'block';">
+                onclick="document.getElementById('cost-confirm-publish').style.display = 'none'; document.getElementById('map-content-publish').style.display = 'block';">
                     <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
                 </div>
                 <br>
                 <br>
-                <div class="round-edge" style="background-color: transparent; height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                <br>
+                <br>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="height: 180px; padding-top: 10px; overflow: scroll;">
+                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Route details: </p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Summary: <span id="r_summary"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Distance: <span id="r_distance"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Time: <span id="r_time"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Toll: <span id="r_toll"></span></p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="round-edge" style="margin-left: 10%; background-color: transparent; height: 150px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
                     <br>
-                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Cost</p>
+                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Fare (<span class="c-bold"> &#8377 </span>)</p>
                     <br>
                     <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                    <div class="search">
-                        <input id="d_cost" class="search-inp c-regular" type="number" value="1" min="1" max="4" style="text-align: center; width: 100%;">
+                        <div class="search">
+                            <input id="d_cost" class="search-inp c-regular" type="number" style="text-align: center; width: 100%;" value="0">
+                        </div>
                     </div>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <p id="recommended_fare" class="c-light" style="position: absolute; color: black; font-size: 15px;"></p>
                     </div>
+
+                </div>
+                <br>
+                <br>
+                <br>
+                <div id="d_price_confirm" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
+                    <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Publish</p>
                 </div>
 
             </div>
@@ -661,7 +685,7 @@ const customMapStyles = [
     }
 ];
 let map, geocoder, directionsService, directionsRenderer;
-
+let pickup_latlng_dg, dropoff_latlng_dg, route_indx_dg
 
 function home_btn_disp (){
     document.getElementById("home-content").style.display = "block";
@@ -915,7 +939,6 @@ function fetch_loc(){
         alert("Something went wrong. Please try again after some time.")
     });
 }
-
 function p_go(){
     var pickup_point = document.getElementById("pickup_locationInput_p").value;
     var dropoff_point = document.getElementById("dropoff_locationInput_p").value;
@@ -941,7 +964,6 @@ function p_go(){
         }
     }
 }
-
 function showLocations_p() {
     map = new google.maps.Map(document.getElementById('map_p'), {
         center: { lat: 17.27889429107477, lng: 74.1848932778437 },
@@ -988,7 +1010,6 @@ function showLocations_p() {
         });
     });
 }
-
 function showLocations_d() {
     map = new google.maps.Map(document.getElementById('map_d'), {
         center: { lat: 17.27889429107477, lng: 74.1848932778437 },
@@ -1038,18 +1059,25 @@ function showLocations_d() {
         });
     });
 }
-
 function geocodeLocation(location, callback) {
     geocoder.geocode({ 'address': location }, function(results, status) {
         if (status === 'OK') {
-            console.log(location, " : ", results[0].geometry.location.lat(), results[0].geometry.location.lng());
+            // console.log(location, " : ", results[0].geometry.location.lat(), results[0].geometry.location.lng());
             callback(results[0].geometry.location);
         } else {
             callback(null);
         }
     });
 }
-
+function get_latlong(location) {
+    geocoder.geocode({ 'address': location }, function(results, status) {
+        if (status === 'OK') {
+            return (results[0].geometry.location.lat(), results[0].geometry.location.lng());
+        } else {
+            return null;
+        }
+    });
+}
 function only_markers(latLng1, latLng2) {
     // Create a custom marker using SVG icon
     const icon1 = {
@@ -1102,7 +1130,6 @@ function only_markers(latLng1, latLng2) {
     bounds.extend(latLng2);
     map.fitBounds(bounds);
 }
-
 function show_route_select_opt(len){
     var lbl_1 = document.getElementById("lbl_1")
     var lbl_2 = document.getElementById("lbl_2")
@@ -1125,13 +1152,12 @@ function show_route_select_opt(len){
     document.querySelector('#lbl_1 input').checked = false;
     document.querySelector('#lbl_2 input').checked = false;
     document.querySelector('#lbl_3 input').checked = false;
-    document.getElementById("route_toll").innerText = "Tolls"
+    document.getElementById("route_toll").innerText = " "
     document.getElementById("route_toll").style.color = "#10517d"
-    document.getElementById("route_len").innerText = `Distance`
+    document.getElementById("route_len").innerText = `Select route:`
     document.getElementById("route_summary").innerText = "Route";
 
 }
-
 function placeMarkersAndShowRoute(latLng1, latLng2){
     // Define icons
     const icon1 = {
@@ -1200,7 +1226,6 @@ function placeMarkersAndShowRoute(latLng1, latLng2){
     map.fitBounds(bounds);
 
 }
-
 function placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx){
     // Define icons
     const icon1 = {
@@ -1244,50 +1269,55 @@ function placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx){
             const routes = result.routes.slice(0, 3); // Take up to 3 routes
             routes.forEach((route, index) => {
                 if (index === route_indx) {
-                    console.log("route: ", route);
-                    console.log("route.fare: ", route.fare);
+
                     new google.maps.DirectionsRenderer({
                         map: map,
                         directions: result,
-                        routeIndex: index, // Specify which route to display
+                        routeIndex: index, 
                         polylineOptions: {
-                            strokeColor: "#4f97c7", // Different colors for each route
+                            strokeColor: "#4f97c7", 
                             strokeWeight: 3
                         },
-                        suppressMarkers: true // Suppress default markers
+                        suppressMarkers: true 
                     });
-
-                    // Calculate the distance for the route
 
                     let totalDistance = 0;
                     route.legs.forEach(leg => {
-                        totalDistance += leg.distance.value; // Distance in meters
+                        totalDistance += leg.distance.value;
                     });
-                    document.getElementById("route_len").innerText = `${(totalDistance / 1000).toFixed(2)} km`;
-
-                    // Check for toll roads
-                    
-
+                    document.getElementById("route_len").innerText = `${(totalDistance / 1000).toFixed(2)} km`;                    
+                    document.getElementById("r_distance").innerText = `${(totalDistance / 1000).toFixed(2)} km`;                    
+                    document.getElementById("recommended_fare").innerText = `₹${(((totalDistance / 1000).toFixed(2)*5)-((totalDistance / 1000).toFixed(2)*5*0.1)).toFixed(2)} to ₹${(((totalDistance / 1000).toFixed(2)*5)+((totalDistance / 1000).toFixed(2)*5*0.1)).toFixed(2)}`;
+                    document.getElementById("d_cost").value = ((totalDistance / 1000).toFixed(2)*5);
                     document.getElementById("route_summary").innerText = route.summary;
+                    const duration = route.legs[0].duration.text;
+                    document.getElementById("r_time").innerText = duration;
+                    document.getElementById("r_summary").innerText = route.summary;
                 }
-                let hasTolls = false;
-                route.legs.forEach(leg => {
-                    leg.steps.forEach(step => {
-                        if (step.tollRoad) {
-                            hasTolls = true;
-                        }
-                    });
+            });
+            var hasTolls = false;
+            var route = result.routes[route_indx];
+            const tollElement = document.getElementById("route_toll");
+            const tollElement_2 = document.getElementById("r_toll");
+            route.legs.forEach(function(leg) {
+                leg.steps.forEach(function(step) {
+                    if (step.instructions.toLowerCase().includes('toll')) {
+                        hasTolls = true;
+                    }
                 });
-
-                const tollElement = document.getElementById("route_toll");
-                if (hasTolls) {
+            });
+            if (hasTolls) {
                     tollElement.innerText = "Tolls applicable";
                     tollElement.style.color = "red";
+                    tollElement_2.innerText = "Tolls applicable";
+                    tollElement_2.style.color = "red";
                 } else {
                     tollElement.innerText = "No tolls";
                     tollElement.style.color = "green";
+                    tollElement_2.innerText = "No tolls";
+                    tollElement_2.style.color = "green";
                 }
-            });
+            route_indx_dg = route_indx;
         } else {
             alert('Directions request failed due to ' + status);
         }
@@ -1300,9 +1330,7 @@ function placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx){
     bounds.extend(latLng1);
     bounds.extend(latLng2);
     map.fitBounds(bounds);
-
 }
-
 function selected_route_highlight(route_indx){
     map = new google.maps.Map(document.getElementById('map_d'), {
         center: { lat: 17.27889429107477, lng: 74.1848932778437 },
@@ -1330,22 +1358,23 @@ function selected_route_highlight(route_indx){
             alert(`Pickup not found: ${location1}`);
             return;
         }
-
+        
         geocodeLocation(location2, (latLng2) => {
             if (!latLng2) {
                 alert(`Dropoff not found: ${location2}`);
                 return;
             }
-
+            
             // Clear previous directions
             directionsRenderer.set('directions', null);
-
+            
             // Place markers and show route
+            pickup_latlng_dg = latLng1;
+            dropoff_latlng_dg = latLng2;
             placeMarkersAndShowRoute_with_index(latLng1, latLng2, route_indx);
         });
     });
 }
-
 function d_proceed(){
     var pickup_point_d = document.getElementById("dropoff_locationInput_d").value;
     var dropoff_point_d = document.getElementById("pickup_locationInput_d").value;
@@ -1377,25 +1406,97 @@ function d_proceed(){
     document.getElementById("map-content-publish").style.display = "block";
     showLocations_d();
 }
-
 function d_route_confirm(){
-    var lbl_1 = document.getElementById("lbl_1");
-    var lbl_2 = document.getElementById("lbl_2");
-    var lbl_3 = document.getElementById("lbl_3");
+    var lbl_1 = document.querySelector('#lbl_1 input');
+    var lbl_2 = document.querySelector('#lbl_2 input');
+    var lbl_3 = document.querySelector('#lbl_3 input');
+    
     if (lbl_1.checked){
-        document.getElementById("")
-
+        document.getElementById("map-content-publish").style.display = "none";
+        document.getElementById("cost-confirm-publish").style.display = "block";
+        
     }
     else if (lbl_2.checked){
-
+        document.getElementById("map-content-publish").style.display = "none";
+        document.getElementById("cost-confirm-publish").style.display = "block";
+        
     }
     else if (lbl_3.checked){
+        document.getElementById("map-content-publish").style.display = "none";
+        document.getElementById("cost-confirm-publish").style.display = "block";
 
     }
     else{
         alert("Select one route.");
         return;
     }
+}
+function d_price_confirm(){
+    const distance = parseInt(document.getElementById("r_distance").innerText, 10);
+    const usr_price = document.getElementById("d_cost").value;
+    if (usr_price <= ((distance*5)+(distance*5*0.1)) && usr_price >= ((distance*5)-(distance*5*0.1))){
+        document.querySelector("d_price_confirm p").innerText = "..."
+        console.log("requesting server");
+        var pickup_name_d = document.getElementById("pickup_locationInput_d").value;
+        var dropoff_name_d = document.getElementById("dropoff_locationInput_d").value;
+        var d_seats = document.getElementById("d_seats").value;
+        var d_date = document.getElementById("d_date").value;
+        var d_time = document.getElementById("d_time").value;
+        
+
+        fetch('http://127.0.0.1:5555/d_post', {
+            method: 'POST',
+            credentials: 'include',
+            
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,
+                "pickup_name_d": pickup_name_d,
+                "dropoff_name_d": dropoff_name_d,
+                "pickup_latlng_d": pickup_latlng_dg,
+                "dropoff_latlng_d": dropoff_latlng_dg,
+                "route_indx": route_indx_dg,
+                "d_seats": d_seats,
+                "d_date": d_date,
+                "d_time": d_time,
+            })
+            
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data['RESP_STAT'] == "SUCCESS") {
+                alert("Your ride is published successfully.")
+                
+            }
+            else if (data['RESP_STAT'] == "ABORTED"){
+                alert(data["MSG"]);
+            }
+
+            else {
+                alert("Error with your profile. Please login again.");
+                logout();
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert("Something went wrong. Please try again after some time.")
+        });           
+
+
+    }
+    else{
+        alert(`Fare price should be in range ${((distance*5)-(distance*5*0.1))} to ${((distance*5)+(distance*5*0.1))}`);
+        return;
+    }
+
 }
 
 
@@ -1418,6 +1519,7 @@ function on_load() {
     document.getElementById("lbl_2").addEventListener("click", function(){selected_route_highlight(1);});
     document.getElementById("lbl_3").addEventListener("click", function(){selected_route_highlight(2);});
     document.getElementById("d_route_confirm").addEventListener("click", d_route_confirm);
+    document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);
     document.getElementById("d_verification").addEventListener("click", function(){window.location.href = "/driver-verification";});
     document.getElementById("d_renew").addEventListener("click", function(){window.location.href = "/driver-renew";});
     if (usr_verify == null){
@@ -1432,8 +1534,8 @@ function on_load() {
     }
     else{
         
-        // home_btn_disp();
-        publish_btn_disp();
+        home_btn_disp();
+        // publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
@@ -1442,7 +1544,7 @@ function on_load() {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': 'true',
             },
-            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1)})
+            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty})
             
         })
         .then(response => {
