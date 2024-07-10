@@ -1435,9 +1435,10 @@ function d_price_confirm(){
     const distance = parseInt(document.getElementById("r_distance").innerText, 10);
     const usr_price = document.getElementById("d_cost").value;
     if (usr_price <= ((distance*5)+(distance*5*0.1)) && usr_price >= ((distance*5)-(distance*5*0.1))){
+        document.querySelector("d_price_confirm p").innerText = "..."
         console.log("requesting server");
-        var pickup_name_d = document.getElementById("dropoff_locationInput_d").value;
-        var dropoff_name_d = document.getElementById("pickup_locationInput_d").value;
+        var pickup_name_d = document.getElementById("pickup_locationInput_d").value;
+        var dropoff_name_d = document.getElementById("dropoff_locationInput_d").value;
         var d_seats = document.getElementById("d_seats").value;
         var d_date = document.getElementById("d_date").value;
         var d_time = document.getElementById("d_time").value;
@@ -1472,9 +1473,13 @@ function d_price_confirm(){
         .then(data => {
             console.log('Response from server:', data);
             if (data['RESP_STAT'] == "SUCCESS") {
-                console.log("Successfully palaced order.")
+                alert("Your ride is published successfully.")
                 
             }
+            else if (data['RESP_STAT'] == "ABORTED"){
+                alert(data["MSG"]);
+            }
+
             else {
                 alert("Error with your profile. Please login again.");
                 logout();

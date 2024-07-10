@@ -5,15 +5,33 @@ from flask_limiter.util import get_remote_address
 import time, random
 import datetime, pytz, googlemaps
 from geopy.distance import geodesic
+from flask_talisman import Talisman
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
+talisman = Talisman(app)
+
+csp = {
+    'default-src': ["'none'"],
+    'script-src': ["'none'"],
+    'style-src': ["'none'"],
+    'img-src': ["'none'"],
+    'connect-src': ["'none'"],  # "http://127.0.0.1:5555"],  # Allow requests to your backend API
+    'font-src': ["'none'"],
+    'object-src': ["'none'"],  # Prevent the use of plugins like Flash
+    'base-uri': ["'none'"],  # Restrict the URLs that can be used in a <base> element
+    'form-action': ["'none'"],  # Restrict the URLs that can be used as the target of form submissions
+    'frame-ancestors': ["'none'"],  # Restrict the URLs that can embed this content in frames
+    'frame-src': ["'none'"]
+}
+
+# talisman.content_security_policy = csp
 limiter = Limiter(get_remote_address, app=app)
 gmaps = googlemaps.Client(key='AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0')
 
 usr_d: dict = {}
 oth_usr_data: dict = {}
-deck_handler: dict = {'8830998140': ['zlctiuot', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
+deck_handler: dict = {'8830998140': ['wzhbemqx', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
                       '9423868113': ['rdwqvsgt', '22:07:37 07/09/24', True, '22:07:37 07/09/24', '22:07:37 07/09/24']}
 char_a_z = "abcdefghijklmnopqrstuvwxyz"
 route = {}
@@ -104,6 +122,7 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
             if route.get(mobile_number) and len(route[mobile_number]) > 0:
 
                 for r in route[mobile_number]:
+                    print("r: ", r)
                     previous_time = datetime.datetime.strptime(r[8], "%Y-%m-%d %H:%M")
                     if previous_time > datetime_obj:
                         return False, f"Time overlapping with ride scheduled from {r[0]} to {r[1]}."
@@ -117,7 +136,7 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
                 new_route = \
                     [pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
                      d_date, d_time, end_time, [], []
-                    ]
+                     ]
                 route[mobile_number].append(new_route)
                 return True, "Successfully scheduled ride."
             else:
@@ -142,14 +161,7 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
 @app.route("/")
 @limiter.limit("60 per minute")
 def index():
-    return "<center>ROAD-LIST Coming Soon...!</center>"
-
-
-@app.route("/get", methods=["POST"])
-def get():
-    print(request.cookies.keys())
-    # time.sleep(5)
-    return jsonify({"k": "v"})
+    return "<center>ROADLYFT Coming Soon...!</center>"
 
 
 @app.route("/create_account", methods=["POST"])
@@ -274,15 +286,16 @@ def ride_publish():
     d_seats = request_body["d_seats"]
     d_date = request_body["d_date"]
     d_time = request_body["d_time"]
-
+    print()
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
-        ret, msg = add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
-                        d_date, d_time)
+        ret, msg = add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx,
+                                   d_seats,
+                                   d_date, d_time)
         if ret:
             return jsonify({"RESP_STAT": "SUCCESS"})
         else:
-            jsonify({"RESP_STAT": "ABORTED", "MSG": msg})
+            return jsonify({"RESP_STAT": "ABORTED", "MSG": msg})
     else:
         return jsonify({"RESP_STAT": "FAILURE"})
 
