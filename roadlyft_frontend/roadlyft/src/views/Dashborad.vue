@@ -218,8 +218,8 @@
                 <div id="map_p"></div>
                 <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
                     <div style="width: 100%; margin-left: -15px">
-                        <div onclick="document.getElementById('cablist-content').style.display = 'block';document.getElementById('map-content').style.display = 'none';" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
-                            <p class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Confirm</p>
+                        <div id="p_search_cabs" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
+                            <p id="p_search_cabs_p" class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Confirm</p>
                         </div>
                         
                     </div>
@@ -234,7 +234,7 @@
                 <br>
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" >
-                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">No cabs available</p>
+                        <p id="cab_search_status" class="c-light" style=" font-size: 15px; margin-left: 20px;"></p>
                     </div>
                 </div>
             </div>
@@ -488,6 +488,51 @@
                 </div>
 
             </div>
+            <div id="in_ride" style="display: none;">
+                
+                <br>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="height: 180px; padding-top: 10px; overflow: scroll;">
+                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Route details: </p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">From: <span id="i_from"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">To: <span id="i_to"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Scheduled on: <span id="i_scheduled"></span></p>
+                        <!-- <p class="c-bold" style=" font-size: 15px; margin-left: 40px;"><span id="r_toll"></span></p> -->
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="round-edge" style="margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                    <br>
+                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Requests</p>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search c-light" >
+                            <p>8830998140</p>
+                        </div>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <p id="" class="c-light" style="position: absolute; color: black; font-size: 15px;"></p>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="round-edge" style="margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                    <br>
+                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Approved</p>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search">
+                            <input id="" class="search-inp c-regular" type="number" style="text-align: center; width: 100%;" value="0">
+                        </div>
+                    </div>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <p id="" class="c-light" style="position: absolute; color: black; font-size: 15px;"></p>
+                    </div>
+
+                </div>
+            </div>
         </div>
         <div id="profile-content" style="display: none;">
             <div>
@@ -686,6 +731,7 @@ const customMapStyles = [
 ];
 let map, geocoder, directionsService, directionsRenderer;
 let pickup_latlng_dg, dropoff_latlng_dg, route_indx_dg
+let pickup_latlng_pg, dropoff_latlng_pg
 
 function home_btn_disp (){
     document.getElementById("home-content").style.display = "block";
@@ -964,6 +1010,48 @@ function p_go(){
         }
     }
 }
+function p_search_cabs(){
+    document.getElementById('cablist-content').style.display = 'block';
+    document.getElementById('map-content').style.display = 'none';
+    document.getElementById('p_search_cabs_p').innerText = "...";
+    document.getElementById('p_search_cabs').removeEventListener("click", p_search_cabs);
+    document.getElementById('cab_search_status').innerText = "Searching for cabs...";
+    var number_seats = document.getElementById("n_seats").value;
+
+    fetch('http://127.0.0.1:5555/p_search_cabs', {
+            method: 'POST',
+            credentials: 'include',
+            
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "pickup_latlng": pickup_latlng_pg, "dropoff_latlng": dropoff_latlng_pg, "seats":number_seats, "booking_date_thresh": booking_date_thresh})
+            
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data['RESP_STAT'] == "SUCCESS") {
+               
+            }
+
+            else {
+                alert("Error with your profile. Please login again.");
+                logout();
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert("Something went wrong. Please try again after some time.")
+        }); 
+
+}
 function showLocations_p() {
     map = new google.maps.Map(document.getElementById('map_p'), {
         center: { lat: 17.27889429107477, lng: 74.1848932778437 },
@@ -1005,7 +1093,8 @@ function showLocations_p() {
             }
 
             directionsRenderer.set('directions', null);
-
+            pickup_latlng_pg = latLng1;
+            dropoff_latlng_pg = latLng2;
             only_markers(latLng1, latLng2);
         });
     });
@@ -1475,10 +1564,11 @@ function d_price_confirm(){
             console.log('Response from server:', data);
             if (data['RESP_STAT'] == "SUCCESS") {
                 alert("Your ride published successfully.")
-                document.getElementById("publish-dash").style.display = "block";
+                document.getElementById("in_ride").style.display = "block";
                 document.getElementById("cost-confirm-publish").style.display = "none";
                 document.getElementById("d_price_confirm_p").innerText = "Publish"
-                document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);  
+                document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm); 
+                d_in_ride_content(); 
             }
             else if (data['RESP_STAT'] == "ABORTED"){
                 alert(data["MSG"]);
@@ -1504,9 +1594,48 @@ function d_price_confirm(){
     }
 
 }
+function d_in_ride_content(){
+    fetch('http://127.0.0.1:5555/d_inride_content/0', {
+            method: 'POST',
+            credentials: 'include',
+            
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,})
+            
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data['RESP_STAT'] == "SUCCESS") {
+                console.log(data['ROUTE_INFO']);
+                document.getElementById("i_from").innerText = data["ROUTE_INFO"][0];
+                document.getElementById("i_to").innerText = data["ROUTE_INFO"][1];
+                document.getElementById("i_scheduled").innerText = `${data["ROUTE_INFO"][2]} to ${data["ROUTE_INFO"][3]}`;
+
+            }
+
+            else {
+                alert("Error with your profile. Please login again.");
+                logout();
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert("Something went wrong. Please try again after some time.")
+        }); 
+}
 
 
 function on_load() {
+    document.getElementById("progress-bar").style.display = "flex";
     document.getElementById("home-div").addEventListener("click", home_btn_disp);
     document.getElementById("publish-div").addEventListener("click", publish_btn_disp);
     document.getElementById("profile-div").addEventListener("click", profile_btn_disp);
@@ -1526,6 +1655,7 @@ function on_load() {
     document.getElementById("lbl_3").addEventListener("click", function(){selected_route_highlight(2);});
     document.getElementById("d_route_confirm").addEventListener("click", d_route_confirm);
     document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);
+    document.getElementById('p_search_cabs').addEventListener("click", p_search_cabs);
     document.getElementById("d_verification").addEventListener("click", function(){window.location.href = "/driver-verification";});
     document.getElementById("d_renew").addEventListener("click", function(){window.location.href = "/driver-renew";});
     if (usr_verify == null){
@@ -1540,8 +1670,8 @@ function on_load() {
     }
     else{
         
-        home_btn_disp();
-        // publish_btn_disp();
+        // home_btn_disp();
+        publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
@@ -1571,6 +1701,11 @@ function on_load() {
                 document.getElementById("thrid_day").innerText = data["THIRD_DAY"];
                 document.getElementById("forth_day").innerText = data['FORTH_DAY'];
                 document.getElementById("usr-name").innerText = data['USR_NAME'].split(" ")[0];
+                if (data["RIDE_STAT"] == 1){
+                    document.getElementById("publish-dash").style.display = "none";
+                    document.getElementById("in_ride").style.display = "block";
+                    d_in_ride_content();
+                }
                 if (data["DRIVING_FLAG"] == 0){
                     document.getElementById("DRIVER_F_0").style.display = "flex";
                 }
@@ -1583,6 +1718,7 @@ function on_load() {
                     document.getElementById("d_publish").addEventListener("click", d_proceed);
                 }
                 // fetch_loc();
+                document.getElementById("progress-bar").style.display = "none";
             }
             else {
                 alert("Error with your profile. Please login again.");
@@ -1591,7 +1727,7 @@ function on_load() {
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
-            alert("Something went wrong. Please try again after some time.")
+            alert("Cannot connet to server. Please check your internet connection and try after sometime.")
         });           
     }
 

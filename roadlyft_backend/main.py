@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import time, random
-import datetime, pytz, googlemaps
+import datetime, googlemaps
 from geopy.distance import geodesic
 from flask_talisman import Talisman
 
@@ -31,7 +31,7 @@ gmaps = googlemaps.Client(key='AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0')
 
 usr_d: dict = {}
 oth_usr_data: dict = {}
-deck_handler: dict = {'8830998140': ['wzhbemqx', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
+deck_handler: dict = {'8830998140': ['zkajtuyc', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
                       '9423868113': ['rdwqvsgt', '22:07:37 07/09/24', True, '22:07:37 07/09/24', '22:07:37 07/09/24']}
 char_a_z = "abcdefghijklmnopqrstuvwxyz"
 route = {}
@@ -45,9 +45,8 @@ with open("enc/locations", "r") as loc:
 
 def deck_create_instance(usr_mobile):
     """Creates the deck instance for the advanced access to the user. This provides the additional security features."""
-    ist_timezone = pytz.timezone('Asia/Kolkata')
-    current_date_ist = datetime.datetime.now(ist_timezone)
-    cur_dat_time = current_date_ist.strftime("%H:%M:%S %D")
+    current_date = datetime.datetime.now()
+    cur_dat_time = current_date.strftime("%H:%M:%S %D")
 
     while True:
         temp_de = ""
@@ -107,16 +106,23 @@ def get_route_points(origin, destination, route_index=0):
         return route_points, route['legs'][0]['duration']['value'], route['legs'][0]['distance']['value'], has_tolls
     return [], None, None, False
 
+def is_point_near_route(point, route_points, max_distance=30):
+    for route_point in route_points:
+        # print(geodesic(point, route_point).kilometers)
+        if geodesic(point, route_point).kilometers <= max_distance:
+            print(geodesic(point, route_point).kilometers)
+            return True
+    return False
 
 def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
                     d_date, d_time) -> (bool, str):
     global route
 
-    ist = pytz.timezone('Asia/Kolkata')
     start_time = datetime.datetime.strptime(d_date + " " + d_time, "%Y-%m-%d %H:%M")
-    start_time = pytz.utc.localize(start_time)
-    start_time = start_time.astimezone(ist)
-    curr_time = datetime.datetime.now(ist)
+
+
+    curr_time = datetime.datetime.now()
+    print("current date: ", curr_time.strftime("%Y-%m-%d %H:%M"))
     if start_time < curr_time:
         return False, "Date or time selected is invalid."
 
@@ -130,15 +136,17 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
     val = valid_usr_req(usr_id)
     if val[0]:
         if route.get(val[1]):
+
             "The following 8 line of if if else statement are the limiter of ride."
             if len(route[val[1]]) > 0:
                 temp_end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
-                temp_end_time = pytz.utc.localize(temp_end_time)
-                temp_end_time = temp_end_time.astimezone(ist)
+
                 if curr_time > temp_end_time:
-                    route[val[1]][0][8] = []
+                    route[val[1]][0] = []
                 else:
                     return False, "One ride is already published."
+            "The above 8 line of if if else statement are the limiter of ride."
+
         mobile_number = val[1]
         if oth_usr_data[val[1]][1] == 2:
             if route.get(mobile_number) and len(route[mobile_number]) > 0:
@@ -156,19 +164,28 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
                      d_date, d_time, end_time, [], []
                      ]
                 route[mobile_number].append(new_route)
+                print("route: ", route)
                 return True, "Successfully scheduled ride."
             else:
                 _, mins, l, toll = get_route_points(pickup_latlng_d, dropoff_latlng_d, route_indx)
                 hours = mins // 3600
                 mins = (mins % 3600) // 60
+
+                print(mins, hours, mins)
+
                 time_to_add = datetime.timedelta(hours=hours, minutes=mins)
                 new_datetime_obj = start_time + time_to_add
                 end_time = new_datetime_obj.strftime("%Y-%m-%d %H:%M")
+
+                print("start time: ", start_time)
+                print("end time: ", new_datetime_obj)
+
                 route[mobile_number] = \
                     [
                         [pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
                          d_date, d_time, end_time, [], []]
                     ]
+                print("route: ", route)
                 return True, "Successfully scheduled ride."
         else:
             return False, "Ride publishing not enabled. Please verify first."
@@ -236,8 +253,8 @@ def login():
 
 @app.route("/get_homepage_da", methods=["POST"])
 def get_dates():
-    ist = pytz.timezone('Asia/Kolkata')
-    today = datetime.datetime.now(ist).date().today()
+
+    today = datetime.datetime.now().date().today()
     tomorrow = today + datetime.timedelta(days=1)
     day_after_tomorrow = tomorrow + datetime.timedelta(days=1)
     third_date = day_after_tomorrow + datetime.timedelta(days=1)
@@ -250,14 +267,16 @@ def get_dates():
     loyalty = request_body["loyalty"]
 
     val = valid_usr_req(usr_id)
-    if usr_id == local_str and val[0] and loyalty == "spawned%20uWSGI":
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
         usr_name_d, driving_flag = oth_usr_data[val[1]][0: 2]
         if route.get(val[1]):
             if len(route[val[1]]) > 0:
-                cur_time = datetime.datetime.now(ist)
+                cur_time = datetime.datetime.now()
                 end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
+
                 if cur_time > end_time:
-                    route[val[1]][0][8] = []
+                    route[val[1]][0] = []
+                    print("Removed expired route for ", val[1])
                 ride_stat = 1
             else:
                 ride_stat = 0
@@ -288,15 +307,23 @@ def get_locations():
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/p_go")
-def booking_passanger_s1():
+@app.route("/p_search_cabs")
+def booking_passenger_s1():
     request_body = request.json
+    print("Requesting to ride booking with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
-    print("Requesting to ride booking with given request body: ", request_body)
-    if loyalty != "spawned%20uWSG":
-        print()
+    pickup_latlng = request_body["pickup_latlng"]
+    dropoff_latlng = request_body["dropoff_latlng"]
+    seats = request_body["seats"]
+    booking_date_thresh = "booking_date_thresh"
+
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        get_route_points(pickup_latlng, dropoff_latlng)
+    else:
+        return jsonify({"RESP_STAT": "FAILURE"})
 
 
 @app.route("/d_post", methods=["POST"])
@@ -325,6 +352,41 @@ def ride_publish():
             return jsonify({"RESP_STAT": "SUCCESS"})
         else:
             return jsonify({"RESP_STAT": "ABORTED", "MSG": msg})
+    else:
+        return jsonify({"RESP_STAT": "FAILURE"})
+
+
+@app.route("/d_inride_content/<route_index>", methods=["POST"])
+def in_ride_content(route_index):
+    request_body = request.json
+    print("Requesting in-ride data with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    route_index = int(route_index)
+
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        route_info = route[val[1]][route_index]
+        origin = route_info[0]
+        destination = route_info[1]
+        start_datetime = str(route_info[6]) + " " + str(route_info[7])
+        seats = int(route_info[5])
+        end_datetime = str(route_info[8])
+        passenger_approved = route_info[9]
+        passenger_request = route_info[10]
+
+        passenger_approved_n = []
+        passenger_request_n = []
+
+        for i in passenger_approved:
+            passenger_approved_n.append(oth_usr_data[i][0])
+        for j in passenger_request:
+            passenger_request_n.append(oth_usr_data[j][0])
+
+        route_info = [origin, destination, start_datetime, end_datetime, seats, passenger_approved_n,
+                      passenger_request_n]
+        return jsonify({"RESP_STAT": "SUCCESS", "ROUTE_INFO": route_info})
     else:
         return jsonify({"RESP_STAT": "FAILURE"})
 
