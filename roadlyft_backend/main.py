@@ -106,20 +106,21 @@ def get_route_points(origin, destination, route_index=0):
         return route_points, route['legs'][0]['duration']['value'], route['legs'][0]['distance']['value'], has_tolls
     return [], None, None, False
 
-def is_point_near_route(point, route_points, max_distance=30):
+
+def is_point_near_route(point, route_points, max_distance=50) -> (bool, int):
     for route_point in route_points:
         # print(geodesic(point, route_point).kilometers)
-        if geodesic(point, route_point).kilometers <= max_distance:
-            print(geodesic(point, route_point).kilometers)
-            return True
-    return False
+        km = geodesic(point, route_point).kilometers
+        if km <= max_distance:
+            return True, km
+    return False, 0
+
 
 def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
                     d_date, d_time) -> (bool, str):
     global route
 
     start_time = datetime.datetime.strptime(d_date + " " + d_time, "%Y-%m-%d %H:%M")
-
 
     curr_time = datetime.datetime.now()
     print("current date: ", curr_time.strftime("%Y-%m-%d %H:%M"))
@@ -253,7 +254,6 @@ def login():
 
 @app.route("/get_homepage_da", methods=["POST"])
 def get_dates():
-
     today = datetime.datetime.now().date().today()
     tomorrow = today + datetime.timedelta(days=1)
     day_after_tomorrow = tomorrow + datetime.timedelta(days=1)
@@ -314,14 +314,25 @@ def booking_passenger_s1():
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
-    pickup_latlng = request_body["pickup_latlng"]
-    dropoff_latlng = request_body["dropoff_latlng"]
+    pickup_latlng_p = request_body["pickup_latlng"]
+    dropoff_latlng_p = request_body["dropoff_latlng"]
     seats = request_body["seats"]
     booking_date_thresh = "booking_date_thresh"
 
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
-        get_route_points(pickup_latlng, dropoff_latlng)
+        for r in route:
+            if len(route[r]) > 0:
+                for i in route[r]:
+                    d_start_time = datetime.datetime.strptime(str(route[r][i][6]) + " " + str(route[r][i][7]),
+                                                              "%Y-%m-%d %H:%M")
+                    curr_time = datetime.datetime.now()
+                    if curr_time < d_start_time:
+
+                        rp, dist, tm, _ = get_route_points((route[r][i][2]['lat'], route[r][i][2]['lng']), (route[r][i][3]['lat'], route[r][i][3]['lng']), int(route[r][i][4]))
+                        ret, km = is_point_near_route(route_points=rp, point=pickup_latlng_p)
+
+
     else:
         return jsonify({"RESP_STAT": "FAILURE"})
 
