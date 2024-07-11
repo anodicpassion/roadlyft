@@ -52,6 +52,15 @@ def is_point_near_route(point, route_points, max_distance=30):
     return False
 
 
+def get_travel_time_between_points(point1, point2):
+    result = gmaps.distance_matrix(origins=[point1], destinations=[point2], mode="driving")
+    if result['rows'] and result['rows'][0]['elements']:
+        element = result['rows'][0]['elements'][0]
+        if element['status'] == 'OK':
+            return element['duration']['text'], element['distance']['text']
+    return None, None
+
+
 karad = 17.277693, 74.1843535
 delhi = 28.7040592, 77.10249019999999
 satara = 17.6804639, 74.018261
@@ -76,7 +85,7 @@ passenger_end = delhi
 # Get driver route points
 r_t = get_route_points(driver_origin, driver_destination, route_index)
 route_points, time, distance, tolls = r_t[:]
-print(time, distance, tolls)
+# print(time, distance, tolls)
 # Check if passenger start and end points are near the route
 is_start_near_route = is_point_near_route(passenger_start, route_points)
 is_end_near_route = is_point_near_route(passenger_end, route_points)

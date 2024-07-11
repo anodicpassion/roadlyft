@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="home-content" style="display: none;">
-            <div id="dashb-content" style="display: block;">
+            <div id="dashb-content" style="display: none;">
                 <div style="position: fixed; right: 0; z-index: -2;">
                     <button id="prev-route-btn" style="background-color: transparent; border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
                     <img src="../components/icons/more.png" width="30" height="30">
@@ -231,11 +231,76 @@
                 onclick="document.getElementById('cablist-content').style.display = 'none'; document.getElementById('dashb-content').style.display = 'block';">
                     <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
                 </div>
+            
+                <div style="display: flex; justify-content: center; width: 100%; margin-top: 10px;">
+                    <div class="round-edge" style=" border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
+                        <p id="cab_search_status" class="c-light" style=" font-size: 15px; margin-left: 30px;"></p>
+                    </div>
+                </div>
+
+                <!-- <div class="round-edge" style="margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                    <p class="c-bold" style=" margin-right: 20px; padding-top: 10px; text-align: right;">₹500/-</p>
+
+                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: -25px;">Time</p>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -25px; ">
+                        <div class="search c-medium" >
+                            <p style="height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;">alkdf lakdflk asd alke adfjla aldjflas alkedejl a skla alk d</p>
+                        </div>
+                    </div>
+                    <p class="c-light" style="margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;">20m</p>
+                    <br>
+                    <br>
+
+                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: -25px;">Time</p>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -25px; ">
+                        <div class="search c-medium" >
+                            <p style="height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;">alkdf lakdflk asd alke adfjla aldjflas alkedejl a skla alk d</p>
+                        </div>
+                    </div>
+                    <p class="c-light" style="margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;">20m</p>
+                    
+                </div> -->
+            </div>
+            <div id="cab_info" style="display: block;">
+                <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
+                onclick="document.getElementById('cablist-content').style.display = 'block'; document.getElementById('cab_info').style.display = 'none';">
+                    <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
+                </div>
+                <br>
+                <br>
                 <br>
                 <div style="display: flex; justify-content: center; width: 100%;">
-                    <div class="round-edge" >
-                        <p id="cab_search_status" class="c-light" style=" font-size: 15px; margin-left: 20px;"></p>
+                    <div class="round-edge" style="height: 90px; padding-top: 10px; overflow: scroll;">
+                        <!-- <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Ride details: </p> -->
+                        <p class="c-regular" style=" font-size: 15px; margin-left: 20px;">Driver: <span id="driver_name"></span></p>
+                        <p class="c-regular" style=" font-size: 15px; margin-left: 20px;">Mobile number: <span id="driver_mobile"></span></p>
+                        <!-- <p class="c-bold" style=" font-size: 15px; margin-left: 40px;"><span id="r_toll"></span></p> -->
                     </div>
+                </div>
+                <br>
+                <br>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="height: 50px; padding-top: 10px; overflow: scroll;">
+                        <p class="c-regular" style=" font-size: 15px; margin-left: 20px;">Seats available: <span id="seats_in_cab"></span></p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <!-- <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="height: 200px; padding-top: 10px; overflow: scroll;">
+                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Ride details: </p>
+                        <p class="c-regular" style=" font-size: 15px; margin-left: 20px;">Origin: <span id="seats_in_cab"></span></p>
+                        <p class="c-regular" style=" font-size: 15px; margin-left: 20px;">Destination: <span id="seats_in_cab"></span></p>
+                    </div>
+                </div> -->
+                <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
+                    <div style="width: 100%; margin-left: -15px">
+                        <div id="p_cab_request" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
+                            <p id="p_cab_request_p" class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Request</p>
+                        </div>
+                        
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -458,10 +523,10 @@
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" style="height: 180px; padding-top: 10px; overflow: scroll;">
                         <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Route details: </p>
-                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Summary: <span id="r_summary"></span></p>
-                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Distance: <span id="r_distance"></span></p>
-                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Time: <span id="r_time"></span></p>
-                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Toll: <span id="r_toll"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px;">Summary: <span id="r_summary"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px;">Distance: <span id="r_distance"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px;">Time: <span id="r_time"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px;">Toll: <span id="r_toll"></span></p>
                     </div>
                 </div>
                 <br>
@@ -494,9 +559,9 @@
                 <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" style="height: 180px; padding-top: 10px; overflow: scroll;">
                         <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Route details: </p>
-                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">From: <span id="i_from"></span></p>
-                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">To: <span id="i_to"></span></p>
-                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px;">Scheduled on: <span id="i_scheduled"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">From: <span id="i_from"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">To: <span id="i_to"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">Scheduled on: <span id="i_scheduled"></span></p>
                         <!-- <p class="c-bold" style=" font-size: 15px; margin-left: 40px;"><span id="r_toll"></span></p> -->
                     </div>
                 </div>
@@ -1038,17 +1103,34 @@ function p_search_cabs(){
         .then(data => {
             console.log('Response from server:', data);
             if (data['RESP_STAT'] == "SUCCESS") {
-               
+                // alert("Success.");
+                console.log(data["CAB_LST"]);
+                document.getElementById('cab_search_status').innerText = `${data["CAB_LST"].length} cabs found.`;
+                for (var i = 0; i < data["CAB_LST"].length; i ++){
+                    console.log(data["CAB_LST"][i][0]);
+                    cabs_append(i, data["CAB_LST"][i]);
+                }
+
+
+                
             }
 
+            else if (data['RESP_STAT'] == "NONE") {
+                // alert("No cabs found.")
+                document.getElementById('cab_search_status').innerText = "No cabs found.";
+            }
             else {
                 alert("Error with your profile. Please login again.");
                 logout();
             }
+            document.getElementById('p_search_cabs_p').innerText = "Confirm";
+            document.getElementById('p_search_cabs').addEventListener("click", p_search_cabs);
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
             alert("Something went wrong. Please try again after some time.")
+            document.getElementById('p_search_cabs_p').innerText = "Confirm";
+            document.getElementById('p_search_cabs').addEventListener("click", p_search_cabs);
         }); 
 
 }
@@ -1551,6 +1633,7 @@ function d_price_confirm(){
                 "d_seats": d_seats,
                 "d_date": d_date,
                 "d_time": d_time,
+                "d_cost": usr_price
             })
             
         })
@@ -1633,6 +1716,214 @@ function d_in_ride_content(){
         }); 
 }
 
+function show_cab_info(indx, data){
+    document.getElementById("driver_name").innerText = data[0];
+    document.getElementById("driver_mobile").innerText = data[1];
+    document.getElementById("seats_in_cab").innerText = data[7];
+    document.getElementById("cab_info").style.display = "block";
+    document.getElementById("cablist-content").style.display = "none";
+    let element = document.getElementById("p_cab_request");
+    let newElement = element.cloneNode(true);
+    element.parentNode.replaceChild(newElement, element);
+    document.getElementById("p_cab_request").addEventListener("click", function(){ 
+        fetch('http://127.0.0.1:5555/p_book_cab', {
+            method: 'POST',
+            credentials: 'include',
+            
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,
+                "driver_mbl": data[1],
+                "origin": data[8],
+                "destination": data[9]
+            })
+            
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data['RESP_STAT'] == "SUCCESS") {
+                console.log("success");
+            }
+
+            else {
+                alert("Error with your profile. Please login again.");
+                logout();
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert("Something went wrong. Please try again after some time.")
+        });           
+
+     });
+    
+
+}
+function cabs_append(indx, data){
+    
+//     0
+// : 
+// "Pratik Suhas Pawar"
+// 1
+// : 
+// "8830998140"
+// 2
+// : 
+// 0.664971132655344
+// 3
+// : 
+// 21.86208356867975
+// 4
+// : 
+// "Sat, 13 Jul 2024 14:04:16 GMT"
+// 5
+// : 
+// "Sat, 13 Jul 2024 15:18:00 GMT"
+// 6
+// : 
+// 74.335
+// 7
+// : 
+// 1
+// 8
+// : 
+// "Kolhapur, Maharashtra, India"
+// 9
+// : 
+// "Pune, Maharashtra, India"
+// 10
+// : 
+// {lat: 16.7049873, lng: 74.24325270000001}
+// 11
+// : 
+// {lat: 18.5204303, lng: 73.8567437}
+// 12
+// : 
+// 0
+// 13
+// : 
+// "1"
+// 14
+// : 
+// "2024-07-13"
+// 15
+// : 
+// "12:24"
+// 16
+// : 
+// "2024-07-13 17:03"
+// 17
+// : 
+// []
+// 18
+// : 
+// []
+// 19
+// : 
+// "1151.33"
+let mainDiv = document.createElement("div");
+mainDiv.className = "round-edge";
+mainDiv.style.cssText = "margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);";
+mainDiv.addEventListener("click", function(){
+    show_cab_info(indx, data);
+})
+// Create the price paragraph
+let priceParagraph = document.createElement("p");
+priceParagraph.className = "c-bold";
+priceParagraph.style.cssText = "margin-right: 20px; padding-top: 10px; text-align: right; font-size: 18px";
+priceParagraph.textContent = `₹${data[19]}/-`;
+mainDiv.appendChild(priceParagraph);
+
+// Create the first time label
+let timeLabel1 = document.createElement("p");
+timeLabel1.className = "c-regular";
+timeLabel1.style.cssText = "position: absolute; margin-left: 20px; margin-top: -25px;";
+timeLabel1.textContent = data[4];
+mainDiv.appendChild(timeLabel1);
+
+// Create the first search div
+let searchDiv1 = document.createElement("div");
+searchDiv1.style.cssText = "width: 100%; display: flex; justify-content: center; margin-top: -25px;";
+
+// Create the first inner search div
+let innerSearchDiv1 = document.createElement("div");
+innerSearchDiv1.className = "search c-medium";
+
+// Create the first inner search paragraph
+let innerSearchParagraph1 = document.createElement("p");
+innerSearchParagraph1.style.cssText = "height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;";
+innerSearchParagraph1.textContent = document.getElementById("pickup_locationInput_p").value;
+
+// Append the inner search paragraph to the inner search div
+innerSearchDiv1.appendChild(innerSearchParagraph1);
+
+// Append the inner search div to the search div
+searchDiv1.appendChild(innerSearchDiv1);
+
+// Append the search div to the main div
+mainDiv.appendChild(searchDiv1);
+
+// Create the first duration paragraph
+let durationParagraph1 = document.createElement("p");
+durationParagraph1.className = "c-light";
+durationParagraph1.style.cssText = "margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;";
+durationParagraph1.textContent = `${data[2]}m`;
+mainDiv.appendChild(durationParagraph1);
+
+let br1 = document.createElement("br");
+mainDiv.appendChild(br1);
+
+let br2 = document.createElement("br");
+mainDiv.appendChild(br2);
+
+// Create the second time label
+let timeLabel2 = document.createElement("p");
+timeLabel2.className = "c-regular";
+timeLabel2.style.cssText = "position: absolute; margin-left: 20px; margin-top: -25px;";
+timeLabel2.textContent = data[5];
+mainDiv.appendChild(timeLabel2);
+
+// Create the second search div
+let searchDiv2 = document.createElement("div");
+searchDiv2.style.cssText = "width: 100%; display: flex; justify-content: center; margin-top: -25px;";
+
+// Create the second inner search div
+let innerSearchDiv2 = document.createElement("div");
+innerSearchDiv2.className = "search c-medium";
+
+// Create the second inner search paragraph
+let innerSearchParagraph2 = document.createElement("p");
+innerSearchParagraph2.style.cssText = "height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;";
+innerSearchParagraph2.textContent = document.getElementById("dropoff_locationInput_p").value;
+
+// Append the inner search paragraph to the inner search div
+innerSearchDiv2.appendChild(innerSearchParagraph2);
+
+// Append the inner search div to the search div
+searchDiv2.appendChild(innerSearchDiv2);
+
+// Append the search div to the main div
+mainDiv.appendChild(searchDiv2);
+
+// Create the second duration paragraph
+let durationParagraph2 = document.createElement("p");
+durationParagraph2.className = "c-light";
+durationParagraph2.style.cssText = "margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;";
+durationParagraph2.textContent = `${data[3]}m`;
+mainDiv.appendChild(durationParagraph2);
+
+// Append the main div to the body or any other container
+document.getElementById("cablist-content").appendChild(mainDiv);
+
+}
 
 function on_load() {
     document.getElementById("progress-bar").style.display = "flex";
@@ -1670,8 +1961,8 @@ function on_load() {
     }
     else{
         
-        // home_btn_disp();
-        publish_btn_disp();
+        home_btn_disp();
+        // publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
