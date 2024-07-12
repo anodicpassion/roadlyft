@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import time, random
-import datetime, pytz, googlemaps
+import datetime, googlemaps
 from geopy.distance import geodesic
 from flask_talisman import Talisman
 
@@ -31,9 +31,13 @@ gmaps = googlemaps.Client(key='AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0')
 
 usr_d: dict = {}
 oth_usr_data: dict = {}
-deck_handler: dict = {'8830998140': ['wzhbemqx', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
+deck_handler: dict = {'8830998140': ['zkajtuyc', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
                       '9423868113': ['rdwqvsgt', '22:07:37 07/09/24', True, '22:07:37 07/09/24', '22:07:37 07/09/24']}
 char_a_z = "abcdefghijklmnopqrstuvwxyz"
+# route = {'8830998140': [ ['Kolhapur, Maharashtra, India', 'Pune, Maharashtra, India', {'lat': 16.7049873,
+# 'lng': 74.24325270000001}, {'lat': 18.5204303, 'lng': 73.8567437}, 0, '1', '2024-07-19', '13:28', '2024-07-19
+# 18:07', [], [['9423868113', 'Karad, Maharashtra, India', 'Satara, Maharashtra, India', {'lat': 17.277693,
+# 'lng': 74.1843535}, {'lat': 17.6804639, 'lng': 74.018261}, '1']], '1151.47']]}
 route = {}
 
 with open("enc/pyc_cache", "r") as pycache:
@@ -45,9 +49,8 @@ with open("enc/locations", "r") as loc:
 
 def deck_create_instance(usr_mobile):
     """Creates the deck instance for the advanced access to the user. This provides the additional security features."""
-    ist_timezone = pytz.timezone('Asia/Kolkata')
-    current_date_ist = datetime.datetime.now(ist_timezone)
-    cur_dat_time = current_date_ist.strftime("%H:%M:%S %D")
+    current_date = datetime.datetime.now()
+    cur_dat_time = current_date.strftime("%H:%M:%S %D")
 
     while True:
         temp_de = ""
@@ -108,60 +111,112 @@ def get_route_points(origin, destination, route_index=0):
     return [], None, None, False
 
 
+def is_point_near_route(point, route_points, max_distance=50) -> (bool, int):
+    min_dist, ro_pt = 50, 0
+    for route_point in route_points:
+        # print(geodesic(point, route_point).kilometers)
+        km = geodesic(point, route_point).kilometers
+        if km <= max_distance:
+            if km < min_dist:
+                min_dist = km
+                ro_pt = route_point
+    if min_dist < 50:
+        return True, min_dist, ro_pt
+    return False, 0, None
+
+
+def get_travel_time_between_points(point1, point2):
+    result = gmaps.distance_matrix(origins=[point1], destinations=[point2], mode="driving")
+    if result['rows'] and result['rows'][0]['elements']:
+        element = result['rows'][0]['elements'][0]
+        if element['status'] == 'OK':
+            return element['duration']['value'], element['distance']['value']
+    return None, None
+
+
 def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
-                    d_date, d_time) -> (bool, str):
+                    d_date, d_time, d_cost) -> (bool, str):
     global route
-    datetime_obj = datetime.datetime.strptime(d_date + " " + d_time, "%Y-%m-%d %H:%M")
+
+    start_time = datetime.datetime.strptime(d_date + " " + d_time, "%Y-%m-%d %H:%M")
+
     curr_time = datetime.datetime.now()
-    if datetime_obj < curr_time:
+    print("current date: ", curr_time.strftime("%Y-%m-%d %H:%M"))
+    if start_time < curr_time:
         return False, "Date or time selected is invalid."
+
+    _, mins, l, toll = get_route_points(pickup_latlng_d, dropoff_latlng_d, route_indx)
+    hours = mins // 3600
+    mins = (mins % 3600) // 60
+    time_to_add = datetime.timedelta(hours=hours, minutes=mins)
+    end_time_obj = start_time + time_to_add
+    end_time = end_time_obj.strftime("%Y-%m-%d %H:%M")
+
     val = valid_usr_req(usr_id)
     if val[0]:
+        if route.get(val[1]):
+
+            "The following 8 line of if if else statement are the limiter of ride."
+            if len(route[val[1]]) > 0:
+                temp_end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
+
+                if curr_time > temp_end_time:
+                    route[val[1]].__delitem__(0)
+                    # route[val[1]][0] = []
+                else:
+                    return False, "One ride is already published."
+            "The above 8 line of if if else statement are the limiter of ride."
+
         mobile_number = val[1]
         if oth_usr_data[val[1]][1] == 2:
             if route.get(mobile_number) and len(route[mobile_number]) > 0:
 
                 for r in route[mobile_number]:
-                    print("r: ", r)
-                    previous_time = datetime.datetime.strptime(r[8], "%Y-%m-%d %H:%M")
-                    if previous_time > datetime_obj:
+                    previous_start_time = datetime.datetime.strptime(str(r[6]) + " " + str(r[7]), "%Y-%m-%d %H:%M")
+                    previous_end_time = datetime.datetime.strptime(r[8], "%Y-%m-%d %H:%M")
+                    if (start_time < previous_start_time < end_time_obj
+                            or previous_start_time < start_time < previous_end_time):
                         return False, f"Time overlapping with ride scheduled from {r[0]} to {r[1]}."
 
-                _, mins, l, toll = get_route_points(pickup_latlng_d, dropoff_latlng_d, route_indx)
-                hours = mins // 3600
-                mins = (mins % 3600) // 60
-                time_to_add = datetime.timedelta(hours=hours, minutes=mins)
-                new_datetime_obj = datetime_obj + time_to_add
-                end_time = new_datetime_obj.strftime("%Y-%m-%d %H:%M")
                 new_route = \
                     [pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
-                     d_date, d_time, end_time, [], []
+                     d_date, d_time, end_time, [], [], d_cost
                      ]
                 route[mobile_number].append(new_route)
+                print("route: ", route)
                 return True, "Successfully scheduled ride."
             else:
                 _, mins, l, toll = get_route_points(pickup_latlng_d, dropoff_latlng_d, route_indx)
                 hours = mins // 3600
                 mins = (mins % 3600) // 60
+
+                print(mins, hours, mins)
+
                 time_to_add = datetime.timedelta(hours=hours, minutes=mins)
-                new_datetime_obj = datetime_obj + time_to_add
+                new_datetime_obj = start_time + time_to_add
                 end_time = new_datetime_obj.strftime("%Y-%m-%d %H:%M")
+
+                print("start time: ", start_time)
+                print("end time: ", new_datetime_obj)
+
                 route[mobile_number] = \
                     [
                         [pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx, d_seats,
-                         d_date, d_time, end_time, [], []]
+                         d_date, d_time, end_time, [], [], d_cost]
                     ]
+                print("route: ", route)
                 return True, "Successfully scheduled ride."
         else:
             return False, "Ride publishing not enabled. Please verify first."
     else:
-        return False, "User invalid request"
+        return False, "User invalid request."
 
 
 @app.route("/")
 @limiter.limit("60 per minute")
 def index():
-    return "<center>ROADLYFT Coming Soon...!</center>"
+    client_ip = request.remote_addr
+    return f"<center>ROADLYFT Coming Soon...!</center>{client_ip}"
 
 
 @app.route("/create_account", methods=["POST"])
@@ -204,22 +259,25 @@ def login():
             if usr_d[data_received['mobile']] == data_received['password']:
                 dec_inst = deck_create_instance(data_received['mobile'])
                 response = jsonify({"LOGIN_STAT": "SUCCESS", "dock-cid": dec_inst})
+                print("Successful login with: ", usr_mobile, usr_password)
                 return response
             else:
+                print("Failed login with: ", usr_mobile, usr_password)
                 response = jsonify({"LOGIN_STAT": "FAILURE"})
                 return response
         else:
+            print("Failed login with: ", usr_mobile, usr_password)
             response = jsonify({"LOGIN_STAT": "FAILURE"})
             return response
     else:
+        print("Failed login with: ", usr_mobile, usr_password)
         response = jsonify({"LOGIN_STAT": "FAILURE"})
         return response
 
 
 @app.route("/get_homepage_da", methods=["POST"])
 def get_dates():
-    ist = pytz.timezone('Asia/Kolkata')
-    today = datetime.datetime.now(ist).date().today()
+    today = datetime.datetime.now().date().today()
     tomorrow = today + datetime.timedelta(days=1)
     day_after_tomorrow = tomorrow + datetime.timedelta(days=1)
     third_date = day_after_tomorrow + datetime.timedelta(days=1)
@@ -232,14 +290,31 @@ def get_dates():
     loyalty = request_body["loyalty"]
 
     val = valid_usr_req(usr_id)
-    if usr_id == local_str and val[0] and loyalty == "spawned%20uWSGI":
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
         usr_name_d, driving_flag = oth_usr_data[val[1]][0: 2]
+        if route.get(val[1]):
+            if len(route[val[1]]) > 0:
+                cur_time = datetime.datetime.now()
+                end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
+
+                if cur_time > end_time:
+                    route[val[1]].__delitem__(0)
+                    # route[val[1]][0] = []
+                    print("Removed expired route for ", val[1])
+                    ride_stat = 0
+                else:
+                    ride_stat = 1
+            else:
+                ride_stat = 0
+        else:
+            ride_stat = 0
+        print("Successful returning the homepage data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "SUCCESS", "TODAY": today.strftime("%d"), "TOMORROW": tomorrow.strftime("%d"),
                         "DATE_AFTER_TOMORROW": day_after_tomorrow.strftime("%d"),
                         "DAY_AFTER_TOMORROW": day_after_tomorrow.strftime("%A")[:3],
                         "THIRD_DATE": third_date.strftime("%d"), "THIRD_DAY": third_date.strftime("%A")[:3],
                         "FORTH_DATE": forth_date.strftime("%d"), "FORTH_DAY": forth_date.strftime("%A")[:3],
-                        "USR_NAME": usr_name_d, "DRIVING_FLAG": driving_flag})
+                        "USR_NAME": usr_name_d, "DRIVING_FLAG": driving_flag, "RIDE_STAT": ride_stat})
 
     else:
         print("Failed to respond with homepage data with given request body: ", request_body)
@@ -254,20 +329,107 @@ def get_locations():
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     if usr_id == local_str and valid_usr_req(usr_id):
+        print("Successful returning the location data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "SUCCESS", "LOC": locations})
     else:
+        print("Failed returning the location data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/p_go")
-def booking_passanger_s1():
+@app.route("/p_search_cabs", methods=['POST'])
+def booking_passenger_s1():
     request_body = request.json
+    print("Requesting to cabs route with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
+    pickup_latlng_p = request_body["pickup_latlng"]
+    dropoff_latlng_p = request_body["dropoff_latlng"]
+    seats = request_body["seats"]
+    booking_date_thresh = "booking_date_thresh"
+    print("pickup_latlng: ", pickup_latlng_p)
+    val = valid_usr_req(usr_id)
+    temp_cab_list = []
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        for r in route:
+
+            if len(route[r]) > 0:
+                for i in route[r]:
+                    d_start_time = datetime.datetime.strptime(str(i[6]) + " " + str(i[7]),
+                                                              "%Y-%m-%d %H:%M")
+                    curr_time = datetime.datetime.now()
+                    if curr_time < d_start_time:
+                        rp, dist, tm, _ = get_route_points((i[2]['lat'], i[2]['lng']), (i[3]['lat'], i[3]['lng']),
+                                                           int(i[4]))
+                        ret_s, km_s, pt_s = is_point_near_route(route_points=rp,
+                                                                point=(pickup_latlng_p["lat"], pickup_latlng_p["lng"]))
+                        ret_e, km_e, pt_e = is_point_near_route(route_points=rp, point=(
+                            dropoff_latlng_p["lat"], dropoff_latlng_p["lng"]))
+                        if ret_s and ret_e and int(seats) <= (int(i[5]) - len(i[9])):
+                            t_P_s, d_P_s = get_travel_time_between_points(rp[0], pt_s)
+                            t_P_e, d_P_e = get_travel_time_between_points(pt_s, pt_e)
+                            print("d_P_s, t_P_s: ", d_P_s, t_P_s)
+                            print("d_P_e, t_P_e: ", d_P_e, t_P_e)
+                            print(i)
+                            actual_start = d_start_time + datetime.timedelta(seconds=t_P_s)
+                            actual_end = actual_start + datetime.timedelta(seconds=t_P_e)
+                            actual_distance = d_P_e / 1000
+                            temp = [oth_usr_data[r][0], r, round(float(km_s), 2), round(float(km_e), 2),
+                                    actual_start.strftime("%d %b %H:%M"), actual_end.strftime("%d %b %H:%M"),
+                                    actual_distance, (int(i[5]) - len(i[9]))]
+                            temp.extend(i)
+                            temp_cab_list.append(temp)
+
+        if len(temp_cab_list):
+            print("Cabs for request: ", temp_cab_list)
+            print("Successful returning to cabs route with given request body: ", request_body)
+            return jsonify({"RESP_STAT": "SUCCESS", "CAB_LST": temp_cab_list})
+        print("No cabs found for the request.")
+        print("None return to cabs route with given request body: ", request_body)
+        return jsonify({"RESP_STAT": "NONE"})
+    else:
+        print("Failed returning to cabs route with given request body: ", request_body)
+        return jsonify({"RESP_STAT": "FAILURE"})
+
+
+@app.route("/p_book_cab", methods=['POST'])
+def booking_passenger_s2():
+    request_body = request.json
     print("Requesting to ride booking with given request body: ", request_body)
-    if loyalty != "spawned%20uWSG":
-        print()
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    d_mobile = request_body["driver_mbl"]
+    d_origin = request_body["origin"]
+    d_destination = request_body["destination"]
+    pickup_name = request_body["pickup_name"]
+    dropoff_name = request_body["dropoff_name"]
+    pickup_latlng = request_body["pickup_latlng"]
+    dropoff_latlng = request_body["dropoff_latlng"]
+    seats = request_body['seats']
+
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        if route.get(d_mobile):
+            for _, r in enumerate(route[d_mobile]):
+                if r[0] == d_origin and r[1] == d_destination:
+                    start_time = datetime.datetime.strptime(str(r[6]) + " " + str(r[7]), "%Y-%m-%d %H:%M")
+                    curr_time = datetime.datetime.now()
+                    if start_time > curr_time:
+                        route[d_mobile][_][10].append([val[1], pickup_name, dropoff_name, pickup_latlng,
+                                                       dropoff_latlng, seats])
+                        print(route[d_mobile][_][10])
+                        print("Successful returning to ride booking with given request body: ", request_body)
+                        return jsonify({"RESP_STAT": "SUCCESS"})
+            print("Failed returning to ride booking with given request body: ", request_body)
+            return jsonify({"RESP_STAT": "FAILURE"})
+        else:
+            print("Failed returning to ride booking with given request body: ", request_body)
+            return jsonify({"RESP_STAT": "FAILURE"})
+
+    else:
+        print("Failed returning to ride booking with given request body: ", request_body)
+        return jsonify({"RESP_STAT": "FAILURE"})
 
 
 @app.route("/d_post", methods=["POST"])
@@ -286,17 +448,90 @@ def ride_publish():
     d_seats = request_body["d_seats"]
     d_date = request_body["d_date"]
     d_time = request_body["d_time"]
-    print()
+    d_cost = request_body["d_cost"]
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
         ret, msg = add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx,
                                    d_seats,
-                                   d_date, d_time)
+                                   d_date, d_time, d_cost)
         if ret:
+            print("Successful returning ride publish with given request body: ", request_body)
             return jsonify({"RESP_STAT": "SUCCESS"})
         else:
+            print("Aborted returning ride publish with given request body: ", request_body)
             return jsonify({"RESP_STAT": "ABORTED", "MSG": msg})
     else:
+        print("Failed returning ride publish with given request body: ", request_body)
+        return jsonify({"RESP_STAT": "FAILURE"})
+
+
+@app.route("/d_inride_content/<route_index>", methods=["POST"])
+def in_ride_content(route_index):
+    request_body = request.json
+    print("Requesting in-ride data with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    route_index = int(route_index)
+
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        route_info = route[val[1]][route_index]
+        origin = route_info[0]
+        destination = route_info[1]
+        start_datetime = str(route_info[6]) + " " + str(route_info[7])
+        seats = int(route_info[5])
+        end_datetime = str(route_info[8])
+        passenger_approved = route_info[9]
+        passenger_request = route_info[10]
+
+        passenger_approved_n = []
+        passenger_request_n = []
+
+        for i in passenger_approved:
+            temp = [oth_usr_data[i[0]][0]]
+            temp.extend(i)
+            passenger_approved_n.append(temp)
+            # passenger_approved_n.append(oth_usr_data[i][0])
+        for j in passenger_request:
+            temp = [oth_usr_data[j[0]][0]]
+            temp.extend(j)
+            passenger_request_n.append(temp)
+            # passenger_request_n.append(oth_usr_data[j][0])
+
+        route_info = [origin, destination, start_datetime, end_datetime, seats, passenger_approved_n,
+                      passenger_request_n]
+        print("Successful returning in-ride data with given request body: ", request_body)
+        return jsonify({"RESP_STAT": "SUCCESS", "ROUTE_INFO": route_info})
+    else:
+        print("Failed returning in-ride data with given request body: ", request_body)
+        return jsonify({"RESP_STAT": "FAILURE"})
+
+
+@app.route("/d_request_accept", methods=["POST"])
+def request_accept_d():
+    request_body = request.json
+    print("Requesting passenger request acceptation with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    accept_req = request_body["passanger_request"]
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        for _, r in enumerate(route[val[1]]):
+            for __, i in enumerate(r[10]):
+                print("i: ", i)
+                print("accept_req: ", accept_req[1:])
+                if accept_req[1:] == i:
+                    route[val[1]][_][10].remove(i)
+                    route[val[1]][_][9].append(i)
+                    print("Successful returning passenger request acceptation with given request body: ", request_body)
+                    return jsonify({"RESP_STAT": "SUCCESS"})
+
+        print("Aborted returning passenger request acceptation with given request body: ", request_body)
+        return jsonify({"RESP_STAT": "ABORTED"})
+    else:
+        print("Failed returning passenger request acceptation with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 

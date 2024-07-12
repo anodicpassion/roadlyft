@@ -77,7 +77,7 @@ const router = createRouter({
 
 // Navigation guards
 router.beforeEach((to, from, next) => {
-  document.getElementById('progress-bar').style.display = 'block';
+  document.getElementById('progress-bar').style.display = 'flex';
   next();
 });
 
