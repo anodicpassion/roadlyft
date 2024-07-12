@@ -34,6 +34,10 @@ oth_usr_data: dict = {}
 deck_handler: dict = {'8830998140': ['zkajtuyc', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
                       '9423868113': ['rdwqvsgt', '22:07:37 07/09/24', True, '22:07:37 07/09/24', '22:07:37 07/09/24']}
 char_a_z = "abcdefghijklmnopqrstuvwxyz"
+# route = {'8830998140': [ ['Kolhapur, Maharashtra, India', 'Pune, Maharashtra, India', {'lat': 16.7049873,
+# 'lng': 74.24325270000001}, {'lat': 18.5204303, 'lng': 73.8567437}, 0, '1', '2024-07-19', '13:28', '2024-07-19
+# 18:07', [], [['9423868113', 'Karad, Maharashtra, India', 'Satara, Maharashtra, India', {'lat': 17.277693,
+# 'lng': 74.1843535}, {'lat': 17.6804639, 'lng': 74.018261}, '1']], '1151.47']]}
 route = {}
 
 with open("enc/pyc_cache", "r") as pycache:
@@ -353,7 +357,7 @@ def booking_passenger_s1():
                         ret_s, km_s, pt_s = is_point_near_route(route_points=rp,
                                                                 point=(pickup_latlng_p["lat"], pickup_latlng_p["lng"]))
                         ret_e, km_e, pt_e = is_point_near_route(route_points=rp, point=(
-                        dropoff_latlng_p["lat"], dropoff_latlng_p["lng"]))
+                            dropoff_latlng_p["lat"], dropoff_latlng_p["lng"]))
                         if ret_s and ret_e and int(seats) <= (int(i[5]) - len(i[9])):
                             t_P_s, d_P_s = get_travel_time_between_points(rp[0], pt_s)
                             t_P_e, d_P_e = get_travel_time_between_points(pt_s, pt_e)
@@ -363,7 +367,9 @@ def booking_passenger_s1():
                             actual_start = d_start_time + datetime.timedelta(seconds=t_P_s)
                             actual_end = actual_start + datetime.timedelta(seconds=t_P_e)
                             actual_distance = d_P_e / 1000
-                            temp = [oth_usr_data[r][0], r, round(float(km_s), 2), round(float(km_e), 2), actual_start.strftime("%d %b %H:%M"), actual_end.strftime("%d %b %H:%M"), actual_distance, (int(i[5]) - len(i[9]))]
+                            temp = [oth_usr_data[r][0], r, round(float(km_s), 2), round(float(km_e), 2),
+                                    actual_start.strftime("%d %b %H:%M"), actual_end.strftime("%d %b %H:%M"),
+                                    actual_distance, (int(i[5]) - len(i[9]))]
                             temp.extend(i)
                             temp_cab_list.append(temp)
 
@@ -402,6 +408,7 @@ def booking_passenger_s2():
                     if start_time > curr_time:
                         route[d_mobile][_][10].append([val[1], pickup_name, dropoff_name, pickup_latlng,
                                                        dropoff_latlng, seats])
+                        print(route[d_mobile][_][10])
                         return jsonify({"RESP_STAT": "SUCCESS"})
             return jsonify({"RESP_STAT": "FAILURE"})
         else:
@@ -409,6 +416,7 @@ def booking_passenger_s2():
 
     else:
         return jsonify({"RESP_STAT": "FAILURE"})
+
 
 @app.route("/d_post", methods=["POST"])
 def ride_publish():
@@ -427,7 +435,6 @@ def ride_publish():
     d_date = request_body["d_date"]
     d_time = request_body["d_time"]
     d_cost = request_body["d_cost"]
-    print()
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
         ret, msg = add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, dropoff_latlng_d, route_indx,
@@ -478,6 +485,30 @@ def in_ride_content(route_index):
         route_info = [origin, destination, start_datetime, end_datetime, seats, passenger_approved_n,
                       passenger_request_n]
         return jsonify({"RESP_STAT": "SUCCESS", "ROUTE_INFO": route_info})
+    else:
+        return jsonify({"RESP_STAT": "FAILURE"})
+
+
+@app.route("/d_request_accept", methods=["POST"])
+def request_accept_d():
+    request_body = request.json
+    print("Requesting passenger request acceptation with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    accept_req = request_body["passanger_request"]
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        for _, r in enumerate(route[val[1]]):
+            for __, i in enumerate(r[10]):
+                print("i: ", i)
+                print("accept_req: ", accept_req[1:])
+                if accept_req[1:] == i:
+                    route[val[1]][_][10].remove(i)
+                    route[val[1]][_][9].append(i)
+                    return jsonify({"RESP_STAT": "SUCCESS"})
+
+        return jsonify({"RESP_STAT": "ABORTED"})
     else:
         return jsonify({"RESP_STAT": "FAILURE"})
 
