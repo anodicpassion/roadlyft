@@ -157,7 +157,8 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
                 temp_end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
 
                 if curr_time > temp_end_time:
-                    route[val[1]][0] = []
+                    route[val[1]].__delitem__(0)
+                    # route[val[1]][0] = []
                 else:
                     return False, "One ride is already published."
             "The above 8 line of if if else statement are the limiter of ride."
@@ -210,7 +211,8 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
 @app.route("/")
 @limiter.limit("60 per minute")
 def index():
-    return "<center>ROADLYFT Coming Soon...!</center>"
+    client_ip = request.remote_addr
+    return f"<center>ROADLYFT Coming Soon...!</center>{client_ip}"
 
 
 @app.route("/create_account", methods=["POST"])
@@ -288,9 +290,12 @@ def get_dates():
                 end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
 
                 if cur_time > end_time:
-                    route[val[1]][0] = []
+                    route[val[1]].__delitem__(0)
+                    # route[val[1]][0] = []
                     print("Removed expired route for ", val[1])
-                ride_stat = 1
+                    ride_stat = 0
+                else:
+                    ride_stat = 1
             else:
                 ride_stat = 0
         else:
@@ -381,13 +386,23 @@ def booking_passenger_s2():
     d_mobile = request_body["driver_mbl"]
     d_origin = request_body["origin"]
     d_destination = request_body["destination"]
+    pickup_name = request_body["pickup_name"]
+    dropoff_name = request_body["dropoff_name"]
+    pickup_latlng = request_body["pickup_latlng"]
+    dropoff_latlng = request_body["dropoff_latlng"]
+    seats = request_body['seats']
+
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
         if route.get(d_mobile):
             for _, r in enumerate(route[d_mobile]):
                 if r[0] == d_origin and r[1] == d_destination:
-                    route[d_mobile][_][10].append(val[1])
-                    return jsonify({"RESP_STAT": "SUCCESS"})
+                    start_time = datetime.datetime.strptime(str(r[6]) + " " + str(r[7]), "%Y-%m-%d %H:%M")
+                    curr_time = datetime.datetime.now()
+                    if start_time > curr_time:
+                        route[d_mobile][_][10].append([val[1], pickup_name, dropoff_name, pickup_latlng,
+                                                       dropoff_latlng, seats])
+                        return jsonify({"RESP_STAT": "SUCCESS"})
             return jsonify({"RESP_STAT": "FAILURE"})
         else:
             return jsonify({"RESP_STAT": "FAILURE"})
@@ -450,9 +465,15 @@ def in_ride_content(route_index):
         passenger_request_n = []
 
         for i in passenger_approved:
-            passenger_approved_n.append(oth_usr_data[i][0])
+            temp = [oth_usr_data[i[0]][0]]
+            temp.extend(i)
+            passenger_approved_n.append(temp)
+            # passenger_approved_n.append(oth_usr_data[i][0])
         for j in passenger_request:
-            passenger_request_n.append(oth_usr_data[j][0])
+            temp = [oth_usr_data[j[0]][0]]
+            temp.extend(j)
+            passenger_request_n.append(temp)
+            # passenger_request_n.append(oth_usr_data[j][0])
 
         route_info = [origin, destination, start_datetime, end_datetime, seats, passenger_approved_n,
                       passenger_request_n]

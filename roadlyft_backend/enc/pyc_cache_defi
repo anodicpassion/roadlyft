@@ -2,3 +2,4 @@
 # oth_usr_data = {mobile_number: [usr_name, driving_enabled_flagR   ]}
 # deck_handler = {mobile_number: [temporary_dec_holder, time_dec_creation, flag, time_flag_change, time_request]}
 # route = {d_mobile_number: [[start_name, end_name, start_latlng, end_latlng, route_index, seats, date, start_time, end_time, [passengers_approved], [passengers_pending], fare]]}
+# route[10] = [mobile_number, pickup_name, dropoff_name, pickup_latlng, dropoff_latlng, seats]

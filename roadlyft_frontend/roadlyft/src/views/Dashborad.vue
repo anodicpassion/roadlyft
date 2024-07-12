@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="home-content" style="display: none;">
-            <div id="dashb-content" style="display: none;">
+            <div id="dashb-content" style="display: block;">
                 <div style="position: fixed; right: 0; z-index: -2;">
                     <button id="prev-route-btn" style="background-color: transparent; border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
                     <img src="../components/icons/more.png" width="30" height="30">
@@ -261,7 +261,7 @@
                     
                 </div> -->
             </div>
-            <div id="cab_info" style="display: block;">
+            <div id="cab_info" style="display: none;">
                 <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
                 onclick="document.getElementById('cablist-content').style.display = 'block'; document.getElementById('cab_info').style.display = 'none';">
                     <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
@@ -567,18 +567,18 @@
                 </div>
                 <br>
                 <br>
-                <div class="round-edge" style="margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+                <p class="c-regular" style=" margin-left: 20px; margin-top: 8px;">Requests</p>
+                <div class="round-edge" style="margin-left: 10%; background-color: transparent; height: 350px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); overflow: scroll;">
                     <br>
-                    <p class="c-regular" style="position: absolute; margin-left: 20px; margin-top: 8px;">Requests</p>
-                    <br>
-                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                        <div class="search c-light" >
-                            <p>8830998140</p>
+                    <div style="display: flex; justify-content: center; width: 100%;">
+                        <div class="round-edge" style="height: 130px; padding-top: 10px; overflow: scroll;">
+                            <p class="c-bold" style=" font-size: 15px; margin-left: 20px; margin-right: 20px">From: <span class="c-light">a</span></p>
+                            <p class="c-bold" style=" font-size: 15px; margin-left: 20px; margin-right: 20px">To: <span class="c-light">b</span></p>
+                            <p class="c-bold" style=" font-size: 15px; margin-left: 20px; margin-right: 20px">Seats: <span class="c-light">c</span></p>
                         </div>
                     </div>
-                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                        <p id="" class="c-light" style="position: absolute; color: black; font-size: 15px;"></p>
-                    </div>
+                    
+                    
 
                 </div>
                 <br>
@@ -1603,7 +1603,8 @@ function d_route_confirm(){
     }
 }
 function d_price_confirm(){
-    const distance = parseInt(document.getElementById("r_distance").innerText, 10);
+    const distance = parseFloat(document.getElementById("r_distance").innerText);
+    console.log("distance", distance);
     const usr_price = document.getElementById("d_cost").value;
     if (usr_price <= ((distance*5)+(distance*5*0.1)) && usr_price >= ((distance*5)-(distance*5*0.1))){
         document.getElementById("d_price_confirm_p").innerText = "..."
@@ -1737,7 +1738,12 @@ function show_cab_info(indx, data){
             body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,
                 "driver_mbl": data[1],
                 "origin": data[8],
-                "destination": data[9]
+                "destination": data[9],
+                "pickup_name": document.getElementById("pickup_locationInput_p").value,
+                "dropoff_name": document.getElementById("dropoff_locationInput_p").value,
+                "pickup_latlng": pickup_latlng_pg,
+                "dropoff_latlng": dropoff_latlng_pg,
+                "seats": document.getElementById('n_seats').value
             })
             
         })
@@ -1839,7 +1845,7 @@ mainDiv.addEventListener("click", function(){
 let priceParagraph = document.createElement("p");
 priceParagraph.className = "c-bold";
 priceParagraph.style.cssText = "margin-right: 20px; padding-top: 10px; text-align: right; font-size: 18px";
-priceParagraph.textContent = `₹${data[19]}/-`;
+priceParagraph.textContent = `₹${(parseInt(data[6])*5).toFixed(2)}/-`;
 mainDiv.appendChild(priceParagraph);
 
 // Create the first time label
@@ -1924,6 +1930,49 @@ mainDiv.appendChild(durationParagraph2);
 document.getElementById("cablist-content").appendChild(mainDiv);
 
 }
+function requests_append(indx, data){
+// Create the main div with flex display
+let mainDiv = document.createElement("div");
+mainDiv.style.cssText = "display: flex; justify-content: center; width: 100%;";
+
+// Create the inner round-edge div
+let roundEdgeDiv = document.createElement("div");
+roundEdgeDiv.className = "round-edge";
+roundEdgeDiv.style.cssText = "height: 130px; padding-top: 10px; overflow: scroll;";
+
+// Create the "From" paragraph
+let fromParagraph = document.createElement("p");
+fromParagraph.className = "c-bold";
+fromParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+fromParagraph.innerHTML = 'From: <span class="c-light">a</span>';
+
+// Create the "To" paragraph
+let toParagraph = document.createElement("p");
+toParagraph.className = "c-bold";
+toParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+toParagraph.innerHTML = 'To: <span class="c-light">b</span>';
+
+// Create the "Seats" paragraph
+let seatsParagraph = document.createElement("p");
+seatsParagraph.className = "c-bold";
+seatsParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+seatsParagraph.innerHTML = 'Seats: <span class="c-light">c</span>';
+
+// Append the paragraphs to the round-edge div
+roundEdgeDiv.appendChild(fromParagraph);
+roundEdgeDiv.appendChild(toParagraph);
+roundEdgeDiv.appendChild(seatsParagraph);
+
+// Append the round-edge div to the main div
+mainDiv.appendChild(roundEdgeDiv);
+
+// Append the main div to the body or any other container
+document.body.appendChild(mainDiv);
+// Alternatively, you can append it to a specific container element
+// document.getElementById("yourContainerId").appendChild(mainDiv);
+
+}
+
 
 function on_load() {
     document.getElementById("progress-bar").style.display = "flex";
@@ -1961,8 +2010,8 @@ function on_load() {
     }
     else{
         
-        home_btn_disp();
-        // publish_btn_disp();
+        // home_btn_disp();
+        publish_btn_disp();
         fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
