@@ -1046,7 +1046,7 @@ function fetchLocations_4() {
     });
 }
 function fetch_loc(){
-    fetch('http://127.0.0.1:5555/get_loc_da', {
+    fetch('https://446f-103-234-240-164.ngrok-free.app/get_loc_da', {
         method: 'POST',
         credentials: 'include',
         
@@ -1118,7 +1118,7 @@ function p_search_cabs(){
     document.getElementById('cab_search_status').innerText = "Searching for cabs...";
     var number_seats = document.getElementById("n_seats").value;
 
-    fetch('http://127.0.0.1:5555/p_search_cabs', {
+    fetch('https://446f-103-234-240-164.ngrok-free.app/p_search_cabs', {
             method: 'POST',
             credentials: 'include',
             
@@ -1652,7 +1652,7 @@ function d_price_confirm(){
         var d_time = document.getElementById("d_time").value;
         
 
-        fetch('http://127.0.0.1:5555/d_post', {
+        fetch('https://446f-103-234-240-164.ngrok-free.app/d_post', {
             method: 'POST',
             credentials: 'include',
             
@@ -1714,7 +1714,7 @@ function d_price_confirm(){
 
 }
 function d_in_ride_content(){
-    fetch('http://127.0.0.1:5555/d_inride_content/0', {
+    fetch('https://446f-103-234-240-164.ngrok-free.app/d_inride_content/0', {
             method: 'POST',
             credentials: 'include',
             
@@ -1775,7 +1775,7 @@ function show_cab_info(indx, data){
     let newElement = element.cloneNode(true);
     element.parentNode.replaceChild(newElement, element);
     document.getElementById("p_cab_request").addEventListener("click", function(){ 
-        fetch('http://127.0.0.1:5555/p_book_cab', {
+        fetch('https://446f-103-234-240-164.ngrok-free.app/p_book_cab', {
             method: 'POST',
             credentials: 'include',
             
@@ -1993,7 +1993,7 @@ function show_request_info(indx, data){
     document.getElementById("d_confirm_passanger").addEventListener("click", function(){
         document.getElementById("d_confirm_passanger_p").innerText = "...";
 
-        fetch('http://127.0.0.1:5555/d_request_accept', {
+        fetch('https://446f-103-234-240-164.ngrok-free.app/d_request_accept', {
             method: 'POST',
             credentials: 'include',
             
@@ -2181,8 +2181,8 @@ function on_load() {
         home_btn_disp();
         // publish_btn_disp();
         // profile_btn_disp();
-        
-        fetch('http://127.0.0.1:5555/get_homepage_da', {
+
+        fetch('https://446f-103-234-240-164.ngrok-free.app/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
             

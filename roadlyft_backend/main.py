@@ -259,14 +259,18 @@ def login():
             if usr_d[data_received['mobile']] == data_received['password']:
                 dec_inst = deck_create_instance(data_received['mobile'])
                 response = jsonify({"LOGIN_STAT": "SUCCESS", "dock-cid": dec_inst})
+                print("Successful login with: ", usr_mobile, usr_password)
                 return response
             else:
+                print("Failed login with: ", usr_mobile, usr_password)
                 response = jsonify({"LOGIN_STAT": "FAILURE"})
                 return response
         else:
+            print("Failed login with: ", usr_mobile, usr_password)
             response = jsonify({"LOGIN_STAT": "FAILURE"})
             return response
     else:
+        print("Failed login with: ", usr_mobile, usr_password)
         response = jsonify({"LOGIN_STAT": "FAILURE"})
         return response
 
@@ -304,6 +308,7 @@ def get_dates():
                 ride_stat = 0
         else:
             ride_stat = 0
+        print("Successful returning the homepage data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "SUCCESS", "TODAY": today.strftime("%d"), "TOMORROW": tomorrow.strftime("%d"),
                         "DATE_AFTER_TOMORROW": day_after_tomorrow.strftime("%d"),
                         "DAY_AFTER_TOMORROW": day_after_tomorrow.strftime("%A")[:3],
@@ -324,8 +329,10 @@ def get_locations():
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     if usr_id == local_str and valid_usr_req(usr_id):
+        print("Successful returning the location data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "SUCCESS", "LOC": locations})
     else:
+        print("Failed returning the location data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
@@ -375,10 +382,13 @@ def booking_passenger_s1():
 
         if len(temp_cab_list):
             print("Cabs for request: ", temp_cab_list)
+            print("Successful returning to cabs route with given request body: ", request_body)
             return jsonify({"RESP_STAT": "SUCCESS", "CAB_LST": temp_cab_list})
         print("No cabs found for the request.")
+        print("None return to cabs route with given request body: ", request_body)
         return jsonify({"RESP_STAT": "NONE"})
     else:
+        print("Failed returning to cabs route with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
@@ -409,12 +419,16 @@ def booking_passenger_s2():
                         route[d_mobile][_][10].append([val[1], pickup_name, dropoff_name, pickup_latlng,
                                                        dropoff_latlng, seats])
                         print(route[d_mobile][_][10])
+                        print("Successful returning to ride booking with given request body: ", request_body)
                         return jsonify({"RESP_STAT": "SUCCESS"})
+            print("Failed returning to ride booking with given request body: ", request_body)
             return jsonify({"RESP_STAT": "FAILURE"})
         else:
+            print("Failed returning to ride booking with given request body: ", request_body)
             return jsonify({"RESP_STAT": "FAILURE"})
 
     else:
+        print("Failed returning to ride booking with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
@@ -441,10 +455,13 @@ def ride_publish():
                                    d_seats,
                                    d_date, d_time, d_cost)
         if ret:
+            print("Successful returning ride publish with given request body: ", request_body)
             return jsonify({"RESP_STAT": "SUCCESS"})
         else:
+            print("Aborted returning ride publish with given request body: ", request_body)
             return jsonify({"RESP_STAT": "ABORTED", "MSG": msg})
     else:
+        print("Failed returning ride publish with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
@@ -484,8 +501,10 @@ def in_ride_content(route_index):
 
         route_info = [origin, destination, start_datetime, end_datetime, seats, passenger_approved_n,
                       passenger_request_n]
+        print("Successful returning in-ride data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "SUCCESS", "ROUTE_INFO": route_info})
     else:
+        print("Failed returning in-ride data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
@@ -506,10 +525,13 @@ def request_accept_d():
                 if accept_req[1:] == i:
                     route[val[1]][_][10].remove(i)
                     route[val[1]][_][9].append(i)
+                    print("Successful returning passenger request acceptation with given request body: ", request_body)
                     return jsonify({"RESP_STAT": "SUCCESS"})
 
+        print("Aborted returning passenger request acceptation with given request body: ", request_body)
         return jsonify({"RESP_STAT": "ABORTED"})
     else:
+        print("Failed returning passenger request acceptation with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
