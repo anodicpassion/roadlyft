@@ -237,7 +237,9 @@
                         <p id="cab_search_status" class="c-light" style=" font-size: 15px; margin-left: 30px;"></p>
                     </div>
                 </div>
+                <div id="cab-search-result">
 
+                </div>
                 <!-- <div class="round-edge" style="margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
                     <p class="c-bold" style=" margin-right: 20px; padding-top: 10px; text-align: right;">₹500/-</p>
 
@@ -297,6 +299,45 @@
                     <div style="width: 100%; margin-left: -15px">
                         <div id="p_cab_request" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
                             <p id="p_cab_request_p" class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Request</p>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="in_booking" style="display: none; color: #10517d">
+                <br>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="height: 180px; padding-top: 10px; overflow: scroll;">
+                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Route details: </p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">From: <span id="p_from_inbooking"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">To: <span id="p_to_inbooking"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">Seats: <span id="p_seats_inbooking"></span></p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div style="display: flex; justify-content: center; width: 100%;">
+                    <div class="round-edge" style="height: 180px; padding-top: 10px; overflow: scroll;">
+                        <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Driver details: </p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">Name: <span id="p_D_Name"></span></p>
+                        <p class="c-bold" style=" font-size: 15px; margin-left: 40px; margin-right: 20px">Mobile: <span id="p_D_Mbl"></span></p>
+                    </div>
+                </div>
+                <br>
+                <div id="approved_ride" style="width: 100%; display: none; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
+                    <div style="width: 100%; margin-left: -15px">
+                        <div  class="round-edge" style="display: flex; justify-content: center; background-color: #FFFFFF; border: 1px solid #10517d; margin-left: 10%;"> 
+                            <p  class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Ride Approved</p>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div style="width: 100%; display: flex; justify-content: center; bottom: 0; z-index: 10; position: fixed; margin-bottom: 100px;"> 
+                    <div style="width: 100%; margin-left: -15px">
+                        <div id="p_cancel_booking" class="round-edge" style="display: none; justify-content: center; background-color: #00c6fb; margin-left: 10%;"> 
+                            <p id="p_cancel_booking_p" class="c-bold" style=" font-size: 20px; margin-top: 15px; color: #10517d;">Cancel booking</p>
                         </div>
                         
                     </div>
@@ -1046,7 +1087,7 @@ function fetchLocations_4() {
     });
 }
 function fetch_loc(){
-    fetch('https://446f-103-234-240-164.ngrok-free.app/get_loc_da', {
+    fetch('http://127.0.0.1:5555/get_loc_da', {
         method: 'POST',
         credentials: 'include',
         
@@ -1118,7 +1159,13 @@ function p_search_cabs(){
     document.getElementById('cab_search_status').innerText = "Searching for cabs...";
     var number_seats = document.getElementById("n_seats").value;
 
-    fetch('https://446f-103-234-240-164.ngrok-free.app/p_search_cabs', {
+    let parentElement = document.getElementById("cab-search-result");
+    while (parentElement.firstChild) {
+        console.log(parentElement.firstChild);
+        parentElement.removeChild(parentElement.firstChild);
+    }
+
+    fetch('http://127.0.0.1:5555/p_search_cabs', {
             method: 'POST',
             credentials: 'include',
             
@@ -1141,6 +1188,9 @@ function p_search_cabs(){
                 // alert("Success.");
                 console.log(data["CAB_LST"]);
                 document.getElementById('cab_search_status').innerText = `${data["CAB_LST"].length} cabs found.`;
+                
+                
+
                 for (var i = 0; i < data["CAB_LST"].length; i ++){
                     console.log(data["CAB_LST"][i][0]);
                     cabs_append(i, data["CAB_LST"][i]);
@@ -1652,7 +1702,7 @@ function d_price_confirm(){
         var d_time = document.getElementById("d_time").value;
         
 
-        fetch('https://446f-103-234-240-164.ngrok-free.app/d_post', {
+        fetch('http://127.0.0.1:5555/d_post', {
             method: 'POST',
             credentials: 'include',
             
@@ -1714,7 +1764,7 @@ function d_price_confirm(){
 
 }
 function d_in_ride_content(){
-    fetch('https://446f-103-234-240-164.ngrok-free.app/d_inride_content/0', {
+    fetch('http://127.0.0.1:5555/d_inride_content/0', {
             method: 'POST',
             credentials: 'include',
             
@@ -1764,7 +1814,6 @@ function d_in_ride_content(){
             alert("Something went wrong. Please try again after some time.")
         }); 
 }
-
 function show_cab_info(indx, data){
     document.getElementById("driver_name").innerText = data[0];
     document.getElementById("driver_mobile").innerText = data[1];
@@ -1774,8 +1823,13 @@ function show_cab_info(indx, data){
     let element = document.getElementById("p_cab_request");
     let newElement = element.cloneNode(true);
     element.parentNode.replaceChild(newElement, element);
+    
     document.getElementById("p_cab_request").addEventListener("click", function(){ 
-        fetch('https://446f-103-234-240-164.ngrok-free.app/p_book_cab', {
+        let element = document.getElementById("p_cab_request");
+        let newElement = element.cloneNode(true);
+        element.parentNode.replaceChild(newElement, element);
+        document.getElementById("p_cab_request_p").innerText = "...";
+        fetch('http://127.0.0.1:5555/p_book_cab', {
             method: 'POST',
             credentials: 'include',
             
@@ -1804,7 +1858,10 @@ function show_cab_info(indx, data){
         .then(data => {
             console.log('Response from server:', data);
             if (data['RESP_STAT'] == "SUCCESS") {
-                console.log("success");
+                alert("Your request was sent to driver.")
+                document.getElementById("cab_info").style.display = "none";
+                document.getElementById("in_booking").style.display = "block";
+                in_booking();
             }
 
             else {
@@ -1821,8 +1878,7 @@ function show_cab_info(indx, data){
     
 
 }
-function cabs_append(indx, data){
-    
+function cabs_append(indx, data){   
 //     0
 // : 
 // "Pratik Suhas Pawar"
@@ -1883,102 +1939,101 @@ function cabs_append(indx, data){
 // 19
 // : 
 // "1151.33"
-let mainDiv = document.createElement("div");
-mainDiv.className = "round-edge";
-mainDiv.style.cssText = "margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);";
-mainDiv.addEventListener("click", function(){
-    show_cab_info(indx, data);
-})
-// Create the price paragraph
-let priceParagraph = document.createElement("p");
-priceParagraph.className = "c-bold";
-priceParagraph.style.cssText = "margin-right: 20px; padding-top: 10px; text-align: right; font-size: 18px";
-priceParagraph.textContent = `₹${(parseInt(data[6])*5).toFixed(2)}/-`;
-mainDiv.appendChild(priceParagraph);
+    let mainDiv = document.createElement("div");
+    mainDiv.className = "round-edge";
+    mainDiv.style.cssText = "margin-left: 10%; background-color: transparent; height: 250px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);";
+    mainDiv.addEventListener("click", function(){
+        show_cab_info(indx, data);
+    })
+    // Create the price paragraph
+    let priceParagraph = document.createElement("p");
+    priceParagraph.className = "c-bold";
+    priceParagraph.style.cssText = "margin-right: 20px; padding-top: 10px; text-align: right; font-size: 18px";
+    priceParagraph.textContent = `₹${(parseInt(data[6])*5).toFixed(2)}/-`;
+    mainDiv.appendChild(priceParagraph);
 
-// Create the first time label
-let timeLabel1 = document.createElement("p");
-timeLabel1.className = "c-regular";
-timeLabel1.style.cssText = "position: absolute; margin-left: 20px; margin-top: -25px;";
-timeLabel1.textContent = data[4];
-mainDiv.appendChild(timeLabel1);
+    // Create the first time label
+    let timeLabel1 = document.createElement("p");
+    timeLabel1.className = "c-regular";
+    timeLabel1.style.cssText = "position: absolute; margin-left: 20px; margin-top: -25px;";
+    timeLabel1.textContent = data[4];
+    mainDiv.appendChild(timeLabel1);
 
-// Create the first search div
-let searchDiv1 = document.createElement("div");
-searchDiv1.style.cssText = "width: 100%; display: flex; justify-content: center; margin-top: -25px;";
+    // Create the first search div
+    let searchDiv1 = document.createElement("div");
+    searchDiv1.style.cssText = "width: 100%; display: flex; justify-content: center; margin-top: -25px;";
 
-// Create the first inner search div
-let innerSearchDiv1 = document.createElement("div");
-innerSearchDiv1.className = "search c-medium";
+    // Create the first inner search div
+    let innerSearchDiv1 = document.createElement("div");
+    innerSearchDiv1.className = "search c-medium";
 
-// Create the first inner search paragraph
-let innerSearchParagraph1 = document.createElement("p");
-innerSearchParagraph1.style.cssText = "height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;";
-innerSearchParagraph1.textContent = document.getElementById("pickup_locationInput_p").value;
+    // Create the first inner search paragraph
+    let innerSearchParagraph1 = document.createElement("p");
+    innerSearchParagraph1.style.cssText = "height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;";
+    innerSearchParagraph1.textContent = document.getElementById("pickup_locationInput_p").value;
 
-// Append the inner search paragraph to the inner search div
-innerSearchDiv1.appendChild(innerSearchParagraph1);
+    // Append the inner search paragraph to the inner search div
+    innerSearchDiv1.appendChild(innerSearchParagraph1);
 
-// Append the inner search div to the search div
-searchDiv1.appendChild(innerSearchDiv1);
+    // Append the inner search div to the search div
+    searchDiv1.appendChild(innerSearchDiv1);
 
-// Append the search div to the main div
-mainDiv.appendChild(searchDiv1);
+    // Append the search div to the main div
+    mainDiv.appendChild(searchDiv1);
 
-// Create the first duration paragraph
-let durationParagraph1 = document.createElement("p");
-durationParagraph1.className = "c-light";
-durationParagraph1.style.cssText = "margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;";
-durationParagraph1.textContent = `${data[2]}m`;
-mainDiv.appendChild(durationParagraph1);
+    // Create the first duration paragraph
+    let durationParagraph1 = document.createElement("p");
+    durationParagraph1.className = "c-light";
+    durationParagraph1.style.cssText = "margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;";
+    durationParagraph1.textContent = `${data[2]}m`;
+    mainDiv.appendChild(durationParagraph1);
 
-let br1 = document.createElement("br");
-mainDiv.appendChild(br1);
+    let br1 = document.createElement("br");
+    mainDiv.appendChild(br1);
 
-let br2 = document.createElement("br");
-mainDiv.appendChild(br2);
+    let br2 = document.createElement("br");
+    mainDiv.appendChild(br2);
 
-// Create the second time label
-let timeLabel2 = document.createElement("p");
-timeLabel2.className = "c-regular";
-timeLabel2.style.cssText = "position: absolute; margin-left: 20px; margin-top: -25px;";
-timeLabel2.textContent = data[5];
-mainDiv.appendChild(timeLabel2);
+    // Create the second time label
+    let timeLabel2 = document.createElement("p");
+    timeLabel2.className = "c-regular";
+    timeLabel2.style.cssText = "position: absolute; margin-left: 20px; margin-top: -25px;";
+    timeLabel2.textContent = data[5];
+    mainDiv.appendChild(timeLabel2);
 
-// Create the second search div
-let searchDiv2 = document.createElement("div");
-searchDiv2.style.cssText = "width: 100%; display: flex; justify-content: center; margin-top: -25px;";
+    // Create the second search div
+    let searchDiv2 = document.createElement("div");
+    searchDiv2.style.cssText = "width: 100%; display: flex; justify-content: center; margin-top: -25px;";
 
-// Create the second inner search div
-let innerSearchDiv2 = document.createElement("div");
-innerSearchDiv2.className = "search c-medium";
+    // Create the second inner search div
+    let innerSearchDiv2 = document.createElement("div");
+    innerSearchDiv2.className = "search c-medium";
 
-// Create the second inner search paragraph
-let innerSearchParagraph2 = document.createElement("p");
-innerSearchParagraph2.style.cssText = "height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;";
-innerSearchParagraph2.textContent = document.getElementById("dropoff_locationInput_p").value;
+    // Create the second inner search paragraph
+    let innerSearchParagraph2 = document.createElement("p");
+    innerSearchParagraph2.style.cssText = "height: 30px; margin-left: 20px; margin-right: 20px; overflow: scroll;";
+    innerSearchParagraph2.textContent = document.getElementById("dropoff_locationInput_p").value;
 
-// Append the inner search paragraph to the inner search div
-innerSearchDiv2.appendChild(innerSearchParagraph2);
+    // Append the inner search paragraph to the inner search div
+    innerSearchDiv2.appendChild(innerSearchParagraph2);
 
-// Append the inner search div to the search div
-searchDiv2.appendChild(innerSearchDiv2);
+    // Append the inner search div to the search div
+    searchDiv2.appendChild(innerSearchDiv2);
 
-// Append the search div to the main div
-mainDiv.appendChild(searchDiv2);
+    // Append the search div to the main div
+    mainDiv.appendChild(searchDiv2);
 
-// Create the second duration paragraph
-let durationParagraph2 = document.createElement("p");
-durationParagraph2.className = "c-light";
-durationParagraph2.style.cssText = "margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;";
-durationParagraph2.textContent = `${data[3]}m`;
-mainDiv.appendChild(durationParagraph2);
+    // Create the second duration paragraph
+    let durationParagraph2 = document.createElement("p");
+    durationParagraph2.className = "c-light";
+    durationParagraph2.style.cssText = "margin-left: 20px; margin-right: 20px; text-align: right; margin-top: 5px;";
+    durationParagraph2.textContent = `${data[3]}m`;
+    mainDiv.appendChild(durationParagraph2);
 
-// Append the main div to the body or any other container
-document.getElementById("cablist-content").appendChild(mainDiv);
+    // Append the main div to the body or any other container
+    document.getElementById("cab-search-result").appendChild(mainDiv);
 
 }
-
 function show_request_info(indx, data){
     document.getElementById("passanger_name").innerText = data[0];
     document.getElementById("passanger_mobile").innerText = data[1];
@@ -1993,7 +2048,7 @@ function show_request_info(indx, data){
     document.getElementById("d_confirm_passanger").addEventListener("click", function(){
         document.getElementById("d_confirm_passanger_p").innerText = "...";
 
-        fetch('https://446f-103-234-240-164.ngrok-free.app/d_request_accept', {
+        fetch('http://127.0.0.1:5555/d_request_accept', {
             method: 'POST',
             credentials: 'include',
             
@@ -2022,7 +2077,13 @@ function show_request_info(indx, data){
                 document.getElementById("d_confirm_passanger_p").innerText = "Request";
         
             }
-
+            else if (data['RESP_STAT'] == "ABORTED") {
+                alert("This ride was canceled by the passenger.");
+                document.getElementById('in_ride').style.display = 'block'; 
+                document.getElementById('request_info').style.display = 'none';
+                d_in_ride_content();
+                document.getElementById("d_confirm_passanger_p").innerText = "Request";
+            }
             else {
                 alert("Error with your profile. Please login again.");
                 logout();
@@ -2051,96 +2112,198 @@ function show_accepted_info(indx, data){
 
 function requests_append(indx, data){
     console.log("data: ", data);
-// Create the main div with flex display
-let mainDiv = document.createElement("div");
-mainDiv.style.cssText = "display: flex; justify-content: center; width: 100%;";
+    // Create the main div with flex display
+    let mainDiv = document.createElement("div");
+    mainDiv.style.cssText = "display: flex; justify-content: center; width: 100%;";
 
-// Create the inner round-edge div
-let roundEdgeDiv = document.createElement("div");
-roundEdgeDiv.className = "round-edge";
-roundEdgeDiv.style.cssText = "height: 130px; padding-top: 10px; overflow: scroll;";
+    // Create the inner round-edge div
+    let roundEdgeDiv = document.createElement("div");
+    roundEdgeDiv.className = "round-edge";
+    roundEdgeDiv.style.cssText = "height: 130px; padding-top: 10px; overflow: scroll;";
 
-// Create the "From" paragraph
-let fromParagraph = document.createElement("p");
-fromParagraph.className = "c-bold";
-fromParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
-fromParagraph.innerHTML = `From: <span class="c-light">${data[2]}</span>`;
+    // Create the "From" paragraph
+    let fromParagraph = document.createElement("p");
+    fromParagraph.className = "c-bold";
+    fromParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+    fromParagraph.innerHTML = `From: <span class="c-light">${data[2]}</span>`;
 
-// Create the "To" paragraph
-let toParagraph = document.createElement("p");
-toParagraph.className = "c-bold";
-toParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
-toParagraph.innerHTML = `To: <span class="c-light">${data[3]}</span>`;
+    // Create the "To" paragraph
+    let toParagraph = document.createElement("p");
+    toParagraph.className = "c-bold";
+    toParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+    toParagraph.innerHTML = `To: <span class="c-light">${data[3]}</span>`;
 
-// Create the "Seats" paragraph
-let seatsParagraph = document.createElement("p");
-seatsParagraph.className = "c-bold";
-seatsParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
-seatsParagraph.innerHTML = `Seats: <span class="c-light">${data[6]}</span>`;
+    // Create the "Seats" paragraph
+    let seatsParagraph = document.createElement("p");
+    seatsParagraph.className = "c-bold";
+    seatsParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+    seatsParagraph.innerHTML = `Seats: <span class="c-light">${data[6]}</span>`;
 
-// Append the paragraphs to the round-edge div
-roundEdgeDiv.appendChild(fromParagraph);
-roundEdgeDiv.appendChild(toParagraph);
-roundEdgeDiv.appendChild(seatsParagraph);
+    // Append the paragraphs to the round-edge div
+    roundEdgeDiv.appendChild(fromParagraph);
+    roundEdgeDiv.appendChild(toParagraph);
+    roundEdgeDiv.appendChild(seatsParagraph);
 
-// Append the round-edge div to the main div
-mainDiv.appendChild(roundEdgeDiv);
+    // Append the round-edge div to the main div
+    mainDiv.appendChild(roundEdgeDiv);
 
-let br = document.createElement("br");
+    let br = document.createElement("br");
 
-mainDiv.addEventListener("click", function(){show_request_info(indx, data);})
-document.getElementById("cab_request_toapp").appendChild(br);
-document.getElementById("cab_request_toapp").appendChild(mainDiv);
+    mainDiv.addEventListener("click", function(){show_request_info(indx, data);})
+    document.getElementById("cab_request_toapp").appendChild(br);
+    document.getElementById("cab_request_toapp").appendChild(mainDiv);
 
 
 }
 
 function requests_accepted_append(indx, data){
     console.log("data: ", data);
-// Create the main div with flex display
-let mainDiv = document.createElement("div");
-mainDiv.style.cssText = "display: flex; justify-content: center; width: 100%;";
+    // Create the main div with flex display
+    let mainDiv = document.createElement("div");
+    mainDiv.style.cssText = "display: flex; justify-content: center; width: 100%;";
 
-// Create the inner round-edge div
-let roundEdgeDiv = document.createElement("div");
-roundEdgeDiv.className = "round-edge";
-roundEdgeDiv.style.cssText = "height: 130px; padding-top: 10px; overflow: scroll;";
+    // Create the inner round-edge div
+    let roundEdgeDiv = document.createElement("div");
+    roundEdgeDiv.className = "round-edge";
+    roundEdgeDiv.style.cssText = "height: 130px; padding-top: 10px; overflow: scroll;";
 
-// Create the "From" paragraph
-let fromParagraph = document.createElement("p");
-fromParagraph.className = "c-bold";
-fromParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
-fromParagraph.innerHTML = `From: <span class="c-light">${data[2]}</span>`;
+    // Create the "From" paragraph
+    let fromParagraph = document.createElement("p");
+    fromParagraph.className = "c-bold";
+    fromParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+    fromParagraph.innerHTML = `From: <span class="c-light">${data[2]}</span>`;
 
-// Create the "To" paragraph
-let toParagraph = document.createElement("p");
-toParagraph.className = "c-bold";
-toParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
-toParagraph.innerHTML = `To: <span class="c-light">${data[3]}</span>`;
+    // Create the "To" paragraph
+    let toParagraph = document.createElement("p");
+    toParagraph.className = "c-bold";
+    toParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+    toParagraph.innerHTML = `To: <span class="c-light">${data[3]}</span>`;
 
-// Create the "Seats" paragraph
-let seatsParagraph = document.createElement("p");
-seatsParagraph.className = "c-bold";
-seatsParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
-seatsParagraph.innerHTML = `Seats: <span class="c-light">${data[6]}</span>`;
+    // Create the "Seats" paragraph
+    let seatsParagraph = document.createElement("p");
+    seatsParagraph.className = "c-bold";
+    seatsParagraph.style.cssText = "font-size: 15px; margin-left: 20px; margin-right: 20px;";
+    seatsParagraph.innerHTML = `Seats: <span class="c-light">${data[6]}</span>`;
 
-// Append the paragraphs to the round-edge div
-roundEdgeDiv.appendChild(fromParagraph);
-roundEdgeDiv.appendChild(toParagraph);
-roundEdgeDiv.appendChild(seatsParagraph);
+    // Append the paragraphs to the round-edge div
+    roundEdgeDiv.appendChild(fromParagraph);
+    roundEdgeDiv.appendChild(toParagraph);
+    roundEdgeDiv.appendChild(seatsParagraph);
 
-// Append the round-edge div to the main div
-mainDiv.appendChild(roundEdgeDiv);
+    // Append the round-edge div to the main div
+    mainDiv.appendChild(roundEdgeDiv);
 
-let br = document.createElement("br");
+    let br = document.createElement("br");
 
-mainDiv.addEventListener("click", function(){show_accepted_info(indx, data);})
-document.getElementById("cab_accept_toapp").appendChild(br);
-document.getElementById("cab_accept_toapp").appendChild(mainDiv);
-
-
+    mainDiv.addEventListener("click", function(){show_accepted_info(indx, data);})
+    document.getElementById("cab_accept_toapp").appendChild(br);
+    document.getElementById("cab_accept_toapp").appendChild(mainDiv);
 }
+function in_booking(){
+    fetch('http://127.0.0.1:5555/in_booking', {
+            method: 'POST',
+            credentials: 'include',
+            
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': 'true',
+            },
+            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,
+               
+            })
+            
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Response from server:', data);
+            if (data['RESP_STAT'] == "SUCCESS") {
+                console.log("in_booking data: ", data)
+                if (data['STAT'] == "PENDING"){
+                    console.log("pending")
+                    document.getElementById("in_booking").style.display = "block";
+                    document.getElementById("dashb-content").style.display = "none";
+                    document.getElementById("p_cancel_booking").style.display = "flex";
+                    document.getElementById("p_from_inbooking").innerText = data['ORG'];
+                    document.getElementById("p_to_inbooking").innerText = data["DEST"];
+                    document.getElementById("p_seats_inbooking").innerText = data["SEATS"];
+                    document.getElementById("p_D_Name").innerText = data["D_NAME"];
+                    document.getElementById("p_D_Mbl").innerText = data["D_MOB"];
+                    document.getElementById("p_cancel_booking").addEventListener("click", function(){
+                        fetch('http://127.0.0.1:5555/cancel_booking', {
+                            method: 'POST',
+                            credentials: 'include',
+                            
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Credentials': 'true',
+                            },
+                            body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty})
+                            
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Response from server:', data);
+                            if (data['RESP_STAT'] == "SUCCESS") {
+                                alert("Your ride canceled successfully");
+                                document.getElementById("in_booking").style.display = "none";
+                                document.getElementById("dashb-content").style.display = "block";
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Error with your profile. Please login again.");
+                                logout();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('There was a problem with the fetch operation:', error);
+                            alert("Cannot connet to server. Please check your internet connection and try after sometime.")
+                        });
+                    })
+                    
 
+
+                }
+                else if (data['STAT'] == "APPROVED"){
+                    document.getElementById("in_booking").style.display = "block";
+                    document.getElementById("dashb-content").style.display = "none";
+                    document.getElementById("p_cancel_booking").style.display = "none";
+                    document.getElementById("approved_ride").style.display = "flex";
+                    document.getElementById("p_from_inbooking").innerText = data['ORG'];
+                    document.getElementById("p_to_inbooking").innerText = data["DEST"];
+                    document.getElementById("p_seats_inbooking").innerText = data["SEATS"];
+                    document.getElementById("p_D_Name").innerText = data["D_NAME"];
+                    document.getElementById("p_D_Mbl").innerText = data["D_MOB"];
+                    
+                }
+                else if (data['STAT'] == "COMPLETED"){
+                    document.getElementById("in_booking").style.display = "none";
+                    document.getElementById("dashb-content").style.display = "block";
+                }
+                
+            }
+
+            else {
+                alert("Error with your profile. Please login again.");
+                logout();
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert("Something went wrong. Please try again after some time.")
+        });           
+
+     
+}
 
 function on_load() {
     document.getElementById("progress-bar").style.display = "flex";
@@ -2182,7 +2345,7 @@ function on_load() {
         // publish_btn_disp();
         // profile_btn_disp();
 
-        fetch('https://446f-103-234-240-164.ngrok-free.app/get_homepage_da', {
+        fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
             
@@ -2212,10 +2375,21 @@ function on_load() {
                 document.getElementById("forth_day").innerText = data['FORTH_DAY'];
                 document.getElementById("usr-name").innerText = data['USR_NAME'].split(" ")[0];
                 document.getElementById("cust_name").innerText = data['USR_NAME'].split(" ")[0];
+
                 if (data["RIDE_STAT"] == 1){
                     document.getElementById("publish-dash").style.display = "none";
                     document.getElementById("in_ride").style.display = "block";
                     d_in_ride_content();
+                }
+                if (data["BOOK_STAT"] == 1){
+                    document.getElementById("dashb-content").style.display = "none";
+                    document.getElementById("in_booking").style.display = "block";
+                    in_booking();
+                }
+                else if (data["BOOK_STAT"] == 2){
+                    document.getElementById("dashb-content").style.display = "none";
+                    document.getElementById("in_booking").style.display = "block";
+                    in_booking();
                 }
                 if (data["DRIVING_FLAG"] == 0){
                     document.getElementById("DRIVER_F_0").style.display = "flex";

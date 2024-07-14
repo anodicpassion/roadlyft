@@ -34,10 +34,14 @@ oth_usr_data: dict = {}
 deck_handler: dict = {'8830998140': ['zkajtuyc', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
                       '9423868113': ['rdwqvsgt', '22:07:37 07/09/24', True, '22:07:37 07/09/24', '22:07:37 07/09/24']}
 char_a_z = "abcdefghijklmnopqrstuvwxyz"
-# route = {'8830998140': [ ['Kolhapur, Maharashtra, India', 'Pune, Maharashtra, India', {'lat': 16.7049873,
-# 'lng': 74.24325270000001}, {'lat': 18.5204303, 'lng': 73.8567437}, 0, '1', '2024-07-19', '13:28', '2024-07-19
-# 18:07', [], [['9423868113', 'Karad, Maharashtra, India', 'Satara, Maharashtra, India', {'lat': 17.277693,
-# 'lng': 74.1843535}, {'lat': 17.6804639, 'lng': 74.018261}, '1']], '1151.47']]}
+# route = {'8830998140': [
+#     ['Kolhapur, Maharashtra, India', 'Pune, Maharashtra, India', {'lat': 16.7049873, 'lng': 74.24325270000001},
+#      {'lat': 18.5204303, 'lng': 73.8567437}, 0, '1', '2024-07-19', '13:28', '2024-07-19 18:07', [], [
+#          ['9423868113', 'Karad, Maharashtra, India', 'Satara, Maharashtra, India',
+#           {'lat': 17.277693, 'lng': 74.1843535}, {'lat': 17.6804639, 'lng': 74.018261}, '1']], '1151.47']]}
+# p_route = {'9423868113': '8830998140'}
+
+p_route = {}
 route = {}
 
 with open("enc/pyc_cache", "r") as pycache:
@@ -172,7 +176,8 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
             if route.get(mobile_number) and len(route[mobile_number]) > 0:
 
                 for r in route[mobile_number]:
-                    previous_start_time = datetime.datetime.strptime(str(r[6]) + " " + str(r[7]), "%Y-%m-%d %H:%M")
+                    previous_start_time = datetime.datetime.strptime(str(r[6]) + " " + str(r[7]),
+                                                                     "%Y-%m-%d %H:%M")
                     previous_end_time = datetime.datetime.strptime(r[8], "%Y-%m-%d %H:%M")
                     if (start_time < previous_start_time < end_time_obj
                             or previous_start_time < start_time < previous_end_time):
@@ -276,7 +281,7 @@ def login():
 
 
 @app.route("/get_homepage_da", methods=["POST"])
-def get_dates():
+def get_dash_dat():
     today = datetime.datetime.now().date().today()
     tomorrow = today + datetime.timedelta(days=1)
     day_after_tomorrow = tomorrow + datetime.timedelta(days=1)
@@ -298,7 +303,17 @@ def get_dates():
                 end_time = datetime.datetime.strptime(route[val[1]][0][8], "%Y-%m-%d %H:%M")
 
                 if cur_time > end_time:
+
+                    for i in route[val[1]][0][10]:
+                        if p_route[i[0]] == val[1]:
+                            p_route.pop(i[0])
+
+                    for i in route[val[1]][0][9]:
+                        if p_route[i[0]] == val[1]:
+                            p_route.pop(i[0])
+
                     route[val[1]].__delitem__(0)
+
                     # route[val[1]][0] = []
                     print("Removed expired route for ", val[1])
                     ride_stat = 0
@@ -308,13 +323,28 @@ def get_dates():
                 ride_stat = 0
         else:
             ride_stat = 0
+
+        book_stat = 0
+        if p_route.get(val[1]):
+            d_mob = p_route[val[1]]
+            for ride in route[d_mob]:
+                for r in ride[10]:
+                    if r[0] == val[1]:
+                        book_stat = 1
+                        break
+                for r in ride[9]:
+                    if r[0] == val[1]:
+                        book_stat = 2
+                        break
+
         print("Successful returning the homepage data with given request body: ", request_body)
         return jsonify({"RESP_STAT": "SUCCESS", "TODAY": today.strftime("%d"), "TOMORROW": tomorrow.strftime("%d"),
                         "DATE_AFTER_TOMORROW": day_after_tomorrow.strftime("%d"),
                         "DAY_AFTER_TOMORROW": day_after_tomorrow.strftime("%A")[:3],
                         "THIRD_DATE": third_date.strftime("%d"), "THIRD_DAY": third_date.strftime("%A")[:3],
                         "FORTH_DATE": forth_date.strftime("%d"), "FORTH_DAY": forth_date.strftime("%A")[:3],
-                        "USR_NAME": usr_name_d, "DRIVING_FLAG": driving_flag, "RIDE_STAT": ride_stat})
+                        "USR_NAME": usr_name_d, "DRIVING_FLAG": driving_flag, "RIDE_STAT": ride_stat,
+                        "BOOK_STAT": book_stat})
 
     else:
         print("Failed to respond with homepage data with given request body: ", request_body)
@@ -359,8 +389,8 @@ def booking_passenger_s1():
                                                               "%Y-%m-%d %H:%M")
                     curr_time = datetime.datetime.now()
                     if curr_time < d_start_time:
-                        rp, dist, tm, _ = get_route_points((i[2]['lat'], i[2]['lng']), (i[3]['lat'], i[3]['lng']),
-                                                           int(i[4]))
+                        rp, dist, tm, _ = get_route_points((i[2]['lat'], i[2]['lng']), (i[3]['lat'],
+                                                                                        i[3]['lng']), int(i[4]))
                         ret_s, km_s, pt_s = is_point_near_route(route_points=rp,
                                                                 point=(pickup_latlng_p["lat"], pickup_latlng_p["lng"]))
                         ret_e, km_e, pt_e = is_point_near_route(route_points=rp, point=(
@@ -418,7 +448,8 @@ def booking_passenger_s2():
                     if start_time > curr_time:
                         route[d_mobile][_][10].append([val[1], pickup_name, dropoff_name, pickup_latlng,
                                                        dropoff_latlng, seats])
-                        print(route[d_mobile][_][10])
+                        p_route[val[1]] = d_mobile
+                        print("p_route: ", p_route)
                         print("Successful returning to ride booking with given request body: ", request_body)
                         return jsonify({"RESP_STAT": "SUCCESS"})
             print("Failed returning to ride booking with given request body: ", request_body)
@@ -533,6 +564,62 @@ def request_accept_d():
     else:
         print("Failed returning passenger request acceptation with given request body: ", request_body)
         return jsonify({"RESP_STAT": "FAILURE"})
+
+
+@app.route("/in_booking", methods=["POST"])
+def in_booking():
+    request_body = request.json
+    print("Requesting in-booking data with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        if p_route.get(val[1]):
+            for ride in route[p_route[val[1]]]:
+                for r in ride[10]:
+                    if r[0] == val[1]:
+                        start = r[1]
+                        end = r[2]
+                        seats = r[5]
+                        return jsonify({"RESP_STAT": "SUCCESS", "STAT": "PENDING", "ORG": start, "DEST": end,
+                                        "SEATS": seats, "D_MOB": p_route[val[1]],
+                                        "D_NAME": oth_usr_data[p_route[val[1]]][0]})
+
+                for r in ride[9]:
+                    if r[0] == val[1]:
+                        start = r[1]
+                        end = r[2]
+                        seats = r[5]
+                        return jsonify({"RESP_STAT": "SUCCESS", "STAT": "APPROVED", "ORG": start, "DEST": end,
+                                        "SEATS": seats, "D_MOB": p_route[val[1]],
+                                        "D_NAME": oth_usr_data[p_route[val[1]]][0]})
+
+        return jsonify({"RESP_STAT": "SUCCESS", "STAT": "COMPLETED"})
+
+    return jsonify({"RESP_STAT": "FAILURE"})
+
+
+@app.route("/cancel_booking", methods=["POST"])
+def cancel_booking_passanger():
+    request_body = request.json
+    print("Requesting in-booking data with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        if p_route.get(val[1]):
+            d_mob = p_route[val[1]]
+            for _, ride in enumerate(route[d_mob]):
+                for __, r in enumerate(ride[10]):
+                    if r[0] == val[1]:
+
+                        route[d_mob][_][10].pop(__)
+                        p_route.pop(val[1])
+
+        return jsonify({"RESP_STAT": "SUCCESS"})
+    return jsonify({"RESP_STAT": "FAILURE"})
 
 
 @app.route("/commit", methods=["POST"])
