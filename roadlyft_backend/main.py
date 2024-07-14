@@ -220,8 +220,8 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
 @app.route("/")
 @limiter.limit("60 per minute")
 def index():
-    client_ip = request.remote_addr
-    return f"<center>ROADLYFT Coming Soon...!</center>{client_ip}"
+    # client_ip = request.remote_addr
+    return f"<center>ROADLYFT Coming Soon...!</center>"
 
 
 @app.route("/create_account", methods=["POST"])

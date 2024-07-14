@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d16c7dda-5cb6-40f4-9525-4d1d4550d097" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roadlyft_backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/roadlyft/src/views/Dashborad.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/roadlyft/src/views/Dashborad.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/roadlyft_frontend/roadlyft/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/roadlyft_frontend/roadlyft/src/views/Login.vue" afterDir="false" />
-    </list>
+    <list default="true" id="d16c7dda-5cb6-40f4-9525-4d1d4550d097" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
