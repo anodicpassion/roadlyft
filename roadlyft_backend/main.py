@@ -575,6 +575,22 @@ def in_booking():
     loyalty = request_body["loyalty"]
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+        curr_time = datetime.datetime.now()
+        if route.get(p_route[val[1]]):
+            d_mbl = p_route[val[1]]
+            for _, ride in enumerate(route[d_mbl]):
+                end_time = datetime.datetime.strptime(ride[8], "%Y-%m-%d %H:%M")
+                if curr_time > end_time:
+                    for r in route[d_mbl]:
+                        for i in r[10]:
+                            if p_route.get(i[0]):
+                                p_route.pop(i[0])
+                        for i in r[9]:
+                            if p_route.get(i[0]):
+                                p_route.pop(i[0])
+                    route[d_mbl].pop(_)
+                    print("Removed expired route for ", val[1])
+
         if p_route.get(val[1]):
             for ride in route[p_route[val[1]]]:
                 for r in ride[10]:
@@ -582,6 +598,8 @@ def in_booking():
                         start = r[1]
                         end = r[2]
                         seats = r[5]
+                        print("Ride approval pending for: ", val[1], " by: ", p_route[val[1]])
+                        print("Successfully returning in-booking data with given request body: ", request_body)
                         return jsonify({"RESP_STAT": "SUCCESS", "STAT": "PENDING", "ORG": start, "DEST": end,
                                         "SEATS": seats, "D_MOB": p_route[val[1]],
                                         "D_NAME": oth_usr_data[p_route[val[1]]][0]})
@@ -591,19 +609,22 @@ def in_booking():
                         start = r[1]
                         end = r[2]
                         seats = r[5]
+                        print("Ride approved for: ", val[1], " by: ", p_route[val[1]])
+                        print("Successfully returning in-booking data with given request body: ", request_body)
                         return jsonify({"RESP_STAT": "SUCCESS", "STAT": "APPROVED", "ORG": start, "DEST": end,
                                         "SEATS": seats, "D_MOB": p_route[val[1]],
                                         "D_NAME": oth_usr_data[p_route[val[1]]][0]})
-
+        print("Ride completed for: ", val[1], " by: ", p_route[val[1]])
         return jsonify({"RESP_STAT": "SUCCESS", "STAT": "COMPLETED"})
 
+    print("Failed to return in-booking data with given request body: ", request_body)
     return jsonify({"RESP_STAT": "FAILURE"})
 
 
 @app.route("/cancel_booking", methods=["POST"])
 def cancel_booking_passanger():
     request_body = request.json
-    print("Requesting in-booking data with given request body: ", request_body)
+    print("Requesting booking cancellation  with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
@@ -617,8 +638,9 @@ def cancel_booking_passanger():
 
                         route[d_mob][_][10].pop(__)
                         p_route.pop(val[1])
-
+        print("Successfully canceled booking  with given request body: ", request_body)
         return jsonify({"RESP_STAT": "SUCCESS"})
+    print("Failed to cancel booking with given request body: ", request_body)
     return jsonify({"RESP_STAT": "FAILURE"})
 
 
