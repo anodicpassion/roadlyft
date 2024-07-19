@@ -62,6 +62,11 @@ const routes = [
     name: 'driver-renew',
     component: () => import('../views/driver-renew.vue')
   },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/about.vue')
+  },
   // Catch-all route for undefined paths
   {
     path: '/:catchAll(.*)',

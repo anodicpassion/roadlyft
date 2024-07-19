@@ -701,10 +701,7 @@
                     <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
                         <p>Personal Information</p>
                     </div>
-                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                        <p>Setting</p> 
-                    </div>
-                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <div id="about_pg" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
                         <p>About</p> 
                     </div>
                     <div id="d_renew" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
@@ -962,6 +959,7 @@ function getCookie(name) {
 }
 function logout(){
     console.log("Preparing to logout.");
+    document.getElementById('progress-bar').style.display = "flex";
     localStorage.removeItem("dock-cid");
     document.cookie = 'auth_toc_usr=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
     window.location.reload();
@@ -1087,7 +1085,7 @@ function fetchLocations_4() {
     });
 }
 function fetch_loc(){
-    fetch('https://b48a-103-234-240-164.ngrok-free.app/get_loc_da', {
+    fetch('http://127.0.0.1:5555/get_loc_da', {
         method: 'POST',
         credentials: 'include',
         
@@ -1165,7 +1163,7 @@ function p_search_cabs(){
         parentElement.removeChild(parentElement.firstChild);
     }
 
-    fetch('https://b48a-103-234-240-164.ngrok-free.app/p_search_cabs', {
+    fetch('http://127.0.0.1:5555/p_search_cabs', {
             method: 'POST',
             credentials: 'include',
             
@@ -1702,7 +1700,7 @@ function d_price_confirm(){
         var d_time = document.getElementById("d_time").value;
         
 
-        fetch('https://b48a-103-234-240-164.ngrok-free.app/d_post', {
+        fetch('http://127.0.0.1:5555/d_post', {
             method: 'POST',
             credentials: 'include',
             
@@ -1764,7 +1762,7 @@ function d_price_confirm(){
 
 }
 function d_in_ride_content(){
-    fetch('https://b48a-103-234-240-164.ngrok-free.app/d_inride_content/0', {
+    fetch('http://127.0.0.1:5555/d_inride_content/0', {
             method: 'POST',
             credentials: 'include',
             
@@ -1829,7 +1827,7 @@ function show_cab_info(indx, data){
         let newElement = element.cloneNode(true);
         element.parentNode.replaceChild(newElement, element);
         document.getElementById("p_cab_request_p").innerText = "...";
-        fetch('https://b48a-103-234-240-164.ngrok-free.app/p_book_cab', {
+        fetch('http://127.0.0.1:5555/p_book_cab', {
             method: 'POST',
             credentials: 'include',
             
@@ -2048,7 +2046,7 @@ function show_request_info(indx, data){
     document.getElementById("d_confirm_passanger").addEventListener("click", function(){
         document.getElementById("d_confirm_passanger_p").innerText = "...";
 
-        fetch('https://b48a-103-234-240-164.ngrok-free.app/d_request_accept', {
+        fetch('http://127.0.0.1:5555/d_request_accept', {
             method: 'POST',
             credentials: 'include',
             
@@ -2200,7 +2198,7 @@ function requests_accepted_append(indx, data){
     document.getElementById("cab_accept_toapp").appendChild(mainDiv);
 }
 function in_booking(){
-    fetch('https://b48a-103-234-240-164.ngrok-free.app/in_booking', {
+    fetch('http://127.0.0.1:5555/in_booking', {
             method: 'POST',
             credentials: 'include',
             
@@ -2234,7 +2232,7 @@ function in_booking(){
                     document.getElementById("p_D_Name").innerText = data["D_NAME"];
                     document.getElementById("p_D_Mbl").innerText = data["D_MOB"];
                     document.getElementById("p_cancel_booking").addEventListener("click", function(){
-                        fetch('https://b48a-103-234-240-164.ngrok-free.app/cancel_booking', {
+                        fetch('http://127.0.0.1:5555/cancel_booking', {
                             method: 'POST',
                             credentials: 'include',
                             
@@ -2327,8 +2325,9 @@ function on_load() {
     document.getElementById("d_route_confirm").addEventListener("click", d_route_confirm);
     document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);
     document.getElementById('p_search_cabs').addEventListener("click", p_search_cabs);
-    document.getElementById("d_verification").addEventListener("click", function(){window.location.href = "/driver-verification";});
-    document.getElementById("d_renew").addEventListener("click", function(){window.location.href = "/driver-renew";});
+    document.getElementById("d_verification").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-verification";});
+    document.getElementById("d_renew").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-renew";});
+    document.getElementById("about_pg").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/about";});
     if (usr_verify == null){
         window.location.replace("/login");
     }
@@ -2345,7 +2344,7 @@ function on_load() {
         // publish_btn_disp();
         // profile_btn_disp();
 
-        fetch('https://b48a-103-234-240-164.ngrok-free.app/get_homepage_da', {
+        fetch('http://127.0.0.1:5555/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
             

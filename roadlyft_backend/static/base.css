@@ -1,0 +1,45 @@
+body {
+    background-color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.c-light {
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal
+}
+
+.c-light,.c-regular {
+    font-family: Comfortaa,sans-serif
+}
+
+.c-regular {
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal
+}
+
+.c-medium {
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal
+}
+
+.c-medium,.c-semibold {
+    font-family: Comfortaa,sans-serif
+}
+
+.c-semibold {
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal
+}
+
+.c-bold {
+    font-family: Comfortaa,sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal
+}

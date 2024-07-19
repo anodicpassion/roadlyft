@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, redirect
+from flask import Flask, request, jsonify, redirect, render_template
 from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
@@ -622,14 +622,14 @@ def in_booking():
 
 
 @app.route("/cancel_booking", methods=["POST"])
-def cancel_booking_passanger():
+def cancel_booking_passenger():
     request_body = request.json
     print("Requesting booking cancellation  with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
     val = valid_usr_req(usr_id)
-    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
+    if loyalty == "spawned%20uW SGI" and val[0] and usr_id == local_str:
         if p_route.get(val[1]):
             d_mob = p_route[val[1]]
             for _, ride in enumerate(route[d_mob]):
@@ -644,12 +644,19 @@ def cancel_booking_passanger():
     return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/commit", methods=["POST"])
+@app.route("/commit", methods=["GET"])
 def commit():
     global usr_d, oth_usr_data
-
+    print("Commiting data")
     with open("enc/pyc_cache", "w") as commit_file:
         commit_file.write(f"usr_d ={usr_d}\noth_usr_data = {oth_usr_data}")
+    print("Data commited successfully")
+    return jsonify({"RET_SATA": "SUCCESS"}), 200
+
+
+@app.route("/dashboard/classified/auth/admin", methods=["GET"])
+def admin_panel():
+    return render_template("index.html")
 
 
 @app.errorhandler(429)
@@ -658,6 +665,14 @@ def ratelimit_handler(e):
                    security_message="If you are a cybersecurity expert and you call yourself cybersecurity expert, "
                                     "then buddy... you really need to think on this again!",
                    developer_message="err_cd_429 RL_Ext"), 429
+
+
+@app.errorhandler(404)
+def page_notfound_handler(e):
+    return jsonify(general_message="Unauthorized access.",
+                   security_message="If you are a cybersecurity expert and you call yourself cybersecurity expert, "
+                                    "then buddy... you really need to think on this again!",
+                   developer_message="err_cd_404 PG_NULL"), 404
 
 
 if __name__ == "__main__":

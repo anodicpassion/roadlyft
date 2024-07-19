@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0">
+        <meta name="theme-color" content="#10517d">
+        <link rel="icon" href="favicon.ico">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="/static/base.css">
+        <link rel="stylesheet" href="/static/main.css">
+        <title>ADMIN</title>
+        <style>
+
+              .animated-gradient {
+                background: repeating-linear-gradient(to right, rgb(163, 218, 255) 0%,  #10517d 50%, rgb(174, 222, 254) 100%);
+                width: 80%;
+                height: 5px;
+                background-size: 200% auto;
+                background-position: 0 100%;
+                animation: gradient 2s infinite;
+                animation-fill-mode: forwards;
+                animation-timing-function:ease-in-out;
+                /* position: fixed; */
+                /* margin: -8px; */
+                border-radius: 50px;
+                top: 0;
+                margin-left: -8px;
+              }
+
+              @keyframes gradient {
+                0% {
+                    background-position:-50% 0
+                }
+
+                50% {
+                    background-position:150% 0
+                }
+
+                to {
+                    background-position: -50% 0
+                }
+              }
+        </style>
+    </head>
+    <body>
+        <div id="progress-bar" style="position: fixed; background-color: rgba(255, 255, 255, 0.8); margin: -8px; width: 100%; height: 100vh; z-index: 5; display: flex; justify-content: center; align-items: center;">
+          <div class="animated-gradient"></div>
+        </div>
+        <noscript>
+          <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        </noscript>
+        <div id="app">
+            <div>
+                <div class="c-bold" style="width: 100%; height: 50px; display: flex; align-items: center; position: fixed; background-color: white; margin: -8px;  z-index: 1"></div>
+                    <div class="c-bold" style="width: 100%; height: 50px; display: flex; align-items: center; position: fixed; background-color: white; margin: -8px; margin-top: 10px; z-index: 1">
+                        <img src="/static/Roadlyft_LOGO.png" alt="" height="100%" width="auto" style="margin-left: 20px;">
+                        <p style="font-size: 30px; color: #10517d; margin-left: 10px; padding-top: 5px;">Roadlyft</p>
+
+                    </div>
+                    <div style="width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; ">
+                        <div style="width: 100%;">
+                            <div style="width: 100%; display: flex; justify-content: center;">
+                                <img src="/static/Roadlyft_LOGO.png" alt="" height=200px width=200px >
+
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <div style="width: 100%; display: flex; justify-content: center;">
+                                <div id="cont_1" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; cursor: pointer;">
+                                    <p class="c-bold" style=" font-size: 20px; margin-top: 15px;">Go <span style="font-size: 15px;">↗</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <script>
+            const auth_toc_usr = getCookie('auth_toc_usr');
+            console.log("cookie: ", auth_toc_usr);
+            const loyalty = getCookie("lo_@_ty");
+            console.log("lo_@_ty:", loyalty);
+            const usr_verify = localStorage.getItem("dock-cid");
+            console.log("local_storage: ", usr_verify);
+            let booking_date_thresh = 0;
+
+            function getCookie(name) {
+                const cookieString = document.cookie;
+                const cookiesArray = cookieString.split('; ');
+                for (let cookie of cookiesArray) {
+                    const [cookieName, cookieValue] = cookie.split('=');
+                    if (cookieName === name) {
+                        return cookieValue;
+                    }
+                }
+                return null;
+            }
+
+            window.addEventListener('load', () => {
+                if (usr_verify == null){
+                    window.location.replace("/login");
+                }
+                else if (auth_toc_usr == null){
+                    window.location.replace("/login");
+                }
+                else if (auth_toc_usr != usr_verify.slice(1, -1)){
+                    console.log("malacious activity detected");
+                    window.location.replace("/login");
+                }
+
+                document.getElementById("cont_1").addEventListener("click", function(){
+                    window.location.href = "/";
+                    setTimeout(() => {
+                        window.location.replace = "/";
+                    }, 2000);
+                });
+            });
+
+        </script>
+    </body>
+</html>

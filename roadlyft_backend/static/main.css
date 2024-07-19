@@ -1,0 +1,259 @@
+@import './base.css';
+
+.navbar {
+    position: fixed;
+    bottom: 0;
+    /* left: 0; */
+    width: 90%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #10517d;
+    /* background-color: #4f97c7; */
+    /* padding: 10px; */
+    color: white; 
+    font-size: 13px;
+    /* border: 2px solid rgb(70, 200, 255); */
+    /* box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px; */
+    /* box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45), 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45); */
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    text-decoration: none;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    
+}
+
+.navbar button  {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    
+    width: 5px;
+    height: 5px;
+}
+
+.search {
+    width: 90%;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: hsl(204, 100%, 95%);
+    border-radius: 60px;
+    /* border: 1px solid rgba(19, 19, 19, 0.423); */
+    display: flex;
+
+}
+
+.search-inp {
+    width: 70%;
+    height: 90%;
+    margin-top: 3px;
+    
+    
+    
+    background-color: transparent;
+    border: none;
+    border-color: transparent;
+    /* color: rgb(182	189	206	); */
+    font-size: 20px;
+    
+}   
+
+.search-inp:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: transparent; /* Set border color to transparent */
+    /* Optionally, you can add box-shadow to simulate the border */
+    /* box-shadow: 0 0 0 2px blue; Example of adding a blue border on focus */
+  }
+
+  .titlebar {
+    width: 100%;
+    z-index: -2;
+    margin: -8px;
+    position:absolute;
+    border-radius: 40px 40px 0px 0px;
+    color: #10517d;
+    /* bottom: -60%; */
+    margin-top: 350px;
+    /* background-image: linear-gradient(220deg, #f3f3f3, #4097b7, #1c6798); */
+    background-color: white;
+    /* align-items: center; */
+    box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45);
+
+  }
+
+  .round-edge {
+    width: 80%;
+    background-color: rgb(232, 244, 255);
+    height: 50px;
+    border-radius: 30px;
+    /* padding-top: 5px; */
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+    
+  }
+  img {
+    user-select: none;
+    -moz-user-select: none; /* Firefox */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE10+/Edge */
+}
+
+
+.component-container {
+  height: 300px; /* Set a fixed height or a max-height for the container */
+  overflow-y: auto; /* Add vertical scroll if content overflows */
+}
+
+.outer-container::-webkit-scrollbar {
+  display: none; /* hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.pickup_dropdown_p {
+  width: 90%;
+} 
+
+.pickup_dropdown-content_p {
+  display: none;
+  position: absolute;
+  margin-top: 50px;
+  background-color: #f9f9f9;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.pickup_dropdown-content_p div {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.pickup_dropdown-content_p div:hover {
+  background-color: #f1f1f1;
+}
+.pickup_dropdown_p.show .pickup_dropdown-content_p {
+  display: block;
+}
+
+
+
+.dropoff_dropdown_p {
+  width: 90%;
+} 
+
+.dropoff_dropdown-content_p {
+  display: none;
+  position: absolute;
+  margin-top: 50px;
+  background-color: #f9f9f9;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.dropoff_dropdown-content_p div {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.dropoff_dropdown-content_p div:hover {
+  background-color: #f1f1f1;
+}
+.dropoff_dropdown_p.show .dropoff_dropdown-content_p {
+  display: block;
+}
+/*  */
+.pickup_dropdown_d {
+  width: 90%;
+} 
+
+.pickup_dropdown-content_d {
+  display: none;
+  position: absolute;
+  margin-top: 50px;
+  background-color: #f9f9f9;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.pickup_dropdown-content_d div {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.pickup_dropdown-content_d div:hover {
+  background-color: #f1f1f1;
+}
+.pickup_dropdown_d.show .pickup_dropdown-content_d {
+  display: block;
+}
+
+
+
+.dropoff_dropdown_d {
+  width: 90%;
+} 
+
+.dropoff_dropdown-content_d {
+  display: none;
+  position: absolute;
+  margin-top: 50px;
+  background-color: #f9f9f9;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.dropoff_dropdown-content_d div {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.dropoff_dropdown-content_d div:hover {
+  background-color: #f1f1f1;
+}
+.dropoff_dropdown_d.show .dropoff_dropdown-content_d {
+  display: block;
+}
+
+/*  */
+.pac-container{
+  border-radius: 10px;
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 50px;
+}
+.pac-icon{
+  display: none;
+}
+.pac-matched {
+  font-size: 15px;
+}
+.pac-item{
+  padding: 10px 20px;
+  font-size: 15px;
+}
+.pac-item-query{
+
+  font-size: 15px;
+}
+
+#map_p {
+  margin: -8px;
+  height: 100vh ;
+  width: 100vw
+}
+
+#map_d {
+  margin: -8px;
+  height: 100vh ;
+  width: 100vw
+}

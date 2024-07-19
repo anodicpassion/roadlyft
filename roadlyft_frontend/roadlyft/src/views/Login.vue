@@ -340,7 +340,7 @@ window.addEventListener('load', () => {
                     password: password
                 };
 
-                fetch('https://b48a-103-234-240-164.ngrok-free.app/login', {
+                fetch('http://127.0.0.1:5555/login', {
                     method: 'POST',
                     credentials: 'include',
                     
@@ -417,7 +417,7 @@ window.addEventListener('load', () => {
                     password: pass
                 };
 
-                fetch('https://b48a-103-234-240-164.ngrok-free.app/create_account', {
+                fetch('http://127.0.0.1:5555/create_account', {
                     method: 'POST',
                     credentials: 'include',
                     
