@@ -452,8 +452,8 @@ def booking_passenger_s2():
                         print("p_route: ", p_route)
                         print("Successful returning to ride booking with given request body: ", request_body)
                         return jsonify({"RESP_STAT": "SUCCESS"})
-            print("Failed returning to ride booking with given request body: ", request_body)
-            return jsonify({"RESP_STAT": "FAILURE"})
+            print("Aborted ride booking (ride time or origin mismatched) with given request body: ", request_body)
+            return jsonify({"RESP_STAT": "ABORTED"})
         else:
             print("Failed returning to ride booking with given request body: ", request_body)
             return jsonify({"RESP_STAT": "FAILURE"})

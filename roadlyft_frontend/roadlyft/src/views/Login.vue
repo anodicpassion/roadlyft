@@ -250,7 +250,7 @@
             <div class="c-regular" style="width: 100%; display: flex; justify-content: center; ">
                 <div style="width: 80%;">
                     <!-- <p style="font-size: 20px;">After completing your verificaiton process, Roadlyft will verify your documents and enable you to publish your ride.</p> -->
-                    <p class="c-light" style="font-size: 15px;">By continuing, you agree the Tearms and Conditions of Roadlyft.</p>
+                    <p class="c-light" style="font-size: 15px;">By continuing, you agree the Terms and Conditions of Roadlyft.</p>
                 </div>
             </div>
             <div style="width: 100%; display: flex; justify-content: center;"> 
@@ -340,7 +340,7 @@ window.addEventListener('load', () => {
                     password: password
                 };
 
-                fetch('http://127.0.0.1:5555/login', {
+                fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/login', {
                     method: 'POST',
                     credentials: 'include',
                     
@@ -417,7 +417,7 @@ window.addEventListener('load', () => {
                     password: pass
                 };
 
-                fetch('http://127.0.0.1:5555/create_account', {
+                fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/create_account', {
                     method: 'POST',
                     credentials: 'include',
                     
