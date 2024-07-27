@@ -1085,7 +1085,7 @@ function fetchLocations_4() {
     });
 }
 function fetch_loc(){
-    fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/get_loc_da', {
+    fetch('https://1ffe-103-234-240-164.ngrok-free.app/get_loc_da', {
         method: 'POST',
         credentials: 'include',
         
@@ -1163,7 +1163,7 @@ function p_search_cabs(){
         parentElement.removeChild(parentElement.firstChild);
     }
 
-    fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/p_search_cabs', {
+    fetch('https://1ffe-103-234-240-164.ngrok-free.app/p_search_cabs', {
             method: 'POST',
             credentials: 'include',
             
@@ -1700,7 +1700,7 @@ function d_price_confirm(){
         var d_time = document.getElementById("d_time").value;
         
 
-        fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/d_post', {
+        fetch('https://1ffe-103-234-240-164.ngrok-free.app/d_post', {
             method: 'POST',
             credentials: 'include',
             
@@ -1762,7 +1762,7 @@ function d_price_confirm(){
 
 }
 function d_in_ride_content(){
-    fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/d_inride_content/0', {
+    fetch('https://1ffe-103-234-240-164.ngrok-free.app/d_inride_content/0', {
             method: 'POST',
             credentials: 'include',
             
@@ -1827,7 +1827,7 @@ function show_cab_info(indx, data){
         let newElement = element.cloneNode(true);
         element.parentNode.replaceChild(newElement, element);
         document.getElementById("p_cab_request_p").innerText = "...";
-        fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/p_book_cab', {
+        fetch('https://1ffe-103-234-240-164.ngrok-free.app/p_book_cab', {
             method: 'POST',
             credentials: 'include',
             
@@ -2050,7 +2050,7 @@ function show_request_info(indx, data){
     document.getElementById("d_confirm_passanger").addEventListener("click", function(){
         document.getElementById("d_confirm_passanger_p").innerText = "...";
 
-        fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/d_request_accept', {
+        fetch('https://1ffe-103-234-240-164.ngrok-free.app/d_request_accept', {
             method: 'POST',
             credentials: 'include',
             
@@ -2202,7 +2202,7 @@ function requests_accepted_append(indx, data){
     document.getElementById("cab_accept_toapp").appendChild(mainDiv);
 }
 function in_booking(){
-    fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/in_booking', {
+    fetch('https://1ffe-103-234-240-164.ngrok-free.app/in_booking', {
             method: 'POST',
             credentials: 'include',
             
@@ -2236,7 +2236,7 @@ function in_booking(){
                     document.getElementById("p_D_Name").innerText = data["D_NAME"];
                     document.getElementById("p_D_Mbl").innerText = data["D_MOB"];
                     document.getElementById("p_cancel_booking").addEventListener("click", function(){
-                        fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/cancel_booking', {
+                        fetch('https://1ffe-103-234-240-164.ngrok-free.app/cancel_booking', {
                             method: 'POST',
                             credentials: 'include',
                             
@@ -2348,7 +2348,7 @@ function on_load() {
         // publish_btn_disp();
         // profile_btn_disp();
 
-        fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/get_homepage_da', {
+        fetch('https://1ffe-103-234-240-164.ngrok-free.app/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
             

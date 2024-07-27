@@ -340,7 +340,7 @@ window.addEventListener('load', () => {
                     password: password
                 };
 
-                fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/login', {
+                fetch('https://1ffe-103-234-240-164.ngrok-free.app/login', {
                     method: 'POST',
                     credentials: 'include',
                     
@@ -417,7 +417,7 @@ window.addEventListener('load', () => {
                     password: pass
                 };
 
-                fetch('https://6f6f-2405-201-a803-a0f1-5130-5503-61a3-9473.ngrok-free.app/create_account', {
+                fetch('https://1ffe-103-234-240-164.ngrok-free.app/create_account', {
                     method: 'POST',
                     credentials: 'include',
                     
