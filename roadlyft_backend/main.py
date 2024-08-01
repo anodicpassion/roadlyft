@@ -217,14 +217,14 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
         return False, "User invalid request."
 
 
-@app.route("/")
+@app.route("/backend-server")
 @limiter.limit("60 per minute")
 def index():
     # client_ip = request.remote_addr
     return f"<center>ROADLYFT Coming Soon...!</center>"
 
 
-@app.route("/create_account", methods=["POST"])
+@app.route("/backend-server/create_account", methods=["POST"])
 def create_account():
     request_data = request.json
     usr_name = request_data['user_name'].strip()
@@ -251,7 +251,7 @@ def create_account():
     return jsonify({"ACC_C_STAT": "FAILURE"})
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/backend-server/login", methods=["POST"])
 def login():
     global usr_d
     data_received = request.json
@@ -280,7 +280,7 @@ def login():
         return response
 
 
-@app.route("/get_homepage_da", methods=["POST"])
+@app.route("/backend-server/get_homepage_da", methods=["POST"])
 def get_dash_dat():
     today = datetime.datetime.now().date().today()
     tomorrow = today + datetime.timedelta(days=1)
@@ -351,7 +351,7 @@ def get_dash_dat():
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/get_loc_da", methods=["POST"])
+@app.route("/backend-server/get_loc_da", methods=["POST"])
 def get_locations():
     global locations
     request_body = request.json
@@ -366,7 +366,7 @@ def get_locations():
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/p_search_cabs", methods=['POST'])
+@app.route("/backend-server/p_search_cabs", methods=['POST'])
 def booking_passenger_s1():
     request_body = request.json
     print("Requesting to cabs route with given request body: ", request_body)
@@ -422,7 +422,7 @@ def booking_passenger_s1():
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/p_book_cab", methods=['POST'])
+@app.route("/backend-server/p_book_cab", methods=['POST'])
 def booking_passenger_s2():
     request_body = request.json
     print("Requesting to ride booking with given request body: ", request_body)
@@ -463,7 +463,7 @@ def booking_passenger_s2():
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/d_post", methods=["POST"])
+@app.route("/backend-server/d_post", methods=["POST"])
 def ride_publish():
     request_body = request.json
     print("Requesting ride publish with given request body: ", request_body)
@@ -496,7 +496,7 @@ def ride_publish():
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/d_inride_content/<route_index>", methods=["POST"])
+@app.route("/backend-server/d_inride_content/<route_index>", methods=["POST"])
 def in_ride_content(route_index):
     request_body = request.json
     print("Requesting in-ride data with given request body: ", request_body)
@@ -539,7 +539,7 @@ def in_ride_content(route_index):
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/d_request_accept", methods=["POST"])
+@app.route("/backend-server/d_request_accept", methods=["POST"])
 def request_accept_d():
     request_body = request.json
     print("Requesting passenger request acceptation with given request body: ", request_body)
@@ -566,7 +566,7 @@ def request_accept_d():
         return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/in_booking", methods=["POST"])
+@app.route("/backend-server/in_booking", methods=["POST"])
 def in_booking():
     request_body = request.json
     print("Requesting in-booking data with given request body: ", request_body)
@@ -621,7 +621,7 @@ def in_booking():
     return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/cancel_booking", methods=["POST"])
+@app.route("/backend-server/cancel_booking", methods=["POST"])
 def cancel_booking_passenger():
     request_body = request.json
     print("Requesting booking cancellation  with given request body: ", request_body)
@@ -644,7 +644,7 @@ def cancel_booking_passenger():
     return jsonify({"RESP_STAT": "FAILURE"})
 
 
-@app.route("/commit", methods=["GET"])
+@app.route("/backend-server/commit", methods=["GET"])
 def commit():
     global usr_d, oth_usr_data
     print("Commiting data")
@@ -654,7 +654,7 @@ def commit():
     return jsonify({"RET_SATA": "SUCCESS"}), 200
 
 
-@app.route("/dashboard/classified/auth/admin", methods=["GET"])
+@app.route("/backend-server/dashboard/classified/auth/admin", methods=["GET"])
 def admin_panel():
     return render_template("index.html")
 
