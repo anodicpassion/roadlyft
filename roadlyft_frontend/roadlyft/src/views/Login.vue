@@ -20,84 +20,89 @@
             </div>
             <div style="width: 100%; display: flex; justify-content: center;">
                 <div class="round-edge" style="background-color: transparent; height: 300px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-                <br>
-                <div style="position: absolute; z-index:  -1; margin-left: 50px;">
-                    <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
-                </div>
-                <br>
-                <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">Mobile Number</p>
-                <br>
-                <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                    <div class="search" >
-                        <!-- <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
-                            <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
-                            <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
-                        </svg> -->
-                        <input id="mobile" class="search-inp c-regular" type="tel" placeholder="xxxxx - xxxxx" maxlength=10 min="10" style="margin-left: 20px;">
+                    <!-- <br> -->
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search" style="display: block; background-color: transparent; height: 22px;" >
+                            <div class="search-inp" style="margin-left: 30px;">
+                                <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <br>
-                <br>
-                <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">Password</p>
-                <br>
-                <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                    <div class="search">
-                    <!-- <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
-                        <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
-                        <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
-                    </svg> -->
-                    <input id="password" class="search-inp c-regular" type="password" placeholder="Password" style="margin-left: 20px;">
+                    
+                    <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                        <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                            <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">Mobile number</p>
+                        </div>
                     </div>
-                </div>
-                
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search" >
+                           
+                            <input id="mobile" class="search-inp c-regular" type="tel" placeholder="xxxxx - xxxxx" maxlength=10 min="10" style="margin-left: 20px;">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                        <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                            <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">Password</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search">
+                        <input id="password" class="search-inp c-regular" type="password" placeholder="Password" style="margin-left: 20px;">
+                        </div>
+                    </div>
+                    
                 </div>
                 
             </div>
@@ -129,119 +134,127 @@
             </div>
             <div style="width: 100%; display: flex; justify-content: center;">
                 <div class="round-edge" style="background-color: transparent; height: 420px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-                <br>
-                <div style="position: absolute; z-index:  -1; margin-left: 50px;">
-                    <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 7px; width: 10px; border-top: 2px solid black; border-bottom: 2px solid black; margin-left: 2px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 7px; width: 10px; border-top: 2px solid black; border-bottom: 2px solid black; margin-left: 2px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                    <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
-                </div>
-                <br>
-                <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">Your Name</p>
-                <br>
-                <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                    <div class="search" >
-                    <!-- <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
-                        <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
-                        <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
-                    </svg> -->
-                    <input id="name" class="search-inp c-regular" type="text" placeholder="Full Name"  style="margin-left: 20px;">
+                    <!-- <br> -->
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search" style="display: block; background-color: transparent; height: 10px;" >
+                            <div class="search-inp" style="margin-left: 30px;">
+                                <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 7px; width: 10px; border-top: 2px solid black; border-bottom: 2px solid black; margin-left: 2px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 7px; width: 10px; border-top: 2px solid black; border-bottom: 2px solid black; margin-left: 2px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <br>
-                <br>
-                <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">Mobile Number</p>
-                <br>
-                <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                    <div class="search" >
-                    <!-- <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
-                        <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
-                        <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
-                    </svg> -->
-                    <input id="n-mobile" class="search-inp c-regular" type="tel" placeholder="xxxxx - xxxxx" maxlength=10 min="10" style="margin-left: 20px;">
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                        <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                            <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">Your name</p>
+                        </div>
                     </div>
-                </div>
-                <br>
-                <br>
-                <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">Password</p>
-                <br>
-                <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
-                    <div class="search">
-                    <!-- <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
-                        <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
-                        <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
-                    </svg> -->
-                    <input id="n-password" class="search-inp c-regular" type="password" placeholder="Password" style="margin-left: 20px;">
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search" >
+                        <input id="name" class="search-inp c-regular" type="text" placeholder="Full Name"  style="margin-left: 20px;">
+                        </div>
                     </div>
-                </div>
-                
+                    <br>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                        <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                            <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">Mobile number</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search" >
+                        <input id="n-mobile" class="search-inp c-regular" type="tel" placeholder="xxxxx - xxxxx" maxlength=10 min="10" style="margin-left: 20px;">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                        <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                            <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">Password</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                        <div class="search">
+                        <!-- <svg width="25" height="25" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" style=" margin-top: 14px; margin-left: 11px; margin-right: 8px;">
+                            <circle cx="200" cy="200" r="140" stroke="rgba(19, 19, 19, 0.423)" stroke-width="40"/>
+                            <rect x="383.057" y="397.199" width="117.085" height="20" transform="rotate(-135 383.057 397.199)" fill="rgba(19, 19, 19, 0.423)" stroke="rgba(19, 19, 19, 0.423)" stroke-width="20" stroke-linejoin="round"/>
+                        </svg> -->
+                        <input id="n-password" class="search-inp c-regular" type="password" placeholder="Password" style="margin-left: 20px;">
+                        </div>
+                    </div>
+                    
                 </div>
                 
             </div>

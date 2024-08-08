@@ -93,60 +93,69 @@
                         <div style="width: 100%; display: flex; justify-content: center;">
                 
                         <div class="round-edge" style="background-color: transparent; height: 300px; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-                            <br>
-                            <div style="position: absolute; z-index:  -1; margin-left: 50px;">
-                            <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                            <!-- <br> -->
+                            <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                                <div class="search" style="display: block; background-color: transparent; height: 10px;" >
+                                    <div class="search-inp" style="margin-left: 30px;">
+                                        <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                        <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                        <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                                    </div>    
+                                </div>
                             </div>
                             <br>
-                            <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">From</p>
+                            <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                                <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                                    <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">From</p>
+                                </div>
+                            </div>
+                            <!-- <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">From</p> -->
                             <br>
                             <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
                             <div class="search pickup_dropdown_p" >
@@ -162,7 +171,12 @@
                             </div>
                             <br>
                             <br>
-                            <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">To</p>
+                            <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                                <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                                    <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">To</p>
+                                </div>
+                            </div>
+                            <!-- <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">To</p> -->
                             <br>
                             <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
                             <div class="search dropoff_dropdown_p">
@@ -347,70 +361,129 @@
         </div>
         <div id="publish-content" style="display: none; color: #10517d">
             <div id="publish-dash" style="display: block;">
+                <div style="position: fixed; right: 0; z-index: 1;">
+                    <button id="prev-route-btn_2" style="background-color: hsl(203, 100%, 74%); border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
+                        <img src="../components/icons/more.png" width="30" height="30">
+                    </button>
+                </div>
+                <div style="position:fixed; display: flex; justify-content: center; width: 100%; margin-top: 0px;">
+                    <div class="round-edge" style=" border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                        <p id="" class="c-light" style=" font-size: 15px; margin-left: 30px;">Publish your ride</p>
+                    </div>
+                </div>
+                <div id="prev-route_2" class="c-light" style="display: none; width: 300px; height: 70vh; position:fixed; z-index:2; background-color: white; top: 0; right: 0px; border-radius: 0px 0px 0px 20px; border: 0px solid rgba(0, 0, 0, 0.4); box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); text-align: center; overflow: scroll; ">
+                    <br>
+                    <router-link to="/instant-loan" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px; background-color: transparent; border: 1px solid #10517d; justify-content: center; align-items: center; display: flex;">Instant Loan ↗</div>
+                    </router-link>
+                    <router-link to="/instant-loan" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px; background-color: transparent; border: 1px solid #10517d; justify-content: center; align-items: center; display: flex;">Commertialize Vehicle ↗</div>
+                    </router-link>
+
+ 
+                    <br>
+                    <p>Your previous routes</p>
+
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                </div>
+            
                 <br>
-                <div style="display: flex; justify-content: center; width: 100%;">
+                <br>
+                <!-- <br>
+                <br>
+                <br> -->
+                <!-- <div style="display: flex; justify-content: center; width: 100%;">
                     <div class="round-edge" >
                         <p class="c-light" style=" font-size: 15px; margin-left: 20px;">Publish your ride...</p>
                     </div>
-                </div>
+                </div> -->
                 <br>
                 <br>
                 <div style="width: 100%; display: flex; justify-content: center;">
                     <div class="round-edge" style="background-color: transparent; height: 300px; ">
-                        <br>
-                        <div style="position: absolute; z-index:  -1; margin-left: 50px;">
-                            <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
-                            <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
-                            <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                        <!-- <br> -->
+                        <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
+                            <div class="search" style="display: block; background-color: transparent; height: 10px;" >
+                                <div class="search-inp" style="margin-left: 30px;">
+                                    <div style="height: 10px; width: 10px; border: 2px solid black; border-radius: 50px 50px 50px 50px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid transparent; margin-left: 6px;"></div>
+                                    <div style="height: 5px; width: 0px; border-left: 2px solid black; margin-left: 6px;"></div>
+                                    <div style="height: 7px; width: 7px; border: 2px solid black; margin-left: 2px;"></div>
+                                </div>
+                            </div>
                         </div>
                         <br>
-                        <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">From</p>
+                        <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                            <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                                <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">From</p>
+                            </div>
+                        </div>
+                        <!-- <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">From</p> -->
                         <br>
                         <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
                             <div class="search pickup_dropdown_d" >
@@ -424,7 +497,12 @@
                         </div>
                         <br>
                         <br>
-                        <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">To</p>
+                        <div style="width: 100%; display: flex; justify-content: center;  height: 0px;">
+                            <div class="search" style="display: block; background-color: transparent; height: 0px;" >
+                                <p class="c-regular search-inp" style="margin-left: 50px; margin-top: -12px; font-size: 16px;">To</p>
+                            </div>
+                        </div>
+                        <!-- <p class="c-regular" style="position: absolute; margin-left: 80px; margin-top: 8px;">To</p> -->
                         <br>
                         <div style="width: 100%; display: flex; justify-content: center; margin-top: -5px; ">
                             <div class="search dropoff_dropdown_d">
@@ -990,6 +1068,22 @@ function clck (event) {
     }
     if (isClickInside_2){
     document.getElementById("prev-route").style.display = "block";
+    }
+}
+function clck_2 (event) {
+    var myDiv = document.getElementById("prev-route_2");
+    var myDiv_2 = document.getElementById("prev-route-btn_2");
+    var isClickInside = myDiv.contains(event.target);
+    var isClickInside_2 = myDiv_2.contains(event.target);
+
+    if (!isClickInside) {
+        if (myDiv.style.display == "block"){
+        myDiv.style.display = "none";
+        }
+        // Your code to handle click outside of the div goes here
+    }
+    if (isClickInside_2){
+    document.getElementById("prev-route_2").style.display = "block";
     }
 }
 function fetchLocations_1() {
@@ -2317,7 +2411,10 @@ function on_load() {
     document.getElementById("logout_btn").addEventListener("click", logout);
     document.getElementById("p_go").addEventListener("click", p_go);
     // document.getElementById("p_go").addEventListener("click", showLocations_p);
-    document.addEventListener('click', clck);
+    // document.addEventListener('click', clck);
+    document.getElementById("dashb-content").addEventListener('click', clck);
+    // document.addEventListener('click', clck_2);
+    document.getElementById("publish-dash").addEventListener('click', clck_2);
     document.getElementById("date_highlt_0").addEventListener("click", function(){day_select_highlt(0);});
     document.getElementById("date_highlt_1").addEventListener("click", function(){day_select_highlt(1);});
     document.getElementById("date_highlt_2").addEventListener("click", function(){day_select_highlt(2);});
@@ -2344,8 +2441,8 @@ function on_load() {
     }
     else{
         
-        home_btn_disp();
-        // publish_btn_disp();
+        // home_btn_disp();
+        publish_btn_disp();
         // profile_btn_disp();
 
         fetch('http://127.0.0.1:5555/backend-server/get_homepage_da', {

@@ -40,7 +40,8 @@
     margin-left: 5px;
     margin-right: 5px;
     background-color: hsl(204, 100%, 95%);
-    border-radius: 60px;
+    /* background-color: hsl(203, 100%, 74%); */
+    border-radius: 60px ;
     /* border: 1px solid rgba(19, 19, 19, 0.423); */
     display: flex;
 

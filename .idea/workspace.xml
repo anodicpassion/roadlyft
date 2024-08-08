@@ -54,7 +54,7 @@
       <recent name="$PROJECT_DIR$/roadlyft_backend/static" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.mongo_v11L">
+  <component name="RunManager" selected="Python.main">
     <configuration name="gmp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="roadlyft" />
       <option name="ENV_FILES" value="" />
@@ -145,9 +145,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.mongo_v11L" />
         <item itemvalue="Python.gmp" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.scratch" />
       </list>
     </recent_temporary>
