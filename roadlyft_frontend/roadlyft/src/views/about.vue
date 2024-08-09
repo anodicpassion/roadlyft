@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div style="width: 100%; display: flex; justify-content: center;"> 
-                  <div id="cont_1" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; cursor: pointer;"> 
+                  <div id="cont_1" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; cursor: pointer;" onclick="window.location.href='/'"> 
                       <p class="c-bold" style=" font-size: 20px; margin-top: 15px;">Go <span style="font-size: 15px;">↗</span></p>
                   </div>
             </div>

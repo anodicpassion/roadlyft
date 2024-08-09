@@ -796,12 +796,11 @@
                     <div onclick="alert('Currently disable due to beta version.')" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
                         <p>Personal Information</p>
                     </div>
+                    
+                    <div id="account_info" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://wa.me/918298133696?text=I%20want%20to%20get%20insurance.'">
+                        <p>Insurance</p>
+                    </div>
 
-                    <router-link to="/about" style="text-decoration: none; color: #10517d;">
-                        <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                            <p>About</p> 
-                        </div>
-                    </router-link>
                     <router-link to="/driver-renew" style="text-decoration: none; color: #10517d;">
                         <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
                             <p>Subscription</p> 
@@ -812,10 +811,15 @@
                             <p>Verification</p> 
                         </div>
                     </router-link>
+                    <router-link to="/about" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                            <p>About</p> 
+                        </div>
+                    </router-link>
 
                 </div>
                 <div id="acc-cont" style="display: none; text-align: center;">
-                    <div id="account_info" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <div id="account_info" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://wa.me/918298133696?text=I%20want%20to%20get%20account%20information.'">
                         <p>Account Information</p>
                     </div>
                     <router-link to="/instant-loan" style="text-decoration: none; color: #10517d;">
@@ -2624,7 +2628,7 @@ function on_load() {
     document.getElementById("d_route_confirm").addEventListener("click", d_route_confirm);
     document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);
     document.getElementById('p_search_cabs').addEventListener("click", p_search_cabs);
-    document.getElementById("account_info").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "https://wa.me/918298133696?text=I%20want%20to%20get%20account%20information.";});
+    // document.getElementById("account_info").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "https://wa.me/918298133696?text=I%20want%20to%20get%20account%20information.";});
     // document.getElementById("d_verification").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-verification";});
     // document.getElementById("d_renew").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-renew";});
     // document.getElementById("about_pg").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/about";});

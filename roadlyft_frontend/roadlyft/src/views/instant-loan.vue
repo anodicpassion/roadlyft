@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div style="width: 100%; display: flex; justify-content: center;"> 
-                  <div id="cont_1" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; cursor: pointer;"> 
+                  <div id="cont_1" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; cursor: pointer;" onclick="window.location.href='https://wa.me/918298133696?text=I%20want%20to%20get%20instant%20loan.'"> 
                       <p class="c-bold" style=" font-size: 20px; margin-top: 15px;">Continue <span style="font-size: 15px;">↗</span></p>
                   </div>
             </div>
