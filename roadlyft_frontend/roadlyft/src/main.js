@@ -4,6 +4,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import './assets/main.css'
+import AppCom from './App_COM.vue'
+
+
 
 function getJsonFromServer(url, data) {
   return fetch(url, {
@@ -65,10 +68,31 @@ if (getCookie("lo_@_ty") == null) {
     console.log("announcing my loyalty to the Emperor...");
 }
 
-const app = createApp(App);
-app.use(store);
-app.use(router);
-app.mount('#app');
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+
+
+if (isMobile()) {
+    console.log("Client is on a mobile device");
+    const app = createApp(App);
+    app.use(store);
+    app.use(router);
+    app.mount('#app');
+} else {
+    console.log("Client is on a PC");
+    const app = createApp(AppCom);
+    app.use(store);
+    app.use(router);
+    app.mount('#app');
+}
+
+
+// const app = createApp(App);
+// app.use(store);
+// app.use(router);
+// app.mount('#app');
 
 // app.config.globalProperties.$getJsonFromServer = getJsonFromServer;
 // app.config.globalProperties.$setCookie = setCookie;

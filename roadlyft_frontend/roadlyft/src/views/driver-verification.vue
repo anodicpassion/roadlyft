@@ -105,7 +105,7 @@ window.addEventListener('load', () => {
     }
 
     document.getElementById("cont_1").addEventListener("click", function(){
-        window.location.href = "https://wa.me/918830998140?text=I%20want%20to%20get%20verified%20as%20a%20a%20driver.";
+        window.location.href = "https://wa.me/918298133696?text=I%20want%20to%20get%20verified%20as%20a%20a%20driver.";
         setTimeout(() => {
             window.location.replace = "/";
         }, 2000);

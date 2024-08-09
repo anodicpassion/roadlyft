@@ -20,36 +20,16 @@
             <br>
             <br>
             <br>
-            <div class="c-semibold" style="width: 100%; display: flex; justify-content: center; ">
-                <div style="width: 80%;">
-                    <p style="font-size: 20px;">Steps by step guide to complete your verificaiton:</p>
-                </div>
-            </div>
-            <div class="c-light" style="width: 100%; display: flex; justify-content: center; ">
-                <div style="width: 80%;">
-                    <p style="font-size: 20px;">1] Upload your photo.</p>
-                    <p style="font-size: 20px;">2] Upload your government issued driving licence.</p>
-                    <p style="font-size: 20px;">3] Upload your government issued commercial car certificate.</p>
-                    <p style="font-size: 20px;">4] Make a payment.</p>
-                </div>
-            </div>
-            <br>
             <br>
             <br>
             <div class="c-regular" style="width: 100%; display: flex; justify-content: center; ">
                 <div style="width: 80%;">
-                    <p style="font-size: 20px;">You need to upload the documents on Roadlyft's Whatsapp. Our verified assistant will verify your documents.</p>
+                    <p style="font-size: 20px; line-height: 50px;">Roadlyft offers verified drivers an effortless way to access instant loans with just one click. By simplifying the loan application process, Roadlyft ensures that drivers can quickly secure the funds they need without the usual hassle. This service is designed to provide financial support when it’s needed most, enabling drivers to focus on their work and maintain their vehicles without financial stress. With Roadlyft, getting a loan is as easy as clicking a button, making it an invaluable resource for drivers on the go.</p>
+                    <!-- <p class="c-light" style="font-size: 15px;">Note: The verificaiton process can take up to 24 hours.</p> -->
                 </div>
             </div>
             <br>
             <br>
-            <br>
-            <div class="c-regular" style="width: 100%; display: flex; justify-content: center; ">
-                <div style="width: 80%;">
-                    <p style="font-size: 20px;">After completing your verificaiton process, Roadlyft will verify your documents and enable you to publish your ride.</p>
-                    <p class="c-light" style="font-size: 15px;">Note: The verificaiton process can take up to 24 hours.</p>
-                </div>
-            </div>
             <br>
             <br>
             <br>
@@ -64,6 +44,7 @@
                       <p class="c-bold" style=" font-size: 20px; margin-top: 15px;">Continue <span style="font-size: 15px;">↗</span></p>
                   </div>
             </div>
+            <br>
             <br>
             <br>
             <br>
@@ -105,7 +86,7 @@ window.addEventListener('load', () => {
     }
 
     document.getElementById("cont_1").addEventListener("click", function(){
-        window.location.href = "https://wa.me/918830998140?text=I%20want%20to%20get%20verified%20as%20a%20a%20driver.";
+        window.location.href = "https://wa.me/918298133696?text=I%20want%20to%20get%20instant%20loan.";
         setTimeout(() => {
             window.location.replace = "/";
         }, 2000);

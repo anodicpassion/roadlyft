@@ -67,11 +67,15 @@ const routes = [
     name: 'about',
     component: () => import('../views/about.vue')
   },
-  ,
   {
     path: '/instant-loan',
     name: 'instant loan',
     component: () => import('../views/instant-loan.vue')
+  },
+  {
+    path: '/commercialize-vehicle',
+    name: 'commercialize vehicle',
+    component: () => import('../views/commercialize-vehicle.vue')
   },
   // Catch-all route for undefined paths
   {

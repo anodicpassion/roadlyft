@@ -14,27 +14,22 @@
         <div id="step_info">
             <div class="c-light" style="width: 100%; display: flex; justify-content: center; ">
                 <div class="c-bold" style="width: 80%;">
-                    <p style="font-size: 25px;">Driver Renew</p>
+                    <p style="font-size: 25px;">Commercialize Vehicle</p>
                 </div>
             </div>
             <br>
             <br>
             <br>
-            
-            <div class="c-regular" style="width: 100%; display: flex; justify-content: center; ">
-                <div style="width: 80%;">
-                    <p style="font-size: 20px;">To renew your subscription just contact our assistant on Whatsapp. </p>
-                </div>
-            </div>
-            <br>
             <br>
             <br>
             <div class="c-regular" style="width: 100%; display: flex; justify-content: center; ">
                 <div style="width: 80%;">
-                    <p style="font-size: 20px;">After completion of your payment to assistant, Roadlyft will verify and resume your subscription within movements.</p>
+                    <p style="font-size: 20px; line-height: 50px;">Roadlyft empowers verified drivers to seamlessly convert their private cars into commercial vehicles for carpooling. By facilitating this transformation, Roadlyft opens up new income opportunities for drivers, allowing them to monetize their vehicles while contributing to reduced traffic congestion and lower emissions. The process is straightforward, enabling drivers to easily transition from private to commercial use, making carpooling accessible and convenient. With Roadlyft, turning your personal vehicle into a revenue-generating asset has never been simpler.</p>
                     <!-- <p class="c-light" style="font-size: 15px;">Note: The verificaiton process can take up to 24 hours.</p> -->
                 </div>
             </div>
+            <br>
+            <br>
             <br>
             <br>
             <br>
@@ -49,6 +44,7 @@
                       <p class="c-bold" style=" font-size: 20px; margin-top: 15px;">Continue <span style="font-size: 15px;">↗</span></p>
                   </div>
             </div>
+            <br>
             <br>
             <br>
             <br>
@@ -90,7 +86,7 @@ window.addEventListener('load', () => {
     }
 
     document.getElementById("cont_1").addEventListener("click", function(){
-        window.location.href = "https://wa.me/918298133696?text=I%20want%20to%20renew%20my%20subscription%20as%20a%20driver.";
+        window.location.href = "https://parivahan.gov.in/parivahan//en/content/vehicle-related-services";
         setTimeout(() => {
             window.location.replace = "/";
         }, 2000);

@@ -11,6 +11,18 @@
                     <br>
                     <p>Your previous routes</p>
                     <br>
+                    <div id="prev-route-1">
+
+                    </div>
+                    <!-- <div class="round-edge" style="width: 90%; height: auto; margin-left: 5%; margin-bottom: 20px; justify-content: center;">
+                        <br>
+                        <p class="c-regular" style="text-align: left; padding-left: 20px;">From</p>
+                        <div class="c-semibold" style="width: 100%; text-align: left; padding-left: 10px;"><p>karad satara Maharashtra</p></div>
+                        <p class="c-regular" style="text-align: left; padding-left: 20px;">To</p>
+                        <div class="c-semibold" style="width: 100%; text-align: left; padding-left: 10px;"><p>karad satara Maharashtra</p></div>
+                        <br>
+                    </div> -->
+                    <!-- <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
@@ -32,9 +44,7 @@
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
-                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
-                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
-                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div> -->
                 </div>
                 <div style="width: 100%; z-index: -3;  margin: -8px; margin-top: -10px;  height: 400px; position: fixed; background-image: linear-gradient(225deg, #00c6fb 0%, #005bea 100%);">
                     <br>
@@ -247,7 +257,7 @@
                 </div>
             
                 <div style="display: flex; justify-content: center; width: 100%; margin-top: 10px;">
-                    <div class="round-edge" style=" border-top-left-radius: 0px; border-bottom-left-radius: 0px;">
+                    <div class="round-edge">
                         <p id="cab_search_status" class="c-light" style=" font-size: 15px; margin-left: 30px;"></p>
                     </div>
                 </div>
@@ -359,15 +369,18 @@
                 </div>
             </div>
         </div>
+
+
+
         <div id="publish-content" style="display: none; color: #10517d">
             <div id="publish-dash" style="display: block;">
                 <div style="position: fixed; right: 0; z-index: 1;">
-                    <button id="prev-route-btn_2" style="background-color: hsl(203, 100%, 74%); border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
+                    <button id="prev-route-btn_2" style="background-color: #00c6fb; border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
                         <img src="../components/icons/more.png" width="30" height="30">
                     </button>
                 </div>
                 <div style="position:fixed; display: flex; justify-content: center; width: 100%; margin-top: 0px;">
-                    <div class="round-edge" style=" border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                    <div class="round-edge" >
                         <p id="" class="c-light" style=" font-size: 15px; margin-left: 30px;">Publish your ride</p>
                     </div>
                 </div>
@@ -376,14 +389,17 @@
                     <router-link to="/instant-loan" style="text-decoration: none; color: #10517d;">
                         <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px; background-color: transparent; border: 1px solid #10517d; justify-content: center; align-items: center; display: flex;">Instant Loan ↗</div>
                     </router-link>
-                    <router-link to="/instant-loan" style="text-decoration: none; color: #10517d;">
+                    <router-link to="/commercialize-vehicle" style="text-decoration: none; color: #10517d;">
                         <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px; background-color: transparent; border: 1px solid #10517d; justify-content: center; align-items: center; display: flex;">Commertialize Vehicle ↗</div>
                     </router-link>
 
  
                     <br>
                     <p>Your previous routes</p>
+                    <div id="prev-route_2-1">
 
+                    </div>
+                    <!-- <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
@@ -403,8 +419,7 @@
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
-                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
-                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div>
+                    <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div> -->
                 </div>
             
                 <br>
@@ -578,7 +593,6 @@
                 <br>
                 <br>
             </div>
-
             <div id="map-content-publish" style="display: none;">
                 <div style="position: fixed; top: 0; left: 0; margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
                 onclick="document.getElementById('map-content-publish').style.display = 'none'; document.getElementById('publish-dash').style.display = 'block';">
@@ -755,6 +769,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <div id="profile-content" style="display: none;">
             <div>
                 <div style="width: 100%; height: 150px; display: flex;">
@@ -776,28 +793,43 @@
                 <br>
                 <br>
                 <div id="prof-cont" style="text-align: center;  ">
-                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <div onclick="alert('Currently disable due to beta version.')" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
                         <p>Personal Information</p>
                     </div>
-                    <div id="about_pg" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                        <p>About</p> 
-                    </div>
-                    <div id="d_renew" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                        <p>Subscription</p> 
-                    </div>
-                    <div id="d_verification" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                        <p>Verification</p> 
-                    </div>
+
+                    <router-link to="/about" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                            <p>About</p> 
+                        </div>
+                    </router-link>
+                    <router-link to="/driver-renew" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                            <p>Subscription</p> 
+                        </div>
+                    </router-link>
+                    <router-link to="/driver-verification" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                            <p>Verification</p> 
+                        </div>
+                    </router-link>
+
                 </div>
                 <div id="acc-cont" style="display: none; text-align: center;">
-                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                    <p>Account Information</p>
+                    <div id="account_info" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                        <p>Account Information</p>
                     </div>
-                    <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                    <p>Account Setting</p> 
-                    </div>
+                    <router-link to="/instant-loan" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                            <p>Instant Loan</p> 
+                        </div>
+                    </router-link>
+                    <router-link to="/commercialize-vehicle" style="text-decoration: none; color: #10517d;">
+                        <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                            <p>Commercialize Vehicle</p> 
+                        </div>
+                    </router-link>
                     <div id="logout_btn" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
-                    <p>Logout</p> 
+                        <p>Logout</p> 
                     </div>
 
                 </div>
@@ -1350,7 +1382,7 @@ function showLocations_p() {
                 document.getElementById('dashb-content').style.display = 'block';
                 return;
             }
-
+            storeListInLocalStorage("pass_prv_rt", location1, location2);
             directionsRenderer.set('directions', null);
             pickup_latlng_pg = latLng1;
             dropoff_latlng_pg = latLng2;
@@ -1400,7 +1432,7 @@ function showLocations_d() {
 
             // Clear previous directions
             directionsRenderer.set('directions', null);
-
+            storeListInLocalStorage("drv_prv_rt", location1, location2);
             // Place markers and show route
             placeMarkersAndShowRoute(latLng1, latLng2);
             // only_markers(latLng1, latLng2);
@@ -2192,7 +2224,6 @@ function show_request_info(indx, data){
 
     })
 }
-
 function show_accepted_info(indx, data){
     document.getElementById("passanger_name").innerText = data[0];
     document.getElementById("passanger_mobile").innerText = data[1];
@@ -2205,7 +2236,6 @@ function show_accepted_info(indx, data){
     
     
 }
-
 function requests_append(indx, data){
     console.log("data: ", data);
     // Create the main div with flex display
@@ -2251,7 +2281,6 @@ function requests_append(indx, data){
 
 
 }
-
 function requests_accepted_append(indx, data){
     console.log("data: ", data);
     // Create the main div with flex display
@@ -2400,8 +2429,177 @@ function in_booking(){
 
      
 }
+function add_previous_routes(cont_id, location_1, location_2, inp_ele_1, inp_ele_2){
+    var brk_1 = document.createElement("br");
+    var brk_2 = document.createElement("br");
+    var outerDiv = document.createElement("div");
+    outerDiv.className = "round-edge";
+    outerDiv.style.width = "90%";
+    outerDiv.style.height = "auto";
+    outerDiv.style.marginLeft = "5%";
+    outerDiv.style.marginBottom = "20px";
+    outerDiv.style.justifyContent = "center";
+
+    // Create the 'From' paragraph
+    var fromParagraph = document.createElement("p");
+    fromParagraph.className = "c-regular";
+    fromParagraph.style.textAlign = "left";
+    fromParagraph.style.paddingLeft = "20px";
+    fromParagraph.textContent = "From";
+
+    // Create the first inner div with class 'c-semibold'
+    var firstInnerDiv = document.createElement("div");
+    firstInnerDiv.className = "c-semibold";
+    firstInnerDiv.style.width = "100%";
+    firstInnerDiv.style.textAlign = "left";
+    firstInnerDiv.style.paddingLeft = "10px";
+
+    // Create the first inner paragraph
+    var firstInnerParagraph = document.createElement("p");
+    firstInnerParagraph.textContent = location_1;
+
+    // Append the first inner paragraph to the first inner div
+    firstInnerDiv.appendChild(firstInnerParagraph);
+
+    // Create the 'To' paragraph
+    var toParagraph = document.createElement("p");
+    toParagraph.className = "c-regular";
+    toParagraph.style.textAlign = "left";
+    toParagraph.style.paddingLeft = "20px";
+    toParagraph.textContent = "To";
+
+    // Create the second inner div with class 'c-semibold'
+    var secondInnerDiv = document.createElement("div");
+    secondInnerDiv.className = "c-semibold";
+    secondInnerDiv.style.width = "100%";
+    secondInnerDiv.style.textAlign = "left";
+    secondInnerDiv.style.paddingLeft = "10px";
+
+    // Create the second inner paragraph
+    var secondInnerParagraph = document.createElement("p");
+    secondInnerParagraph.textContent = location_2;
+
+    // Append the second inner paragraph to the second inner div
+    secondInnerDiv.appendChild(secondInnerParagraph);
+
+    // Append all elements to the outer div
+    outerDiv.appendChild(brk_1);
+    outerDiv.appendChild(fromParagraph);
+    outerDiv.appendChild(firstInnerDiv);
+    outerDiv.appendChild(toParagraph);
+    outerDiv.appendChild(secondInnerDiv);
+    outerDiv.appendChild(brk_2);
+
+    outerDiv.addEventListener("click", function() {
+        document.getElementById(inp_ele_1).value = location_1;
+        document.getElementById(inp_ele_2).value = location_2;
+        document.getElementById(cont_id).style.display = "None";
+    })
+    var container = document.getElementById(cont_id+"-1");
+    container.appendChild(outerDiv);
+
+}
+function storeListInLocalStorage(key, location_1, location_2) {
+    var retrievedList = retrieveListFromLocalStorage(key);
+    if (retrievedList){
+
+        if (retrievedList.length > 9){
+            retrievedList.pop()
+            retrievedList.unshift([location_1, location_2])
+        }
+        else{
+            retrievedList.unshift([location_1, location_2])
+        }
+    }
+    else{
+        var retrievedList  = [[location_1, location_2]]
+    }
+    if (Array.isArray(retrievedList)) {
+        try {
+            // Convert the list to a JSON string
+            var jsonString = JSON.stringify(retrievedList);
+
+            // Store the JSON string in local storage with the provided key
+            localStorage.setItem(key, jsonString);
+            console.log("List successfully stored in local storage.");
+        } catch (error) {
+            console.error("Failed to store the list in local storage:", error);
+        }
+    } else {
+        console.error("The provided list is not an array.");
+    }
+    retrieveListFromLocalStorage_auto();
+}
+function retrieveListFromLocalStorage(key) {
+    try {
+        // Get the JSON string from local storage
+        var jsonString = localStorage.getItem(key);
+
+        // Convert the JSON string back to an array
+        var list = JSON.parse(jsonString);
+
+        console.log("List successfully retrieved from local storage:", list);
+        return list;
+    } catch (error) {
+        console.error("Failed to retrieve the list from local storage:", error);
+        return null;
+    }
+}
+
+function retrieveListFromLocalStorage_auto() {
+    try {
+        // Get the JSON string from local storage
+        var jsonString = localStorage.getItem("pass_prv_rt");
+
+        // Convert the JSON string back to an array
+        var list = JSON.parse(jsonString);
+        if (list){
+            var container = document.getElementById("prev-route-1");
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            for (var i = 0; i < list.length; i ++){
+                add_previous_routes("prev-route", list[i][0], list[i][1], "pickup_locationInput_p", "dropoff_locationInput_p")
+            }
+
+        }
+        // return list;
+    } catch (error) {
+        console.error("Failed to retrieve the list from local storage:", error);
+        // return null;
+    }
+    try {
+        // Get the JSON string from local storage
+        var jsonString = localStorage.getItem("drv_prv_rt");
+        
+        // Convert the JSON string back to an array
+        var list = JSON.parse(jsonString);
+        if (list){
+
+            var container = document.getElementById("prev-route_2-1");
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+            console.log("List successfully retrieved from local storage:", list);
+            for (var i = 0; i < list.length; i ++){
+                console.log("log: ", list)
+                add_previous_routes("prev-route_2", list[i][0], list[i][1], "pickup_locationInput_d", "dropoff_locationInput_d")
+            }
+        }
+        return list;
+    } catch (error) {
+        console.error("Failed to retrieve the list from local storage:", error);
+        return null;
+    }
+}
+
 
 function on_load() {
+    // storeListInLocalStorage("drv_prv_rt", [["Karad, Maharashtra", "Pune, Maharashtra"]]);
+    retrieveListFromLocalStorage_auto();
+    // storeListInLocalStorage("drv_prv_rt", "Sangli, Maharashtra", "Maharashtra");
+    // console.log(retrieveListFromLocalStorage("pass_prv_rt"))
+    // add_previous_routes("prev-route", "Karad, Maharashtra, India", "Satara, Maharashtra, India", "pickup_locationInput_p", "dropoff_locationInput_p")
     document.getElementById("progress-bar").style.display = "flex";
     document.getElementById("home-div").addEventListener("click", home_btn_disp);
     document.getElementById("publish-div").addEventListener("click", publish_btn_disp);
@@ -2426,9 +2624,10 @@ function on_load() {
     document.getElementById("d_route_confirm").addEventListener("click", d_route_confirm);
     document.getElementById("d_price_confirm").addEventListener("click", d_price_confirm);
     document.getElementById('p_search_cabs').addEventListener("click", p_search_cabs);
-    document.getElementById("d_verification").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-verification";});
-    document.getElementById("d_renew").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-renew";});
-    document.getElementById("about_pg").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/about";});
+    document.getElementById("account_info").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "https://wa.me/918298133696?text=I%20want%20to%20get%20account%20information.";});
+    // document.getElementById("d_verification").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-verification";});
+    // document.getElementById("d_renew").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/driver-renew";});
+    // document.getElementById("about_pg").addEventListener("click", function(){document.getElementById('progress-bar').style.display = "flex"; window.location.href = "/about";});
     if (usr_verify == null){
         window.location.replace("/login");
     }
@@ -2441,8 +2640,8 @@ function on_load() {
     }
     else{
         
-        // home_btn_disp();
-        publish_btn_disp();
+        home_btn_disp();
+        // publish_btn_disp();
         // profile_btn_disp();
 
         fetch('/backend-server/get_homepage_da', {
