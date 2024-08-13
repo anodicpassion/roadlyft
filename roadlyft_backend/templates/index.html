@@ -6,119 +6,506 @@
         <meta name="viewport" content="user-scalable=no,width=device-width,initial-scale=1.0">
         <meta name="theme-color" content="#10517d">
         <link rel="icon" href="favicon.ico">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="/static/base.css">
-        <link rel="stylesheet" href="/static/main.css">
-        <title>ADMIN</title>
+        <title>Roadlyft</title>
         <style>
 
-              .animated-gradient {
-                background: repeating-linear-gradient(to right, rgb(163, 218, 255) 0%,  #10517d 50%, rgb(174, 222, 254) 100%);
-                width: 80%;
-                height: 5px;
-                background-size: 200% auto;
-                background-position: 0 100%;
-                animation: gradient 2s infinite;
-                animation-fill-mode: forwards;
-                animation-timing-function:ease-in-out;
-                /* position: fixed; */
-                /* margin: -8px; */
-                border-radius: 50px;
-                top: 0;
-                margin-left: -8px;
+            .animated-gradient {
+              background: repeating-linear-gradient(to right, rgb(163, 218, 255) 0%,  #10517d 50%, rgb(174, 222, 254) 100%);
+              width: 80%;
+              height: 5px;
+              background-size: 200% auto;
+              background-position: 0 100%;
+              animation: gradient 2s infinite;
+              animation-fill-mode: forwards;
+              animation-timing-function:ease-in-out;
+              /* position: fixed; */
+              /* margin: -8px; */
+              border-radius: 50px;
+              top: 0;
+              margin-left: -8px;
+            }
+      
+            @keyframes gradient {
+              0% {
+                  background-position:-50% 0
               }
-
-              @keyframes gradient {
-                0% {
-                    background-position:-50% 0
-                }
-
-                50% {
-                    background-position:150% 0
-                }
-
-                to {
-                    background-position: -50% 0
-                }
+      
+              50% {
+                  background-position:150% 0
               }
+      
+              to {
+                  background-position: -50% 0
+              }
+            }
+        </style>
+        <style>
+            body {
+                background-color: #fff;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none
+            }
+
+            .c-light {
+                font-optical-sizing: auto;
+                font-weight: 300;
+                font-style: normal
+            }
+
+            .c-light,.c-regular {
+                font-family: Comfortaa,sans-serif
+            }
+
+            .c-regular {
+                font-optical-sizing: auto;
+                font-weight: 400;
+                font-style: normal
+            }
+
+            .c-medium {
+                font-optical-sizing: auto;
+                font-weight: 500;
+                font-style: normal
+            }
+
+            .c-medium,.c-semibold {
+                font-family: Comfortaa,sans-serif
+            }
+
+            .c-semibold {
+                font-optical-sizing: auto;
+                font-weight: 600;
+                font-style: normal
+            }
+
+            .c-bold {
+                font-family: Comfortaa,sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                font-style: normal
+            }
+
         </style>
     </head>
     <body>
         <div id="progress-bar" style="position: fixed; background-color: rgba(255, 255, 255, 0.8); margin: -8px; width: 100%; height: 100vh; z-index: 5; display: flex; justify-content: center; align-items: center;">
-          <div class="animated-gradient"></div>
+            <div class="animated-gradient"></div>
         </div>
         <noscript>
-          <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+            <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
         </noscript>
-        <div id="app">
-            <div>
-                <div class="c-bold" style="width: 100%; height: 50px; display: flex; align-items: center; position: fixed; background-color: white; margin: -8px;  z-index: 1"></div>
-                    <div class="c-bold" style="width: 100%; height: 50px; display: flex; align-items: center; position: fixed; background-color: white; margin: -8px; margin-top: 10px; z-index: 1">
-                        <img src="/static/Roadlyft_LOGO.png" alt="" height="100%" width="auto" style="margin-left: 20px;">
-                        <p style="font-size: 30px; color: #10517d; margin-left: 10px; padding-top: 5px;">Roadlyft</p>
+        <div>
+            <div class="c-bold" style="width: 100%; height: 50px; display: flex; align-items: center; position: fixed; background-color: white; margin: -8px;  z-index: 1"></div>
+            <div class="c-bold" style="width: 100%; height: 50px; display: flex; align-items: center; position: fixed; background-color: white; margin: -8px; margin-top: 10px; z-index: 1">
+                <img src="/static/Roadlyft_LOGO.png" alt="" height="100%" width="auto" style="margin-left: 20px;">
+                <p style="font-size: 30px; color: #10517d; margin-left: 10px; padding-top: 5px;">Roadlyft Admin</p>
+                <button id="more-options-btn" class="c-light" style="cursor:pointer; position:fixed; font-size: 15px; color: #10517d; right: 10px; padding-top: 10px; padding-left:10px; padding-right:10px; padding-bottom:10px; background-color: white; border:1px solid #10517d; border-radius: 10px;" onclick="document.getElementById('more-options').style.display = 'block'"> More > </button>
+                <button id="reload-btn" class="c-light" style="cursor:pointer; position:fixed; font-size: 15px; color: #10517d; right: 100px; padding-top: 10px; padding-left:10px; padding-right:10px; padding-bottom:10px; background-color: white; border:1px solid #10517d; border-radius: 10px;"> Reload </button>
+            </div>
+            <div id="more-options" style="display: none; width: 200px;  position: fixed; background-color: white; z-index: 2; right: 0; top: 0; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); border-bottom-left-radius: 20px;">
+                <button id="reload-btn-2" class="c-light" style="cursor: pointer; width: 90%; height: 50px; font-size: 15px; color: #10517d; border: 1px solid #10517d; border-radius: 10px; margin: 5%; display: flex; justify-content: center; align-items: center; background-color: white;">Reload</button>
+                <button class="c-light" style="cursor: pointer; width: 90%; height: 50px; font-size: 15px; color: #10517d; border: 1px solid #10517d; border-radius: 10px; margin: 5%; display: flex; justify-content: center; align-items: center; background-color: white;">Backup</button>
+                <button class="c-light" style="cursor: pointer; width: 90%; height: 50px; font-size: 15px; color: #10517d; border: 1px solid #10517d; border-radius: 10px; margin: 5%; display: flex; justify-content: center; align-items: center; background-color: white;">Logout</button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div id="cont1" style="width:100%; height:50px; ">
+                <p id="loading-lbl" class="c-light" style="text-align: center;">Loading data...</p>
+                <table class="styled-table" id="table-cont1" style="width: 100%; display: none;">
+                    <thead class="c-bold">
+                        <tr>
+                            <th>Name</th>
+                            <th>Mobile number</th>
+                            <th>Last active</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="c-regular" id="table-body">
+                    </tbody>
+                </table>
 
+
+            </div>
+            <div id="cust-info"  style="width: 100vw; height: 100vh; background-color: #10517d47; position: fixed; top: 0px; left: 0px; z-index: 2; display: none; justify-content: center; align-items: center;">
+                <div id="cust-info-main-div" style="width: 90vw; max-height: 90vh; overflow-y: scroll; overflow-x: hidden; background-color: white; border-radius: 20px;">
+                    <div style="position: absolute;  margin-top: 10px; margin-left: 10px; width: 50px; height: 50px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); z-index: 5;"
+                        onclick="document.getElementById('cust-info').style.display = 'none';">
+                        <div class="c-bold" style="width: 20px; height: 20px; margin-left: -8px; margin-top: -22px; font-size: 40px; opacity: 0.5 ;" ><</div>
                     </div>
-                    <div style="width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center; ">
-                        <div style="width: 100%;">
-                            <div style="width: 100%; display: flex; justify-content: center;">
-                                <img src="/static/Roadlyft_LOGO.png" alt="" height=200px width=200px >
+                    <div style="position: absolute;  margin-top: -8px; margin-left: 80px; text-align: left; z-index: 5; font-size: 30px; text-wrap: nowrap;">
+                        
+                        <p class="c-bold" >Update data</p>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div id="cust-info-loading" style="display: flex; justify-content: center;;">
+                        <p id="cust-info-loading-lbl" class="c-regular">Loading data...</p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                    <div id="cust-info-body" style="display: none;">
+                        <div style="width: 100%; display: inline-flex; margin-left: 10%;">
+                            <p class="c-light" style="font-size: 20px;">Name: </p>
+                            <input id="cust-name" class="search-inp" type="text" placeholder="Name" style="padding-top: 15px; padding-left: 20px; width: 50%;">
+                        </div>
+                        <div style="width: 100%; display: inline-flex; margin-left: 10%;">
+                            <p class="c-light" style="font-size: 20px;">Mobile number: </p>
+                            <input id="cust-mobile" class="search-inp" type="tel" maxlength="10" minlength="10" placeholder="Mobile number" style="padding-top: 15px; padding-left: 20px; width: 50%;">
+                        </div>
+                        <div style="width: 100%; display: inline-flex; margin-left: 10%;">
+                            <p class="c-light" style="font-size: 20px;">Driving permission: </p>
+                            <div>
+                                <p id="cust-permission"  class="c-regular" style="font-size: 20px; font-family: system-ui; padding-left: 20px;"></p>
 
+                                <form class="c-light" style="display: flex; ">
+                                    <label >
+                                        <input id="lbl_1" type="radio" name="color" value="Blue">
+                                        Unverified
+                                    </label>
+                                    <label >
+                                        <input id="lbl_2" type="radio" name="color" value="Green" style="margin-left: 20px;">
+                                        Verified Unsubscribed
+                                    </label>
+                                    <label>
+                                        <input id="lbl_3" type="radio" name="color" value="Red" style="margin-left: 20px;">
+                                        Subscribed
+                                    </label>
+                                </form>
                             </div>
-                            <br>
-                            <br>
-                            <br>
-                            <div style="width: 100%; display: flex; justify-content: center;">
-                                <div id="cont_1" class="round-edge" style="display: flex; justify-content: center; background-color: #00c6fb; cursor: pointer;">
-                                    <p class="c-bold" style=" font-size: 20px; margin-top: 15px;">Go <span style="font-size: 15px;">↗</span></p>
-                                </div>
-                            </div>
+                            
+                            <!-- <input class="search-inp" type="tel" maxlength="10" minlength="10" placeholder="Name" style="padding-top: 15px; padding-left: 20px; width: 50%;"> -->
+                        </div>
+                        <div style="justify-content: right; display: flex;">
+                            <button class="c-light" style="cursor:pointer;  font-size: 15px; color: #10517d; margin:20px; margin-right: 10px; padding-top: 10px; padding-left:10px; padding-right:10px; padding-bottom:10px; background-color: white; border:0px solid #10517d; border-radius: 10px;" 
+                            onclick="document.getElementById('cust-info').style.display = 'none';"> Cancel </button>
+                            <button id="save_data-btn" class="c-light" style="cursor:pointer;  font-size: 15px; color: #10517d; margin:20px; padding-top: 10px; padding-left:10px; padding-right:10px; padding-bottom:10px; background-color: white; border:1px solid #10517d; border-radius: 10px;"> Save </button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+
+            <div id="alert-box"  style="width: 100vw; height: 100vh; background-color: #10517d47; position: fixed; top: 0px; left: 0px; z-index: 2; display: none; justify-content: center; align-items: center;">
+                <div style="width: 90vw; max-height: 90vh; overflow-y: scroll; overflow-x: hidden; background-color: white; border-radius: 20px;">
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div  style="display: flex; justify-content: center;;">
+                        <p id="alert-box-lbl" class="c-regular">Saving your changes...</p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                    
+                </div>
             </div>
         </div>
+    
+    </body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+    <link href="/static/main.css" rel="stylesheet">
+    <link href="/static/base.css" rel="stylesheet">
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0&libraries=places"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0&libraries=places"
+    async defer></script>
+    <script>
+        const auth_toc_usr = getCookie('auth_toc_usr');
+        const loyalty = getCookie("lo_@_ty");
+        const usr_verify = localStorage.getItem("dock-cid");
+        function getCookie(name) {
+            const cookieString = document.cookie;
+            const cookiesArray = cookieString.split('; ');
+            for (let cookie of cookiesArray) {
+                const [cookieName, cookieValue] = cookie.split('=');
+                if (cookieName === name) {
+                    return cookieValue;
+                }
+            }
+            return null; 
+        }
+        
+        function logout(){
+            console.log("Preparing to logout.");
+            document.getElementById('progress-bar').style.display = "flex";
+            localStorage.removeItem("dock-cid");
+            document.cookie = 'auth_toc_usr=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+            window.location.reload();
+        }
+        
+        function clck_2 (event) {
+            var myDiv = document.getElementById("more-options");
+            var myDiv_2 = document;
+            var isClickInside = myDiv.contains(event.target);
+            var isClickInside_2 = myDiv_2.contains(event.target);
+            if (!isClickInside && isClickInside_2){
+                document.getElementById("more-options").style.display = "none";
+            }
+            if (document.getElementById("more-options-btn").contains(event.target)){
+                document.getElementById("more-options").style.display = "block";
 
-        <script>
-            const auth_toc_usr = getCookie('auth_toc_usr');
-            console.log("cookie: ", auth_toc_usr);
-            const loyalty = getCookie("lo_@_ty");
-            console.log("lo_@_ty:", loyalty);
-            const usr_verify = localStorage.getItem("dock-cid");
-            console.log("local_storage: ", usr_verify);
-            let booking_date_thresh = 0;
+            }
+        }
+        
+        function clck (event) {
+            var myDiv = document.getElementById("cust-info-main-div");
+            var myDiv_2 = document.getElementById("cust-info");
+            var isClickInside = myDiv.contains(event.target);
+            var isClickInside_2 = myDiv_2.contains(event.target);
+           
+            if (!isClickInside && isClickInside_2){
+                document.getElementById("cust-info").style.display = "none";
+            }
+        }
+        
+        function save_data(){
 
-            function getCookie(name) {
-                const cookieString = document.cookie;
-                const cookiesArray = cookieString.split('; ');
-                for (let cookie of cookiesArray) {
-                    const [cookieName, cookieValue] = cookie.split('=');
-                    if (cookieName === name) {
-                        return cookieValue;
+            if (document.getElementById("cust-info").style.display == "flex"){
+                document.getElementById("alert-box").style.display = "flex";
+                document.getElementById("cust-info").style.display = "none";
+
+                fetch('/backend-server/ewonallweKNKE/NaenlklkmMsel/nXiocwNOnSlSXcZ/dat', {
+                    method: 'POST',
+                    credentials: 'include',
+                    
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': 'true',
+                    },
+                    body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,})
+                    
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response from server:', data);
+                    if (data['RESP_STAT'] == "SUCCESS") {
+                        setTimeout(function (){
+                            document.getElementById("alert-box").style.display = "none";
+                            document.getElementById("alert-box-lbl").innerText = "Saving your changes...";
+                        }, 500);
+                        
+                        document.getElementById("alert-box-lbl").innerText = "Saved.";
+                        document.getElementById("loading-lbl").innerText = "Reloading to get updated data...";
+                        getdat();
+                    }
+        
+                    else {
+                        alert("Error with your profile. Please login again.");
+                        logout();
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                    alert("Something went wrong. Please try again after some time.")
+                    
+                }); 
+            }
+        }
+
+        function show_change_box(m_num){
+            console.log(m_num);
+            document.getElementById("cust-info").style.display = "flex";
+            document.getElementById("cust-info-body").style.display = "none"
+            document.getElementById("cust-info-loading").style.display = "flex"
+            fetch('/backend-server/akKojallwecswen/Naeno2ssel/nXLKEOnSlSXcZ/dat', {
+                method: 'POST',
+                credentials: 'include',
+                
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': 'true',
+                },
+                body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "MBL": m_num})
+                
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response from server:', data);
+                if (data['RESP_STAT'] == "SUCCESS") {
+                    // console.log(data);
+
+                    document.getElementById("cust-name").value = data["NAME"];
+                    document.getElementById("cust-mobile").value = data["MBL"];
+                    if (data["ROLL"] == "0"){
+                        document.getElementById("cust-permission").innerText = "Unverified";
+                        document.getElementById('lbl_1').checked = true;
+                        document.getElementById('lbl_2').checked = false;
+                        document.getElementById('lbl_3').checked = false;
+                    }
+                    else if (data["ROLL"] == "1"){
+                        document.getElementById("cust-permission").innerText = "Verified Unsubscribed";
+                        document.getElementById('lbl_1').checked = false;
+                        document.getElementById('lbl_2').checked = true;
+                        document.getElementById('lbl_3').checked = false;
+                    }
+                    else if (data["ROLL"] == "2"){
+                        document.getElementById("cust-permission").innerText = "Subscribed";
+                        document.getElementById('lbl_1').checked = false;
+                        document.getElementById('lbl_2').checked = false;
+                        document.getElementById('lbl_3').checked = true;
+                    }
+                    document.getElementById("cust-info-loading").style.display = "none"
+                    document.getElementById("cust-info-body").style.display = "block"
+                }
+    
+                else {
+                    alert("Error with your profile. Please login again.");
+                    logout();
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert("Something went wrong. Please try again after some time.")
+                
+            }); 
+        }
+        
+        function arrange_data(data){
+            var container = document.getElementById("table-body");
+            if (container) {
+                // Remove all child elements
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+            }
+            const table_body = document.getElementById("table-body");
+            for (var i = 0; i < data["NAME"].length; i++){
+                var newRow = document.createElement('tr');
+                const cell1 = document.createElement('td');
+                cell1.textContent = data["NAME"][i];
+                const cell2 = document.createElement('td');
+                cell2.textContent = data["MBL"][i];
+                const cell3 = document.createElement('td');
+                cell3.textContent = data["LSTA"][i];
+                const cell4 = document.createElement('td');
+                if (data["ROLL"][i] == "0"){
+                    cell4.textContent = "Unverified";
+                }
+                else if (data["ROLL"][i] == "1"){
+                    cell4.textContent = "Verified Unsubscribed";
+                }
+                else if (data["ROLL"][i] == "2"){
+                    cell4.textContent = "Subscribed";
+                }
+                // cell4.textContent = data["ROLL"][i];
+                var m_num = data["MBL"][i];
+                newRow.appendChild(cell1);
+                newRow.appendChild(cell2);
+                newRow.appendChild(cell3);
+                newRow.appendChild(cell4);
+                (function(m_num) {
+                    newRow.addEventListener("click", function() {
+                        show_change_box(m_num); // Print the mobile number in the console
+                    });
+                })(m_num);
+                table_body.appendChild(newRow);
+            }
+           
+            document.getElementById("table-cont1").style.display = "table";
+            document.getElementById("loading-lbl").style.display = "none";
+        }
+        
+        function getdat(){
+            document.getElementById("loading-lbl").style.display = "block";
+            document.getElementById("table-cont1").style.display = "none";
+            fetch('/backend-server/akKokncIBiswen/NConessel/neOnSWEncZ/dat', {
+                method: 'POST',
+                credentials: 'include',
+                
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': 'true',
+                },
+                body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,})
+                
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response from server:', data);
+                if (data['RESP_STAT'] == "SUCCESS") {
+                    console.log(data);
+                    if (data["NAME"].length > 0){
+                        arrange_data(data);
+                    }
+                    else{
+                        document.getElementById("loading-lbl").innerText = "No data found.";
                     }
                 }
-                return null;
+    
+                else {
+                    alert("Error with your profile. Please login again.");
+                    logout();
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert("Something went wrong. Please try again after some time.")
+            }); 
+        }
+        
+        window.addEventListener("load", function(){
+            if (usr_verify == null){
+                console.log(1)
+                // window.location.replace("/login");
             }
-
-            window.addEventListener('load', () => {
-                if (usr_verify == null){
-                    window.location.replace("/login");
-                }
-                else if (auth_toc_usr == null){
-                    window.location.replace("/login");
-                }
-                else if (auth_toc_usr != usr_verify.slice(1, -1)){
-                    console.log("malacious activity detected");
-                    window.location.replace("/login");
-                }
-
-                document.getElementById("cont_1").addEventListener("click", function(){
-                    window.location.href = "/";
-                    setTimeout(() => {
-                        window.location.replace = "/";
-                    }, 2000);
-                });
+            else if (auth_toc_usr == null){
+                console.log(2)
+                // window.location.replace("/login");
+            }
+            else if (auth_toc_usr != usr_verify.slice(1, -1)){
+                console.log("malacious activity detected");
+                // window.location.replace("/login");
+            }
+            getdat();
+            document.getElementById("reload-btn").addEventListener("click", function(){
+                document.getElementById("loading-lbl").innerText = "Reloading data...";
+                getdat();
             });
+            document.getElementById("reload-btn-2").addEventListener("click", function(){
+                document.getElementById("more-options").style.display = "none";
+                document.getElementById("loading-lbl").innerText = "Reloading data...";
+                getdat();
+            });
+            document.getElementById('progress-bar').style.display = "none";
+            document.getElementById("save_data-btn").addEventListener("click", save_data);
+            document.getElementById("cust-info").addEventListener("click", clck);
+            document.addEventListener("click", clck_2)
+        })
 
-        </script>
-    </body>
+    </script>
 </html>

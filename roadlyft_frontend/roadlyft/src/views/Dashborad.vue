@@ -4,7 +4,7 @@
             <div id="dashb-content" style="display: block;">
                 <div style="position: fixed; right: 0; z-index: -2;">
                     <button id="prev-route-btn" style="background-color: transparent; border: 1px solid rgba(0, 0, 0, 0.1); width: 50px; height: 50px; border-radius: 10px; margin-right: 10px;">
-                    <img src="../components/icons/more.png" width="30" height="30">
+                        <img src="../components/icons/more.png" width="30" height="30">
                     </button>
                 </div>
                 <div id="prev-route" class="c-light" style="display: none; width: 300px; height: 70vh; position:fixed; z-index:-1; background-color: white; top: 0; right: 0px; border-radius: 0px 0px 0px 20px; border: 0px solid rgba(0, 0, 0, 0.4); box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); text-align: center; overflow: scroll; ">
@@ -379,7 +379,15 @@
                         <img src="../components/icons/more.png" width="30" height="30">
                     </button>
                 </div>
-                <div style="position:fixed; display: flex; justify-content: center; width: 100%; margin-top: 0px;">
+                <div class="c-bold"style="position: fixed; width: 100%; background-color: white; height: 58px; margin-top: -8px; display: flex; align-items: center;">
+                    <img src="../components/icons/driver.png" width="40" height="40">
+                    <p style="font-size: 30px; margin-left: 15px;">Driver</p>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style=" display: flex; justify-content: center; width: 100%; margin-top: 0px;">
                     <div class="round-edge" >
                         <p id="" class="c-light" style=" font-size: 15px; margin-left: 30px;">Publish your ride</p>
                     </div>
@@ -422,8 +430,8 @@
                     <div class="round-edge" style="width: 90%; margin-left: 5%; margin-bottom: 20px;"></div> -->
                 </div>
             
-                <br>
-                <br>
+                <!-- <br> -->
+                <!-- <br> -->
                 <!-- <br>
                 <br>
                 <br> -->
@@ -2644,8 +2652,8 @@ function on_load() {
     }
     else{
         
-        home_btn_disp();
-        // publish_btn_disp();
+        // home_btn_disp();
+        publish_btn_disp();
         // profile_btn_disp();
 
         fetch('/backend-server/get_homepage_da', {

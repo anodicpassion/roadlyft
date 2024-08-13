@@ -1,37 +1,35 @@
 from flask import Flask, request, jsonify, redirect, render_template
 from flask_cors import CORS
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 import time, random
 import datetime, googlemaps
 from geopy.distance import geodesic
-from flask_talisman import Talisman
+
+# from flask_talisman import Talisman
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-talisman = Talisman(app)
+# talisman = Talisman(app)
 
-csp = {
-    'default-src': ["'none'"],
-    'script-src': ["'none'"],
-    'style-src': ["'none'"],
-    'img-src': ["'none'"],
-    'connect-src': ["'none'"],  # "http://127.0.0.1:5555"],  # Allow requests to your backend API
-    'font-src': ["'none'"],
-    'object-src': ["'none'"],  # Prevent the use of plugins like Flash
-    'base-uri': ["'none'"],  # Restrict the URLs that can be used in a <base> element
-    'form-action': ["'none'"],  # Restrict the URLs that can be used as the target of form submissions
-    'frame-ancestors': ["'none'"],  # Restrict the URLs that can embed this content in frames
-    'frame-src': ["'none'"]
-}
+# csp = {
+#     'default-src': ["'none'"],
+#     'script-src': ["'none'"],
+#     'style-src': [],
+#     'img-src': ["'none'"],
+#     'connect-src': ["'none'"],  # "http://127.0.0.1:5555"],  # Allow requests to your backend API
+#     'font-src': ["'none'"],
+#     'object-src': ["'none'"],  # Prevent the use of plugins like Flash
+#     'base-uri': ["'none'"],  # Restrict the URLs that can be used in a <base> element
+#     'form-action': ["'none'"],  # Restrict the URLs that can be used as the target of form submissions
+#     'frame-ancestors': ["'none'"],  # Restrict the URLs that can embed this content in frames
+#     'frame-src': ["'none'"]
+# }
 
 # talisman.content_security_policy = csp
-limiter = Limiter(get_remote_address, app=app)
 gmaps = googlemaps.Client(key='AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0')
 
 usr_d: dict = {}
 oth_usr_data: dict = {}
-deck_handler: dict = {'8830998140': ['zkajtuyc', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
+deck_handler: dict = {'8830998140': ['zqsyumos', '21:56:16 07/09/24', True, '21:56:16 07/09/24', '21:56:16 07/09/24'],
                       '9423868113': ['rdwqvsgt', '22:07:37 07/09/24', True, '22:07:37 07/09/24', '22:07:37 07/09/24']}
 char_a_z = "abcdefghijklmnopqrstuvwxyz"
 # route = {'8830998140': [
@@ -90,6 +88,9 @@ def valid_usr_req(auth_toc_usr) -> list:
         return [False]
     for i in deck_handler:
         if auth_toc_usr == deck_handler[i][0] and deck_handler:
+            current_date = datetime.datetime.now()
+            cur_dat_time = current_date.strftime("%H:%M:%S %D")
+            deck_handler[i][4] = cur_dat_time
             return [True, i]
     return [False]
 
@@ -218,10 +219,9 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
 
 
 @app.route("/backend-server")
-@limiter.limit("60 per minute")
 def index():
     # client_ip = request.remote_addr
-    return f"<center>ROADLYFT Coming Soon...!</center>"
+    return redirect("/")
 
 
 @app.route("/backend-server/create_account", methods=["POST"])
@@ -635,7 +635,6 @@ def cancel_booking_passenger():
             for _, ride in enumerate(route[d_mob]):
                 for __, r in enumerate(ride[10]):
                     if r[0] == val[1]:
-
                         route[d_mob][_][10].pop(__)
                         p_route.pop(val[1])
         print("Successfully canceled booking  with given request body: ", request_body)
@@ -654,9 +653,68 @@ def commit():
     return jsonify({"RET_SATA": "SUCCESS"}), 200
 
 
-@app.route("/backend-server/dashboard/classified/auth/admin", methods=["GET"])
+@app.route("/backend-server/control-sys/classified/auth/admin-panel", methods=["GET"])
 def admin_panel():
+    # request_body = request.json
+    # print("Requesting booking cancellation  with given request body: ", request_body)
+    # usr_id = request_body["auth_toc_usr"]
+    # local_str = request_body["local_str"]
+    # loyalty = request_body["loyalty"]
+    # val = valid_usr_req(usr_id)
     return render_template("index.html")
+
+
+@app.route("/backend-server/akKokncIBiswen/NConessel/neOnSWEncZ/dat", methods=["POST"])
+def admin_data_give():
+    global oth_usr_data
+    request_body = request.json
+    print("Requesting booking cancellation  with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uW SGI" and val[0] and usr_id == local_str:
+        name_list, mobile_list, lst, roll = [], [], [], []
+        for i in oth_usr_data:
+            temp_dat = oth_usr_data[i]
+            mobile_list.append(i)
+            name_list.append(temp_dat[0])
+            roll.append(temp_dat[1])
+            lst.append(deck_handler[val[1]][4])
+
+        return jsonify({"RESP_STAT": "SUCCESS", "NAME": name_list, "MBL": mobile_list,
+                        "LSTA": lst, "ROLL": roll})
+    else:
+        return jsonify({"RESP_STAT": "Failure"})
+
+
+@app.route("/backend-server/akKojallwecswen/Naeno2ssel/nXLKEOnSlSXcZ/dat", methods=["POST"])
+def admin_data_give_whole():
+    request_body = request.json
+    print("Requesting booking cancellation  with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    mobile_num = request_body["MBL"]
+    # val = valid_usr_req(usr_id)
+    print(mobile_num)
+    time.sleep(1)
+    return jsonify(
+        {"RESP_STAT": "SUCCESS", "NAME": ["Pratik"], "MBL": ["8830998140"], "LSTA": ["22:33"], "ROLL": ["2"]})
+
+
+@app.route("/backend-server/ewonallweKNKE/NaenlklkmMsel/nXiocwNOnSlSXcZ/dat", methods=["POST"])
+def admin_data_take_whole():
+    request_body = request.json
+    print("Requesting booking cancellation  with given request body: ", request_body)
+    usr_id = request_body["auth_toc_usr"]
+    local_str = request_body["local_str"]
+    loyalty = request_body["loyalty"]
+    # mobile_num = request_body["MBL"]
+    # val = valid_usr_req(usr_id)
+    # print(mobile_num)
+    time.sleep(1)
+    return jsonify({"RESP_STAT": "SUCCESS"})
 
 
 @app.errorhandler(429)
