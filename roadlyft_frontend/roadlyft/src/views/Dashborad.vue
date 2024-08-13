@@ -801,12 +801,16 @@
                 <br>
                 <br>
                 <div id="prof-cont" style="text-align: center;  ">
-                    <div onclick="alert('Currently disable due to beta version.')" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <div onclick="alert('Currently disable due to beta version.')" class="round-edge c-regular" style=" color: #10517d; width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
                         <p>Personal Information</p>
                     </div>
                     
-                    <div id="account_info" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://wa.me/918298133696?text=I%20want%20to%20get%20insurance.'">
+                    <div id="account_info" class="round-edge c-regular" style=" color: #10517d; width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://wa.me/918298133696?text=I%20want%20to%20get%20insurance.'">
                         <p>Insurance</p>
+                    </div>
+                    
+                    <div id="account_info" class="round-edge c-regular" style=" color: #10517d; width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://wa.me/918298133696?text=I%20need%20your%20help.'">
+                        <p>Emergency</p>
                     </div>
 
                     <router-link to="/driver-renew" style="text-decoration: none; color: #10517d;">
@@ -827,8 +831,11 @@
 
                 </div>
                 <div id="acc-cont" style="display: none; text-align: center;">
-                    <div id="account_info" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://wa.me/918298133696?text=I%20want%20to%20get%20account%20information.'">
+                    <div id="account_info" class="round-edge c-regular" style=" color: #10517d; width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://wa.me/918298133696?text=I%20want%20to%20get%20account%20information.'">
                         <p>Account Information</p>
+                    </div>
+                    <div id="feedback" class="round-edge c-regular" style=" color: #10517d; width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);" onclick="window.location.href='https://www.roadlyft.com/contact'">
+                        <p>Feedback</p>
                     </div>
                     <router-link to="/instant-loan" style="text-decoration: none; color: #10517d;">
                         <div class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
@@ -840,7 +847,7 @@
                             <p>Commercialize Vehicle</p> 
                         </div>
                     </router-link>
-                    <div id="logout_btn" class="round-edge c-regular" style="width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <div id="logout_btn" class="round-edge c-regular" style=" color: #10517d; width: 90%; margin-left: 5%; margin-bottom: 20px; border: 1px solid rgba(0, 0, 0, 0.05);">
                         <p>Logout</p> 
                     </div>
 
@@ -2652,8 +2659,8 @@ function on_load() {
     }
     else{
         
-        // home_btn_disp();
-        publish_btn_disp();
+        home_btn_disp();
+        // publish_btn_disp();
         // profile_btn_disp();
 
         fetch('/backend-server/get_homepage_da', {
