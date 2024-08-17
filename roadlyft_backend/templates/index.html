@@ -104,9 +104,11 @@
                 <button id="reload-btn" class="c-light" style="cursor:pointer; position:fixed; font-size: 15px; color: #10517d; right: 100px; padding-top: 10px; padding-left:10px; padding-right:10px; padding-bottom:10px; background-color: white; border:1px solid #10517d; border-radius: 10px;"> Reload </button>
             </div>
             <div id="more-options" style="display: none; width: 200px;  position: fixed; background-color: white; z-index: 2; right: 0; top: 0; box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); border-bottom-left-radius: 20px;">
+                <br>
                 <button id="reload-btn-2" class="c-light" style="cursor: pointer; width: 90%; height: 50px; font-size: 15px; color: #10517d; border: 1px solid #10517d; border-radius: 10px; margin: 5%; display: flex; justify-content: center; align-items: center; background-color: white;">Reload</button>
                 <button class="c-light" style="cursor: pointer; width: 90%; height: 50px; font-size: 15px; color: #10517d; border: 1px solid #10517d; border-radius: 10px; margin: 5%; display: flex; justify-content: center; align-items: center; background-color: white;">Backup</button>
                 <button class="c-light" style="cursor: pointer; width: 90%; height: 50px; font-size: 15px; color: #10517d; border: 1px solid #10517d; border-radius: 10px; margin: 5%; display: flex; justify-content: center; align-items: center; background-color: white;">Logout</button>
+                <br>
             </div>
             <br>
             <br>
@@ -283,7 +285,25 @@
             if (document.getElementById("cust-info").style.display == "flex"){
                 document.getElementById("alert-box").style.display = "flex";
                 document.getElementById("cust-info").style.display = "none";
-
+                
+                var roll;
+                if (document.getElementById('lbl_1').checked == true &&
+                    document.getElementById('lbl_2').checked == false &&
+                    document.getElementById('lbl_3').checked == false){
+                    roll = 0;    
+                }
+                else if (document.getElementById('lbl_1').checked == false &&
+                    document.getElementById('lbl_2').checked == true &&
+                    document.getElementById('lbl_3').checked == false){
+                    roll = 1;    
+                }
+                else if (document.getElementById('lbl_1').checked == false &&
+                    document.getElementById('lbl_2').checked == false &&
+                    document.getElementById('lbl_3').checked == true){
+                    roll = 2;    
+                }
+                var name_temp = document.getElementById("cust-name").value;
+                var mobile_temp = document.getElementById("cust-mobile").value;
                 fetch('/backend-server/ewonallweKNKE/NaenlklkmMsel/nXiocwNOnSlSXcZ/dat', {
                     method: 'POST',
                     credentials: 'include',
@@ -292,7 +312,7 @@
                         'Content-Type': 'application/json',
                         'Access-Control-Allow-Credentials': 'true',
                     },
-                    body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty,})
+                    body: JSON.stringify({"auth_toc_usr": auth_toc_usr, 'local_str': usr_verify.slice(1, -1), "loyalty": loyalty, "RLL": roll, "NME": name_temp, "MBL": mobile_temp})
                     
                 })
                 .then(response => {
@@ -324,6 +344,9 @@
                     alert("Something went wrong. Please try again after some time.")
                     
                 }); 
+            }
+            else{
+                logout();
             }
         }
 
@@ -466,10 +489,12 @@
                         document.getElementById("loading-lbl").innerText = "No data found.";
                     }
                 }
-    
+                // else if (data['RESP_STAT'] == "ABORTED_TIMEOUT"){
+                //     alert("Session time out.")
+                // }
                 else {
                     alert("Error with your profile. Please login again.");
-                    logout();
+                    // logout();
                 }
             })
             .catch(error => {

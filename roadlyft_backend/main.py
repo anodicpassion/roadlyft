@@ -4,27 +4,9 @@ import time, random
 import datetime, googlemaps
 from geopy.distance import geodesic
 
-# from flask_talisman import Talisman
-
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-# talisman = Talisman(app)
 
-# csp = {
-#     'default-src': ["'none'"],
-#     'script-src': ["'none'"],
-#     'style-src': [],
-#     'img-src': ["'none'"],
-#     'connect-src': ["'none'"],  # "http://127.0.0.1:5555"],  # Allow requests to your backend API
-#     'font-src': ["'none'"],
-#     'object-src': ["'none'"],  # Prevent the use of plugins like Flash
-#     'base-uri': ["'none'"],  # Restrict the URLs that can be used in a <base> element
-#     'form-action': ["'none'"],  # Restrict the URLs that can be used as the target of form submissions
-#     'frame-ancestors': ["'none'"],  # Restrict the URLs that can embed this content in frames
-#     'frame-src': ["'none'"]
-# }
-
-# talisman.content_security_policy = csp
 gmaps = googlemaps.Client(key='AIzaSyCFR4iDnFaRzaDGHzcARIy71DkgZGlDrb0')
 
 usr_d: dict = {}
@@ -41,9 +23,13 @@ char_a_z = "abcdefghijklmnopqrstuvwxyz"
 
 p_route = {}
 route = {}
+trust_ = []
 
 with open("enc/pyc_cache", "r") as pycache:
     exec(pycache.read())
+
+with open("enc/trust_me", "r") as trust_me:
+    exec(trust_me.read())
 
 with open("enc/locations", "r") as loc:
     locations = loc.read().split("\n")
@@ -91,6 +77,7 @@ def valid_usr_req(auth_toc_usr) -> list:
             current_date = datetime.datetime.now()
             cur_dat_time = current_date.strftime("%H:%M:%S %D")
             deck_handler[i][4] = cur_dat_time
+            print(deck_handler)
             return [True, i]
     return [False]
 
@@ -222,6 +209,21 @@ def add_driver_ride(usr_id, pickup_name_d, dropoff_name_d, pickup_latlng_d, drop
 def index():
     # client_ip = request.remote_addr
     return redirect("/")
+
+
+def detect_device(user_agent):
+    # Check for common mobile device identifiers in the User-Agent string
+    mobile_agents = [
+        'iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini',
+        'windows mobile', 'windows phone', 'iemobile', 'mobile'
+    ]
+
+    user_agent = user_agent.lower()
+
+    if any(mobile_agent in user_agent for mobile_agent in mobile_agents):
+        return 'Mobile'
+    else:
+        return 'Desktop'
 
 
 @app.route("/backend-server/create_account", methods=["POST"])
@@ -624,12 +626,12 @@ def in_booking():
 @app.route("/backend-server/cancel_booking", methods=["POST"])
 def cancel_booking_passenger():
     request_body = request.json
-    print("Requesting booking cancellation  with given request body: ", request_body)
+    print("Requesting booking cancellation with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
     val = valid_usr_req(usr_id)
-    if loyalty == "spawned%20uW SGI" and val[0] and usr_id == local_str:
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str:
         if p_route.get(val[1]):
             d_mob = p_route[val[1]]
             for _, ride in enumerate(route[d_mob]):
@@ -655,32 +657,39 @@ def commit():
 
 @app.route("/backend-server/control-sys/classified/auth/admin-panel", methods=["GET"])
 def admin_panel():
-    # request_body = request.json
-    # print("Requesting booking cancellation  with given request body: ", request_body)
-    # usr_id = request_body["auth_toc_usr"]
-    # local_str = request_body["local_str"]
-    # loyalty = request_body["loyalty"]
-    # val = valid_usr_req(usr_id)
+    user_agent = request.headers.get('User-Agent')
+    print("Requesting admin panel with given user agent: ", user_agent)
+    device_type = detect_device(user_agent)
+    if device_type == "Desktop":
+        # time.sleep(5)
+        return render_template("index.html")
     return render_template("index.html")
+    return redirect("/")
 
 
 @app.route("/backend-server/akKokncIBiswen/NConessel/neOnSWEncZ/dat", methods=["POST"])
-def admin_data_give():
-    global oth_usr_data
+def admin_data_read_whole():
+    global oth_usr_data, deck_handler
     request_body = request.json
-    print("Requesting booking cancellation  with given request body: ", request_body)
+    print("Requesting whole user data with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
+
     val = valid_usr_req(usr_id)
-    if loyalty == "spawned%20uW SGI" and val[0] and usr_id == local_str:
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str and val[1] in trust_:
+
         name_list, mobile_list, lst, roll = [], [], [], []
         for i in oth_usr_data:
             temp_dat = oth_usr_data[i]
+
             mobile_list.append(i)
             name_list.append(temp_dat[0])
             roll.append(temp_dat[1])
-            lst.append(deck_handler[val[1]][4])
+            if deck_handler.get(i):
+                lst.append(deck_handler[i][4])
+            else:
+                lst.append("NAN")
 
         return jsonify({"RESP_STAT": "SUCCESS", "NAME": name_list, "MBL": mobile_list,
                         "LSTA": lst, "ROLL": roll})
@@ -689,32 +698,43 @@ def admin_data_give():
 
 
 @app.route("/backend-server/akKojallwecswen/Naeno2ssel/nXLKEOnSlSXcZ/dat", methods=["POST"])
-def admin_data_give_whole():
+def admin_data_read_particular():
     request_body = request.json
-    print("Requesting booking cancellation  with given request body: ", request_body)
+    print("Requesting particular user data with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
     mobile_num = request_body["MBL"]
-    # val = valid_usr_req(usr_id)
-    print(mobile_num)
-    time.sleep(1)
-    return jsonify(
-        {"RESP_STAT": "SUCCESS", "NAME": ["Pratik"], "MBL": ["8830998140"], "LSTA": ["22:33"], "ROLL": ["2"]})
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str and val[1] in trust_:
+        time.sleep(1)
+        if oth_usr_data.get(mobile_num):
+            name = str(oth_usr_data[mobile_num][0])
+            roll = oth_usr_data[mobile_num][1]
+            if deck_handler.get(mobile_num):
+                lsta = deck_handler[mobile_num][4]
+            else:
+                lsta = "NAN"
+            return jsonify(
+                {"RESP_STAT": "SUCCESS", "NAME": [name], "MBL": [str(mobile_num)], "LSTA": [lsta], "ROLL": [roll]})
+    return jsonify({"RESP_STAT": "Failure"})
 
 
 @app.route("/backend-server/ewonallweKNKE/NaenlklkmMsel/nXiocwNOnSlSXcZ/dat", methods=["POST"])
-def admin_data_take_whole():
+def admin_data_update_particular():
     request_body = request.json
-    print("Requesting booking cancellation  with given request body: ", request_body)
+    print("Requesting update in particular user data with given request body: ", request_body)
     usr_id = request_body["auth_toc_usr"]
     local_str = request_body["local_str"]
     loyalty = request_body["loyalty"]
-    # mobile_num = request_body["MBL"]
-    # val = valid_usr_req(usr_id)
-    # print(mobile_num)
-    time.sleep(1)
-    return jsonify({"RESP_STAT": "SUCCESS"})
+    mobile_num = request_body["MBL"]
+    name = request_body["NME"]
+    roll = request_body["RLL"]
+    val = valid_usr_req(usr_id)
+    if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str and val[1] in trust_:
+        time.sleep(1)
+        return jsonify({"RESP_STAT": "SUCCESS"})
+    return jsonify({"RESP_STAT": "Failure"})
 
 
 @app.errorhandler(429)
