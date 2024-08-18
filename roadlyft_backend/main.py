@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, redirect, render_template
+from flask import Flask, request, jsonify, redirect, render_template, send_from_directory
 from flask_cors import CORS
 import time, random
 import datetime, googlemaps
@@ -738,6 +738,26 @@ def admin_data_update_particular():
             except:
                 return jsonify({"RESP_STAT": "Failure"})
     return jsonify({"RESP_STAT": "Failure"})
+
+
+@app.route("/backend-server/eioad/mofva", methods=["GET"])
+def return_basecss_for_admin_panel():
+    return send_from_directory(directory=".", path="static/base.css")
+
+
+@app.route("/backend-server/cieow/ofiaea", methods=["GET"])
+def return_maincss_for_admin_panel():
+    return send_from_directory(directory=".", path="static/main.css")
+
+
+@app.route("/backend-server/icon/Roadlyft_LOGO.png", methods=["GET"])
+def return_logo_for_admin_panel():
+    return send_from_directory(directory=".", path="static/Roadlyft_LOGO.png")
+
+
+@app.route("/backend-server/icon/favicon.ico", methods=["GET"])
+def return_favicon_for_admin_panel():
+    return send_from_directory(directory=".", path="static/favicon.ico")
 
 
 @app.errorhandler(429)
