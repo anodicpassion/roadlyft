@@ -165,7 +165,8 @@
                         </div>
                         <div style="width: 100%; display: inline-flex; margin-left: 10%;">
                             <p class="c-light" style="font-size: 20px;">Mobile number: </p>
-                            <input id="cust-mobile" class="search-inp" type="tel" maxlength="10" minlength="10" placeholder="Mobile number" style="padding-top: 15px; padding-left: 20px; width: 50%;">
+                            <p id="cust-mobile"  class="c-regular" style="font-size: 20px; font-family: system-ui; padding-left: 20px;"></p>
+                            <!-- <input id="cust-mobile" class="search-inp" type="tel" maxlength="10" minlength="10" placeholder="Mobile number" style="padding-top: 15px; padding-left: 20px; width: 50%;"> -->
                         </div>
                         <div style="width: 100%; display: inline-flex; margin-left: 10%;">
                             <p class="c-light" style="font-size: 20px;">Driving permission: </p>
@@ -303,7 +304,7 @@
                     roll = 2;    
                 }
                 var name_temp = document.getElementById("cust-name").value;
-                var mobile_temp = document.getElementById("cust-mobile").value;
+                var mobile_temp = document.getElementById("cust-mobile").innerText;
                 fetch('/backend-server/ewonallweKNKE/NaenlklkmMsel/nXiocwNOnSlSXcZ/dat', {
                     method: 'POST',
                     credentials: 'include',
@@ -378,7 +379,7 @@
                     // console.log(data);
 
                     document.getElementById("cust-name").value = data["NAME"];
-                    document.getElementById("cust-mobile").value = data["MBL"];
+                    document.getElementById("cust-mobile").innerText = data["MBL"];
                     if (data["ROLL"] == "0"){
                         document.getElementById("cust-permission").innerText = "Unverified";
                         document.getElementById('lbl_1').checked = true;
@@ -494,7 +495,7 @@
                 // }
                 else {
                     alert("Error with your profile. Please login again.");
-                    // logout();
+                    logout();
                 }
             })
             .catch(error => {
@@ -506,15 +507,15 @@
         window.addEventListener("load", function(){
             if (usr_verify == null){
                 console.log(1)
-                // window.location.replace("/login");
+                window.location.replace("/login");
             }
             else if (auth_toc_usr == null){
                 console.log(2)
-                // window.location.replace("/login");
+                window.location.replace("/login");
             }
             else if (auth_toc_usr != usr_verify.slice(1, -1)){
                 console.log("malacious activity detected");
-                // window.location.replace("/login");
+                window.location.replace("/login");
             }
             getdat();
             document.getElementById("reload-btn").addEventListener("click", function(){

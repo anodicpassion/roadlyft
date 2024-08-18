@@ -661,9 +661,8 @@ def admin_panel():
     print("Requesting admin panel with given user agent: ", user_agent)
     device_type = detect_device(user_agent)
     if device_type == "Desktop":
-        # time.sleep(5)
         return render_template("index.html")
-    return render_template("index.html")
+    # return render_template("index.html")
     return redirect("/")
 
 
@@ -707,7 +706,6 @@ def admin_data_read_particular():
     mobile_num = request_body["MBL"]
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str and val[1] in trust_:
-        time.sleep(1)
         if oth_usr_data.get(mobile_num):
             name = str(oth_usr_data[mobile_num][0])
             roll = oth_usr_data[mobile_num][1]
@@ -732,8 +730,13 @@ def admin_data_update_particular():
     roll = request_body["RLL"]
     val = valid_usr_req(usr_id)
     if loyalty == "spawned%20uWSGI" and val[0] and usr_id == local_str and val[1] in trust_:
-        time.sleep(1)
-        return jsonify({"RESP_STAT": "SUCCESS"})
+        if usr_d.get(mobile_num):
+            try:
+                oth_usr_data[mobile_num][0] = str(name)
+                oth_usr_data[mobile_num][1] = int(roll)
+                return jsonify({"RESP_STAT": "SUCCESS"})
+            except:
+                return jsonify({"RESP_STAT": "Failure"})
     return jsonify({"RESP_STAT": "Failure"})
 
 
@@ -747,10 +750,30 @@ def ratelimit_handler(e):
 
 @app.errorhandler(404)
 def page_notfound_handler(e):
-    return jsonify(general_message="Unauthorized access.",
-                   security_message="If you are a cybersecurity expert and you call yourself cybersecurity expert, "
-                                    "then buddy... you really need to think on this again!",
-                   developer_message="err_cd_404 PG_NULL"), 404
+    return render_template("ERR_PAGE.html", ERROR_CODE=404,
+                           ERROR_QUOTE="Page your are looking for has been moved or do not exist.")
+    # return jsonify(general_message="Unauthorized access.",
+    #                security_message="If you are a cybersecurity expert and you call yourself cybersecurity expert, "
+    #                                 "then buddy... you really need to think on this again!",
+    #                developer_message="err_cd_404 PG_NULL"), 404
+
+
+@app.errorhandler(500)
+def internal_server_error_handler(e):
+    # print(e, str(e))
+    # error_disc = str(e)
+    # e_code, e_msg = error_disc.split(" ")[0], error_disc
+    return render_template("ERR_PAGE.html", ERROR_CODE=500,
+                           ERROR_QUOTE="There is some internal error. Hold tight our team is on the problem.")
+    # return render_template("ERR_PAGE.html", ERROR_CODE=e_code,
+    #                        ERROR_QUOTE=e_msg)
+
+
+@app.errorhandler(405)
+def internal_server_error_handler(e):
+    print(e)
+    return render_template("ERR_PAGE.html", ERROR_CODE=405,
+                           ERROR_QUOTE="You do not hold permission to get into this section.")
 
 
 if __name__ == "__main__":
