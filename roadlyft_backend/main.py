@@ -211,6 +211,11 @@ def index():
     return redirect("/")
 
 
+@app.route("/backend-server/status")
+def server_status():
+    return jsonify(request.user_agent)
+
+
 def detect_device(user_agent):
     # Check for common mobile device identifiers in the User-Agent string
     mobile_agents = [
