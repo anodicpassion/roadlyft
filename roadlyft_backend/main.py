@@ -213,7 +213,7 @@ def index():
 
 @app.route("/backend-server/status")
 def server_status():
-    return jsonify(request.user_agent)
+    return request.user_agent.string
 
 
 def detect_device(user_agent):
