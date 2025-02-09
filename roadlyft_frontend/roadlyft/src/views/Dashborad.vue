@@ -1230,7 +1230,7 @@ function fetchLocations_4() {
     });
 }
 function fetch_loc(){
-    fetch('http://127.0.0.1:5555/backend-server/get_loc_da', {
+    fetch('/backend-server/get_loc_da', {
         method: 'POST',
         credentials: 'include',
         
@@ -1308,7 +1308,7 @@ function p_search_cabs(){
         parentElement.removeChild(parentElement.firstChild);
     }
 
-    fetch('http://127.0.0.1:5555/backend-server/p_search_cabs', {
+    fetch('/backend-server/p_search_cabs', {
             method: 'POST',
             credentials: 'include',
             
@@ -1845,7 +1845,7 @@ function d_price_confirm(){
         var d_time = document.getElementById("d_time").value;
         
 
-        fetch('http://127.0.0.1:5555/backend-server/d_post', {
+        fetch('/backend-server/d_post', {
             method: 'POST',
             credentials: 'include',
             
@@ -1907,7 +1907,7 @@ function d_price_confirm(){
 
 }
 function d_in_ride_content(){
-    fetch('http://127.0.0.1:5555/backend-server/d_inride_content/0', {
+    fetch('/backend-server/d_inride_content/0', {
             method: 'POST',
             credentials: 'include',
             
@@ -1972,7 +1972,7 @@ function show_cab_info(indx, data){
         let newElement = element.cloneNode(true);
         element.parentNode.replaceChild(newElement, element);
         document.getElementById("p_cab_request_p").innerText = "...";
-        fetch('http://127.0.0.1:5555/backend-server/p_book_cab', {
+        fetch('/backend-server/p_book_cab', {
             method: 'POST',
             credentials: 'include',
             
@@ -2195,7 +2195,7 @@ function show_request_info(indx, data){
     document.getElementById("d_confirm_passanger").addEventListener("click", function(){
         document.getElementById("d_confirm_passanger_p").innerText = "...";
 
-        fetch('http://127.0.0.1:5555/backend-server/d_request_accept', {
+        fetch('/backend-server/d_request_accept', {
             method: 'POST',
             credentials: 'include',
             
@@ -2344,7 +2344,7 @@ function requests_accepted_append(indx, data){
     document.getElementById("cab_accept_toapp").appendChild(mainDiv);
 }
 function in_booking(){
-    fetch('http://127.0.0.1:5555/backend-server/in_booking', {
+    fetch('/backend-server/in_booking', {
             method: 'POST',
             credentials: 'include',
             
@@ -2378,7 +2378,7 @@ function in_booking(){
                     document.getElementById("p_D_Name").innerText = data["D_NAME"];
                     document.getElementById("p_D_Mbl").innerText = data["D_MOB"];
                     document.getElementById("p_cancel_booking").addEventListener("click", function(){
-                        fetch('http://127.0.0.1:5555/backend-server/cancel_booking', {
+                        fetch('/backend-server/cancel_booking', {
                             method: 'POST',
                             credentials: 'include',
                             
@@ -2663,7 +2663,7 @@ function on_load() {
         // publish_btn_disp();
         // profile_btn_disp();
 
-        fetch('http://127.0.0.1:5555/backend-server/get_homepage_da', {
+        fetch('/backend-server/get_homepage_da', {
             method: 'POST',
             credentials: 'include',
             

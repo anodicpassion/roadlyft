@@ -353,7 +353,7 @@ window.addEventListener('load', () => {
                     password: password
                 };
 
-                fetch('http://127.0.0.1:5555/backend-server/login', {
+                fetch('/backend-server/login', {
                     method: 'POST',
                     credentials: 'include',
                     
@@ -430,7 +430,7 @@ window.addEventListener('load', () => {
                     password: pass
                 };
 
-                fetch('http://127.0.0.1:5555/backend-server/create_account', {
+                fetch('/backend-server/create_account', {
                     method: 'POST',
                     credentials: 'include',
                     
