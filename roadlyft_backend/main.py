@@ -216,6 +216,11 @@ def server_status():
     return request.user_agent.string
 
 
+@app.route("/backend-server/<file_name>")
+def send_file_from_static(file_name):
+    return send_from_directory("static", file_name)
+
+
 def detect_device(user_agent):
     # Check for common mobile device identifiers in the User-Agent string
     mobile_agents = [
